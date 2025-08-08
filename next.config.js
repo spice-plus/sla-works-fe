@@ -16,6 +16,7 @@ const nextConfig = {
     ],
   },
   webpack: (config, { isServer }) => {
+    // シンプルな解決策: Sharp関連モジュールの外部化（サーバーサイドのみ）
     if (isServer) {
       config.externals = config.externals || [];
       config.externals.push("sharp");
@@ -23,8 +24,6 @@ const nextConfig = {
 
     return config;
   },
-  // Remove experimental.esmExternals as it's deprecated in Next.js 15
-  // The webpack configuration above handles module resolution more effectively
 };
 
 module.exports = nextConfig;
