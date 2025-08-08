@@ -38,11 +38,13 @@ const nextConfig = {
     // モジュール解決の設定
     config.resolve = config.resolve || {};
 
-    // tar-fsの解決問題を根本的に解決
+    // tar-fsとSharp関連モジュールの解決問題を根本的に解決
     config.resolve.alias = {
       ...config.resolve.alias,
       // tar-fsを無効化（Sharpの内部依存関係として処理）
       "tar-fs": false,
+      "tar-stream": false,
+      "tunnel-agent": false,
     };
 
     // クライアントサイドでのfallback設定
@@ -91,9 +93,16 @@ const nextConfig = {
     // 問題のあるモジュールに関する警告を抑制
     config.ignoreWarnings = [
       ...(config.ignoreWarnings || []),
-      /Module not found: Error: Can't resolve 'tar-fs'/,
-      /Module not found: Error: Can't resolve 'tunnel-agent'/,
+      {
+        module: /node_modules\/sharp/,
+        message: /Can't resolve 'tar-fs'/,
+      },
+      {
+        module: /node_modules\/sharp/,
+        message: /Can't resolve 'tunnel-agent'/,
+      },
       /Critical dependency: the request of a dependency is an expression/,
+      /webpack\.cache\.PackFileCacheStrategy.*Caching failed for pack/,
     ];
 
     return config;
