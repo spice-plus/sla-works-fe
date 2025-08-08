@@ -18,51 +18,106 @@ npm install sharp --save
 
 sharpパッケージを直接の依存関係として追加することで、モジュール解決の問題を回避します。
 
-### 2. Next.js設定の最適化
+### 2. Next.js設定の最適化（予防策実装済み）
 
-`next.config.js`に以下の設定を追加：
+`next.config.js`に包括的な予防策を実装済み：
 
 ```javascript
 webpack: (config, { isServer, dev }) => {
-  // Sharp optimization for server-side rendering
+  // Sharp and related modules optimization for server-side rendering
   if (isServer) {
     config.externals = config.externals || [];
-    config.externals.push({
-      sharp: 'commonjs sharp'
+    config.externals.push(({ context, request }, callback) => {
+      // Handle Sharp and its internal dependencies
+      if (request.startsWith('sharp') ||
+          request === 'tar-fs' ||
+          request === 'tar-stream' ||
+          request === 'tunnel-agent' ||
+          request.includes('node-gyp') ||
+          request.includes('prebuild')) {
+        return callback(null, `commonjs ${request}`);
+      }
+      callback();
     });
   }
 
-  // Resolve tunnel-agent and other potential missing modules
+  // Comprehensive module resolution fallbacks
   config.resolve = config.resolve || {};
   config.resolve.fallback = {
     ...config.resolve.fallback,
+    // Sharp related modules
+    'tar-fs': false,
+    'tar-stream': false,
     'tunnel-agent': false,
+    'node-gyp': false,
+    'prebuild-install': false,
+    // Node.js core modules
     'http': false,
     'https': false,
     'url': false,
     'assert': false,
     'stream': false,
     'util': false,
+    'fs': false,
+    'path': false,
+    'os': false,
+    'crypto': false,
+    'buffer': false,
+    'events': false,
+    'querystring': false,
+    'zlib': false,
   };
 
-  // Optimize caching for sharp and related modules
+  // Enhanced caching configuration
   if (!dev) {
     config.cache = {
       ...config.cache,
       type: 'filesystem',
+      version: '1.0.0',
       buildDependencies: {
         config: [__filename],
       },
+      // Prevent cache corruption for problematic modules
+      managedPaths: [/^(.+[\\/])?node_modules[\\/](?!(sharp|tar-fs|tunnel-agent))/],
     };
   }
 
+  // Ignore specific warnings for known issues
+  config.ignoreWarnings = [
+    ...(config.ignoreWarnings || []),
+    /Module not found: Error: Can't resolve 'tar-fs'/,
+    /Module not found: Error: Can't resolve 'tunnel-agent'/,
+    /Critical dependency: the request of a dependency is an expression/,
+  ];
+
+  // Optimization for Sharp and image processing
+  config.optimization = {
+    ...config.optimization,
+    splitChunks: {
+      ...config.optimization?.splitChunks,
+      cacheGroups: {
+        ...config.optimization?.splitChunks?.cacheGroups,
+        sharp: {
+          test: /[\\/]node_modules[\\/](sharp|tar-fs|tunnel-agent)[\\/]/,
+          name: 'sharp-vendor',
+          chunks: 'all',
+          priority: 20,
+        },
+      },
+    },
+  };
+
   return config;
 },
-// Experimental features for better module resolution
-experimental: {
-  esmExternals: 'loose',
-},
 ```
+
+**重要な改善点：**
+- Next.js 15対応のexternals関数形式に更新
+- tar-fs、tar-stream、tunnel-agentの明示的な処理
+- 包括的なfallback設定でNode.jsコアモジュールもカバー
+- 警告の抑制設定でビルドログをクリーンに
+- Sharp専用のcode splittingでパフォーマンス最適化
+- 非推奨のexperimental.esmExternalsを削除
 
 ### 3. 自動修復スクリプト
 
