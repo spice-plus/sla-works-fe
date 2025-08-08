@@ -48,7 +48,9 @@ export async function getUserById(_id: string): Promise<ApiResponse<User>> {
 /**
  * 新しいユーザーを作成
  */
-export async function createUser(_data: CreateUserDto): Promise<ApiResponse<User>> {
+export async function createUser(
+  _data: CreateUserDto
+): Promise<ApiResponse<User>> {
   // モック実装
   const mockResponse: ApiResponse<User> = {
     data: {} as User,
@@ -96,7 +98,9 @@ export async function deleteUser(_id: string): Promise<ApiResponse<void>> {
 /**
  * クエリでユーザーを検索
  */
-export async function searchUsers(_query: string): Promise<ApiResponse<User[]>> {
+export async function searchUsers(
+  _query: string
+): Promise<ApiResponse<User[]>> {
   // モック実装
   const mockResponse: ApiResponse<User[]> = {
     data: [],
