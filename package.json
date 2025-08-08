@@ -9,7 +9,6 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "fix-webpack-cache": "node scripts/fix-webpack-cache.js",
     "clean": "rm -rf .next && npm cache clean --force"
   },
   "dependencies": {
@@ -64,7 +63,6 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.7",
-    "tar-fs": "^3.1.0",
     "typescript": "5.2.2",
     "vaul": "^0.9.9",
     "zod": "^3.23.8"
@@ -73,7 +71,6 @@
     "@biomejs/biome": "^2.1.4",
     "@types/node": "^20.19.9",
     "@types/react": "^18.3.23",
-    "@types/react-dom": "^18.3.7",
-    "tunnel-agent": "^0.6.0"
+    "@types/react-dom": "^18.3.7"
   }
 }

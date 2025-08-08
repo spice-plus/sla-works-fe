@@ -15,15 +15,7 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config, { isServer }) => {
-    // シンプルな解決策: Sharp関連モジュールの外部化（サーバーサイドのみ）
-    if (isServer) {
-      config.externals = config.externals || [];
-      config.externals.push("sharp");
-    }
-
-    return config;
-  },
+  // Webpack設定を削除 - Next.jsのデフォルトに任せる
 };
 
 module.exports = nextConfig;
