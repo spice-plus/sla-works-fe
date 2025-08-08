@@ -1,9 +1,11 @@
 import type {
   ApiResponse,
+  CreateUserDto,
   PaginatedResponse,
   PaginationParams,
-} from "@/models/common";
-import type { CreateUserDto, UpdateUserDto, User } from "@/models/user";
+  UpdateUserDto,
+  User,
+} from "@/types";
 
 // これはモックサービスです。実際のアプリケーションでは、これらはAPI呼び出しを行います
 
