@@ -19,8 +19,11 @@ const nextConfig = {
     // Sharp optimization for server-side rendering
     if (isServer) {
       config.externals = config.externals || [];
-      config.externals.push({
-        sharp: 'commonjs sharp'
+      config.externals.push((context, request, callback) => {
+        if (request.startsWith('sharp') || request === 'tar-fs') {
+          return callback(null, `commonjs ${request}`);
+        }
+        callback();
       });
     }
 
