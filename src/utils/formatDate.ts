@@ -33,7 +33,18 @@ export function formatDate(
     }).format(dateObj);
   }
 
-  return format(dateObj, formatStr, { locale: enUS });
+  // UTCタイムゾーンで統一するため、UTC成分を使って新しいDateオブジェクトを作成
+  const utcDate = new Date(
+    dateObj.getUTCFullYear(),
+    dateObj.getUTCMonth(),
+    dateObj.getUTCDate(),
+    dateObj.getUTCHours(),
+    dateObj.getUTCMinutes(),
+    dateObj.getUTCSeconds(),
+    dateObj.getUTCMilliseconds()
+  );
+
+  return format(utcDate, formatStr, { locale: enUS });
 }
 
 /**
