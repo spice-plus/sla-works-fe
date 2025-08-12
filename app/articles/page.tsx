@@ -13,6 +13,7 @@ import { sampleCategories } from "../../sample/categories";
 import { sampleCompanies } from "../../sample/companies";
 import { Calendar, Eye, Building2, Tag } from "lucide-react";
 import { formatDate } from "../../src/utils/formatDate";
+import { generateArticleUrl } from "../../src/utils/urlHelpers";
 
 export default function ArticlesPage() {
   const articles = sampleArticles;
@@ -106,7 +107,7 @@ export default function ArticlesPage() {
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
                   <Link 
-                    href={`/articles/${article.id}`}
+                    href={generateArticleUrl(article.id)}
                     className="hover:text-[#2E3A97] transition-colors"
                   >
                     {article.title}

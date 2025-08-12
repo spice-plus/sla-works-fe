@@ -18,6 +18,7 @@ import { sampleCompanies } from "../sample/companies";
 import { sampleTags } from "../sample/tags";
 import { formatDate } from "../src/utils/formatDate";
 import { prefectures } from "../masters/prefectures";
+import { generateArticleUrl } from "../src/utils/urlHelpers";
 
 interface SearchFormData {
   keyword: string;
@@ -115,7 +116,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
         
         <div className="p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#2E3A97] transition-colors">
-            <Link href={`/articles/${article.id}`}>
+            <Link href={generateArticleUrl(article.id)}>
               {article.title}
             </Link>
           </h3>

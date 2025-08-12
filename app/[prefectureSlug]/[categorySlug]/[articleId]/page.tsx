@@ -10,9 +10,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { sampleArticles } from "../../../sample/articles";
-import { sampleCategories } from "../../../sample/categories";
-import { sampleCompanies } from "../../../sample/companies";
+import { sampleArticles } from "../../../../sample/articles";
+import { sampleCategories } from "../../../../sample/categories";
+import { sampleCompanies } from "../../../../sample/companies";
 import { 
   ArrowLeft, 
   Calendar, 
@@ -23,26 +23,47 @@ import {
   Users,
   Tag
 } from "lucide-react";
-import { formatDate } from "../../../src/utils/formatDate";
+import { formatDate } from "../../../../src/utils/formatDate";
+import { generateArticleUrl, getArticleRelatedData } from "../../../../src/utils/urlHelpers";
+
+export async function generateStaticParams() {
+  // すべての記事に対してパラメータを生成
+  return sampleArticles.map((article) => {
+    const relatedData = getArticleRelatedData(article.id);
+    if (!relatedData) return null;
+
+    const { category, company } = relatedData;
+    if (!category || !company) return null;
+
+    // 都道府県スラッグを生成（会社の都道府県から）
+    const prefectureSlug = company.prefecture === '東京都' ? 'tokyo' : 'japan';
+    
+    return {
+      prefectureSlug,
+      categorySlug: category.slug,
+      articleId: article.id.toString(),
+    };
+  }).filter(Boolean);
+}
 
 interface ArticleDetailPageProps {
   params: {
-    id: string;
+    prefectureSlug: string;
+    categorySlug: string;
+    articleId: string;
   };
 }
 
 export default async function ArticleDetailPage({ params }: ArticleDetailPageProps) {
   const resolvedParams = await params;
-  const articleId = parseInt(resolvedParams.id);
-  const article = sampleArticles.find(a => a.id === articleId);
+  const articleId = parseInt(resolvedParams.articleId);
+  const relatedData = getArticleRelatedData(articleId);
   
-  if (!article) {
+  if (!relatedData) {
     notFound();
   }
 
-  // 関連データを取得
-  const category = sampleCategories.find(c => c.id === article.categoryId);
-  const company = sampleCompanies.find(c => c.id === article.companyId);
+  const { article, category, company } = relatedData;
   
   // 関連記事を取得（同じカテゴリーの他の記事）
   const relatedArticles = sampleArticles
@@ -81,6 +102,12 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
           <span>/</span>
           <Link href="/articles" className="hover:text-[#2E3A97]">記事一覧</Link>
           <span>/</span>
+          {category && (
+            <>
+              <Link href="/articles" className="hover:text-[#2E3A97]">{category.name}</Link>
+              <span>/</span>
+            </>
+          )}
           <span className="text-gray-900 truncate">{article.title}</span>
         </div>
       </nav>
@@ -292,7 +319,7 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
                     <span>{relatedArticle.viewCount.toLocaleString('ja-JP')} views</span>
                   </div>
                   <Button asChild className="w-full">
-                    <Link href={`/articles/${relatedArticle.id}`}>
+                    <Link href={generateArticleUrl(relatedArticle.id)}>
                       記事を読む
                     </Link>
                   </Button>
