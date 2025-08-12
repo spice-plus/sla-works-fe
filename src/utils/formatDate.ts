@@ -23,6 +23,16 @@ export function formatDate(
     return "無効な日付";
   }
 
+  // ハイドレーションエラーを防ぐため、特定のフォーマットではIntl.DateTimeFormatを使用
+  if (formatStr === "yyyy/M/d") {
+    return new Intl.DateTimeFormat('ja-JP', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      timeZone: 'UTC'
+    }).format(dateObj);
+  }
+
   return format(dateObj, formatStr, { locale: enUS });
 }
 
