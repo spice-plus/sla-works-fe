@@ -5,6 +5,7 @@ import {
   isValid,
   parseISO,
 } from "date-fns";
+import { enUS } from "date-fns/locale";
 
 /**
  * 日付を指定した形式でフォーマットする
@@ -22,7 +23,7 @@ export function formatDate(
     return "無効な日付";
   }
 
-  return format(dateObj, formatStr);
+  return format(dateObj, formatStr, { locale: enUS });
 }
 
 /**
@@ -41,7 +42,7 @@ export function formatTimeAgo(
     return "無効な日付";
   }
 
-  return formatDistance(dateObj, baseDate, { addSuffix: true });
+  return formatDistance(dateObj, baseDate, { addSuffix: true, locale: enUS });
 }
 
 /**
@@ -60,7 +61,7 @@ export function formatRelativeDate(
     return "無効な日付";
   }
 
-  return formatRelative(dateObj, baseDate);
+  return formatRelative(dateObj, baseDate, { locale: enUS });
 }
 
 /**
