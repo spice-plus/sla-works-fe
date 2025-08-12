@@ -81,7 +81,7 @@ export default function Home() {
                 <CardContent>
                   <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
                     <span>{formatDate(article.publishedAt, 'yyyy/M/d')}</span>
-                    <span>{article.viewCount.toLocaleString()} views</span>
+                    <span>{article.viewCount.toLocaleString('ja-JP')} views</span>
                   </div>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {article.keywords.slice(0, 2).map((keyword) => (

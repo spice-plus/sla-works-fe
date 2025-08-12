@@ -31,8 +31,9 @@ interface CompanyDetailPageProps {
   };
 }
 
-export default function CompanyDetailPage({ params }: CompanyDetailPageProps) {
-  const companyId = parseInt(params.id);
+export default async function CompanyDetailPage({ params }: CompanyDetailPageProps) {
+  const resolvedParams = await params;
+  const companyId = parseInt(resolvedParams.id);
   const company = sampleCompanies.find(c => c.id === companyId);
   
   if (!company) {
@@ -153,7 +154,7 @@ export default function CompanyDetailPage({ params }: CompanyDetailPageProps) {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{totalViews.toLocaleString()}</div>
+                <div className="text-2xl font-bold">{totalViews.toLocaleString('ja-JP')}</div>
               </CardContent>
             </Card>
             
@@ -237,7 +238,7 @@ export default function CompanyDetailPage({ params }: CompanyDetailPageProps) {
                             </div>
                             <div className="flex items-center gap-1">
                               <Eye className="h-4 w-4" />
-                              {article.viewCount.toLocaleString()}
+                              {article.viewCount.toLocaleString('ja-JP')}
                             </div>
                           </div>
                           

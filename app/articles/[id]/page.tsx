@@ -30,8 +30,9 @@ interface ArticleDetailPageProps {
   };
 }
 
-export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
-  const articleId = parseInt(params.id);
+export default async function ArticleDetailPage({ params }: ArticleDetailPageProps) {
+  const resolvedParams = await params;
+  const articleId = parseInt(resolvedParams.id);
   const article = sampleArticles.find(a => a.id === articleId);
   
   if (!article) {
@@ -94,7 +95,7 @@ export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
               </div>
               <div className="flex items-center gap-1">
                 <Eye className="h-4 w-4" />
-                {article.viewCount.toLocaleString()} views
+                {article.viewCount.toLocaleString('ja-JP')} views
               </div>
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4" />
@@ -266,7 +267,7 @@ export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
                   <CardContent>
                     <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
                       <span>{formatDate(relatedArticle.publishedAt, 'yyyy/M/d')}</span>
-                      <span>{relatedArticle.viewCount.toLocaleString()} views</span>
+                      <span>{relatedArticle.viewCount.toLocaleString('ja-JP')} views</span>
                     </div>
                     <Button asChild className="w-full">
                       <Link href={`/articles/${relatedArticle.id}`}>

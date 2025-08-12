@@ -92,7 +92,7 @@ export default function ArticlesPage() {
                         </div>
                         <div className="flex items-center gap-1">
                           <Eye className="h-4 w-4" />
-                          {article.viewCount.toLocaleString()}
+                          {article.viewCount.toLocaleString('ja-JP')}
                         </div>
                         {company && (
                           <div className="flex items-center gap-1">
