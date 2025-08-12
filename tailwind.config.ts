@@ -9,6 +9,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-subtle': 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
+        'gradient-warm': 'linear-gradient(135deg, #fefbff 0%, #f8fafc 50%, #f1f5f9 100%)',
+      },
       container: {
         center: true,
         padding: {
@@ -18,11 +24,6 @@ const config: Config = {
           xl: "5rem",
           "2xl": "6rem",
         },
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       borderRadius: {
         lg: "var(--radius)",

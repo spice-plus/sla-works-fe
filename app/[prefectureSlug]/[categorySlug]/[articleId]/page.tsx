@@ -158,12 +158,13 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
         <img 
           src={article.thumbnailUrl} 
           alt={article.title}
-          className="w-full h-64 md:h-80 object-cover rounded-lg shadow-md"
+          className="w-full h-96 md:h-[32rem] object-cover rounded-xl shadow-lg"
         />
       </div>
 
       {/* 記事詳細情報 */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+      <Card className="mb-8">
+        <CardContent className="p-6">
         <h2 className="text-xl font-bold text-gray-900 mb-6">プロジェクト詳細</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -196,12 +197,12 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
             <h3 className="font-semibold text-gray-900 mb-3">使用技術</h3>
             <div className="flex flex-wrap gap-2">
               {article.techStack.map((tech, index) => (
-                <span 
+                <Badge
                   key={index}
-                  className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm"
+                  variant="tech"
                 >
                   {tech}
-                </span>
+                </Badge>
               ))}
             </div>
           </div>
@@ -213,38 +214,44 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
             <h3 className="font-semibold text-gray-900 mb-3">キーワード</h3>
             <div className="flex flex-wrap gap-2">
               {article.keywords.map((keyword, index) => (
-                <span 
+                <Badge
                   key={index}
-                  className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm flex items-center"
+                  variant="keyword"
+                  className="flex items-center"
                 >
                   <Tag className="w-3 h-3 mr-1" />
                   {keyword}
-                </span>
+                </Badge>
               ))}
             </div>
           </div>
         )}
-      </div>
+        </CardContent>
+      </Card>
 
       {/* 元記事リンク */}
       {article.sourceUrl && (
-        <div className="bg-gray-50 rounded-lg p-6 mb-8">
+        <Card className="mb-8 bg-gray-50">
+          <CardContent className="p-6">
           <h3 className="font-semibold text-gray-900 mb-3">詳細情報</h3>
           <p className="text-gray-700 mb-4">
             この事例の詳細については、元記事をご覧ください。
           </p>
-          <a 
+          <Button asChild size="xl" className="font-semibold">
+            <a 
             href={article.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center bg-[#2E3A97] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1E2875] transition-colors"
-          >
-            元記事を読む
-            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </div>
+            >
+              <ExternalLink className="w-5 h-5 mr-3" />
+              元記事を読む
+            </a>
+          </Button>
+          <p className="text-sm text-gray-500 mt-3">
+            外部サイトに移動します
+          </p>
+          </CardContent>
+        </Card>
       )}
 
       {/* 企業情報 */}

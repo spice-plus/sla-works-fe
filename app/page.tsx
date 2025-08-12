@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ArticleCard } from "../src/components/ui/ArticleCard";
 import { sampleArticles } from "../sample/articles";
 import { sampleCategories } from "../sample/categories";
 import { sampleCompanies } from "../sample/companies";
@@ -69,14 +70,6 @@ export default function HomePage({ searchParams }: HomePageProps) {
   const categoryMap = Object.fromEntries(categories.map(cat => [cat.id, cat]));
   const companyMap = Object.fromEntries(companies.map(comp => [comp.id, comp]));
 
-  // 記事タイプの日本語表示
-  const articleTypeMap = {
-    process: 'プロセス',
-    interview: 'インタビュー',
-    deliverable: '成果物',
-    survey: '調査',
-  };
-
   // 検索実行
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,78 +80,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
     }
   };
 
-  // 記事カードコンポーネント
-  const ArticleCard = ({ article }: { article: any }) => {
-    const category = categoryMap[article.categoryId];
-    const company = companyMap[article.companyId];
-
-    return (
-      <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 group">
-        <div className="relative">
-          <img 
-            src={article.thumbnailUrl} 
-            alt={article.title}
-            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          {category && (
-            <div className="absolute top-4 left-4">
-              <span className="bg-[#2E3A97] text-white px-3 py-1 rounded-full text-sm font-medium">
-                {category.name}
-              </span>
-            </div>
-          )}
-          <div className="absolute top-4 right-4">
-            <span className="bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs">
-              {articleTypeMap[article.articleType]}
-            </span>
-          </div>
-        </div>
-        
-        <div className="p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#2E3A97] transition-colors">
-            <Link href={generateArticleUrl(article.id)}>
-              {article.title}
-            </Link>
-          </h3>
-          
-          <p className="text-gray-600 mb-4 line-clamp-2">
-            {article.description}
-          </p>
-          
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
-            <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" />
-              {formatDate(article.publishedAt, 'yyyy/M/d')}
-            </div>
-            <div className="flex items-center">
-              <Eye className="w-4 h-4 mr-1" />
-              {article.viewCount.toLocaleString('ja-JP')}
-            </div>
-            {company && (
-              <div className="flex items-center">
-                <Building2 className="w-4 h-4 mr-1" />
-                <Link 
-                  href={`/companies/${company.id}`}
-                  className="hover:text-[#2E3A97] font-medium"
-                >
-                  {company.name}
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <div className="flex justify-between items-center">
-            <div className="text-sm font-medium text-gray-700">
-              人気度: {article.popularityScore}/10
-            </div>
-          </div>
-        </div>
-      </article>
-    );
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-32 md:py-40 lg:py-48 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* 背景画像とオーバーレイ */}
@@ -242,7 +165,12 @@ export default function HomePage({ searchParams }: HomePageProps) {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {popularArticles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+              <ArticleCard 
+                key={article.id} 
+                article={article}
+                category={categoryMap[article.categoryId]}
+                company={companyMap[article.companyId]}
+              />
             ))}
           </div>
         </section>
@@ -264,7 +192,12 @@ export default function HomePage({ searchParams }: HomePageProps) {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentArticles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+              <ArticleCard 
+                key={article.id} 
+                article={article}
+                category={categoryMap[article.categoryId]}
+                company={companyMap[article.companyId]}
+              />
             ))}
           </div>
         </section>
