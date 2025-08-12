@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArticleCard } from "../src/components/ui/ArticleCard";
+import { ArticleCard } from "@/components/ui/ArticleCard";
 import { sampleArticles } from "../sample/articles";
 import { sampleCategories } from "../sample/categories";
 import { sampleCompanies } from "../sample/companies";
