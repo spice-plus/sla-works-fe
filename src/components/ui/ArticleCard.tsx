@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Calendar, Eye, Building2, Tag } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { formatDate } from "@/utils/formatDate";
-import { generateArticleUrl } from "@/utils/urlHelpers";
+import { formatDate } from "../../utils/formatDate";
+import { generateArticleUrl } from "../../utils/urlHelpers";
 
 interface ArticleCardProps {
   article: {

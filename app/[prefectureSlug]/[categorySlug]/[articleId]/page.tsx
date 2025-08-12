@@ -158,7 +158,7 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
         <img 
           src={article.thumbnailUrl} 
           alt={article.title}
-          className="w-full h-96 md:h-[32rem] object-cover rounded-xl shadow-lg"
+          className="w-full h-80 md:h-[28rem] object-cover rounded-xl shadow-lg"
         />
       </div>
 
@@ -239,9 +239,9 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
           </p>
           <Button asChild size="xl" className="font-semibold">
             <a 
-            href={article.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+              href={article.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <ExternalLink className="w-5 h-5 mr-3" />
               元記事を読む
