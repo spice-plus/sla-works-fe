@@ -1,4 +1,7 @@
+import { Calendar, ExternalLink, FileText, MapPin } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,28 +10,28 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { sampleCompanies } from "../../sample/companies";
 import { sampleArticles } from "../../sample/articles";
-import { ExternalLink, MapPin, Calendar, FileText } from "lucide-react";
+import { sampleCompanies } from "../../sample/companies";
 
 export default function CompaniesPage() {
   // 企業を名前順でソート
-  const sortedCompanies = sampleCompanies.sort((a, b) => a.name.localeCompare(b.name));
+  const sortedCompanies = sampleCompanies.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 
   // 各企業の記事数を計算
   const articleCountMap = new Map();
-  sampleArticles.forEach(article => {
+  sampleArticles.forEach((article) => {
     const count = articleCountMap.get(article.companyId) || 0;
     articleCountMap.set(article.companyId, count + 1);
   });
 
   // 従業員規模の表示用マッピング
   const employeeRangeLabels = {
-    small: '1-50名',
-    medium: '51-300名',
-    large: '301-1000名',
-    enterprise: '1000名以上'
+    small: "1-50名",
+    medium: "51-300名",
+    large: "301-1000名",
+    enterprise: "1000名以上",
   };
 
   return (
@@ -46,16 +49,21 @@ export default function CompaniesPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedCompanies.map((company) => {
             const articleCount = articleCountMap.get(company.id) || 0;
-            
+
             return (
-              <Card key={company.id} className="hover:shadow-lg transition-shadow">
+              <Card
+                key={company.id}
+                className="hover:shadow-lg transition-shadow"
+              >
                 <CardHeader>
                   {/* ロゴと基本情報 */}
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-16 h-16 bg-muted rounded-lg overflow-hidden flex-shrink-0">
-                      <img
+                      <Image
                         src={company.logoUrl}
                         alt={`${company.name} logo`}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -69,12 +77,12 @@ export default function CompaniesPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <CardDescription className="line-clamp-3">
                     {company.description}
                   </CardDescription>
                 </CardHeader>
-                
+
                 <CardContent>
                   {/* 企業情報 */}
                   <div className="space-y-2 mb-4">
@@ -85,14 +93,18 @@ export default function CompaniesPage() {
                         <span>{company.establishedYear}年</span>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">規模:</span>
                       <Badge variant="outline" className="text-xs">
-                        {employeeRangeLabels[company.employeeRange]}
+                        {
+                          employeeRangeLabels[
+                            company.employeeRange as keyof typeof employeeRangeLabels
+                          ]
+                        }
                       </Badge>
                     </div>
-                    
+
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">記事数:</span>
                       <div className="flex items-center gap-1">
@@ -101,20 +113,18 @@ export default function CompaniesPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* アクションボタン */}
                   <div className="flex gap-2">
                     <Button asChild className="flex-1">
-                      <Link href={`/companies/${company.id}`}>
-                        詳細を見る
-                      </Link>
+                      <Link href={`/companies/${company.id}`}>詳細を見る</Link>
                     </Button>
-                    
+
                     {company.websiteUrl && (
                       <Button asChild variant="outline" size="icon">
-                        <Link 
-                          href={company.websiteUrl} 
-                          target="_blank" 
+                        <Link
+                          href={company.websiteUrl}
+                          target="_blank"
                           rel="noopener noreferrer"
                           title="公式サイト"
                         >

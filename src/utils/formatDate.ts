@@ -25,11 +25,11 @@ export function formatDate(
 
   // ハイドレーションエラーを防ぐため、特定のフォーマットではIntl.DateTimeFormatを使用
   if (formatStr === "yyyy/M/d") {
-    return new Intl.DateTimeFormat('ja-JP', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      timeZone: 'UTC'
+    return new Intl.DateTimeFormat("ja-JP", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      timeZone: "UTC",
     }).format(dateObj);
   }
 

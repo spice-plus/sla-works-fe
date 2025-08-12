@@ -1,19 +1,17 @@
-import { cn } from "@/lib/utils";
-
 interface LoadingSkeletonProps {
-  type?: 'card' | 'detail' | 'list';
+  type?: "card" | "detail" | "list";
   count?: number;
   className?: string;
 }
 
-export function LoadingSkeleton({ 
-  type = 'card', 
-  count = 1, 
-  className = "" 
+export function LoadingSkeleton({
+  type = "card",
+  count = 1,
+  className = "",
 }: LoadingSkeletonProps) {
   const renderSkeleton = () => {
     switch (type) {
-      case 'card':
+      case "card":
         return (
           <div className="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
             <div className="h-48 bg-gray-200"></div>
@@ -25,7 +23,7 @@ export function LoadingSkeleton({
             </div>
           </div>
         );
-      case 'detail':
+      case "detail":
         return (
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 rounded w-1/4 mb-6"></div>
@@ -38,7 +36,7 @@ export function LoadingSkeleton({
             </div>
           </div>
         );
-      case 'list':
+      case "list":
         return (
           <div className="bg-white rounded-xl shadow-lg p-6 animate-pulse">
             <div className="flex items-center space-x-4">
@@ -62,7 +60,9 @@ export function LoadingSkeleton({
   return (
     <div className={className}>
       {Array.from({ length: count }, (_, index) => (
-        <div key={index}>{renderSkeleton()}</div>
+        <div key={`skeleton-${type}-${Date.now()}-${Math.random()}-${index}`}>
+          {renderSkeleton()}
+        </div>
       ))}
     </div>
   );

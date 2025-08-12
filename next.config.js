@@ -13,6 +13,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "api.dicebear.com",
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
     ],
   },
   // Webpack設定を削除 - Next.jsのデフォルトに任せる

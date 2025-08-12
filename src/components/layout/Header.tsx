@@ -1,10 +1,10 @@
 "use client";
 
+import { Building2, FileText } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { APP_NAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { FileText, Building2 } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -15,27 +15,27 @@ export function Header() {
         <Link href="/" className="flex items-center space-x-2">
           <span className="font-bold text-xl">{APP_NAME}</span>
         </Link>
-        
+
         <nav className="flex items-center space-x-6">
-          <Link 
-            href="/articles" 
+          <Link
+            href="/articles"
             className={cn(
               "flex items-center space-x-2 text-sm font-medium transition-colors hover:text-primary",
-              pathname?.startsWith("/articles") 
-                ? "text-primary" 
+              pathname?.startsWith("/articles")
+                ? "text-primary"
                 : "text-muted-foreground"
             )}
           >
             <FileText className="h-4 w-4" />
             <span>記事</span>
           </Link>
-          
-          <Link 
-            href="/companies" 
+
+          <Link
+            href="/companies"
             className={cn(
               "flex items-center space-x-2 text-sm font-medium transition-colors hover:text-primary",
-              pathname?.startsWith("/companies") 
-                ? "text-primary" 
+              pathname?.startsWith("/companies")
+                ? "text-primary"
                 : "text-muted-foreground"
             )}
           >

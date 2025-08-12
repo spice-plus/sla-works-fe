@@ -13,8 +13,8 @@ export interface Article {
   viewCount: number;
   popularityScore: number;
   techStack?: string[];
-  projectScale: 'small' | 'medium' | 'large' | 'enterprise';
-  articleType: 'process' | 'interview' | 'deliverable' | 'survey';
+  projectScale: "small" | "medium" | "large" | "enterprise";
+  articleType: "process" | "interview" | "deliverable" | "survey";
   customerName?: string;
   createdAt: string;
   updatedAt: string;
@@ -39,7 +39,7 @@ export interface Company {
   description: string;
   location: string;
   prefecture: string;
-  employeeRange: 'small' | 'medium' | 'large' | 'enterprise';
+  employeeRange: "small" | "medium" | "large" | "enterprise";
   establishedYear: number;
   createdAt: string;
   updatedAt: string;
