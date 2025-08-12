@@ -23,7 +23,11 @@ interface SearchFormData {
   keyword: string;
 }
 
-export default function HomePage() {
+interface HomePageProps {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+export default function HomePage({ searchParams }: HomePageProps) {
   const [searchKeyword, setSearchKeyword] = useState('');
   
   const articles = sampleArticles;
