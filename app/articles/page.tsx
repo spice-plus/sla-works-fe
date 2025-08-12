@@ -12,6 +12,7 @@ import { sampleArticles } from "../../sample/articles";
 import { sampleCategories } from "../../sample/categories";
 import { sampleCompanies } from "../../sample/companies";
 import { Eye, Calendar, Building2 } from "lucide-react";
+import { formatDate } from "../../src/utils/formatDate";
 
 export default function ArticlesPage() {
   // 記事を公開日順でソート
@@ -87,7 +88,7 @@ export default function ArticlesPage() {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-4 w-4" />
-                          {new Date(article.publishedAt).toLocaleDateString('ja-JP')}
+                          {formatDate(article.publishedAt, 'yyyy/M/d')}
                         </div>
                         <div className="flex items-center gap-1">
                           <Eye className="h-4 w-4" />

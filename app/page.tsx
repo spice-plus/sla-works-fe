@@ -10,6 +10,7 @@ import {
 import { sampleArticles } from "../sample/articles";
 import { sampleCompanies } from "../sample/companies";
 import { ArrowRight, Building2, FileText } from "lucide-react";
+import { formatDate } from "../src/utils/formatDate";
 
 export default function Home() {
   // 最新の記事を3件取得
@@ -79,7 +80,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                    <span>{new Date(article.publishedAt).toLocaleDateString('ja-JP')}</span>
+                    <span>{formatDate(article.publishedAt, 'yyyy/M/d')}</span>
                     <span>{article.viewCount.toLocaleString()} views</span>
                   </div>
                   <div className="flex flex-wrap gap-2 mb-4">

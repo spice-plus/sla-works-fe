@@ -23,6 +23,7 @@ import {
   Eye,
   Building2
 } from "lucide-react";
+import { formatDate } from "../../../src/utils/formatDate";
 
 interface CompanyDetailPageProps {
   params: {
@@ -232,7 +233,7 @@ export default function CompanyDetailPage({ params }: CompanyDetailPageProps) {
                           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                             <div className="flex items-center gap-1">
                               <Calendar className="h-4 w-4" />
-                              {new Date(article.publishedAt).toLocaleDateString('ja-JP')}
+                              {formatDate(article.publishedAt, 'yyyy/M/d')}
                             </div>
                             <div className="flex items-center gap-1">
                               <Eye className="h-4 w-4" />

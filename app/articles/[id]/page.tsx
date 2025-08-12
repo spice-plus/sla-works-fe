@@ -22,6 +22,7 @@ import {
   Star,
   Users
 } from "lucide-react";
+import { formatDate } from "../../../src/utils/formatDate";
 
 interface ArticleDetailPageProps {
   params: {
@@ -89,7 +90,7 @@ export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                {new Date(article.publishedAt).toLocaleDateString('ja-JP')}
+                {formatDate(article.publishedAt, 'yyyy/M/d')}
               </div>
               <div className="flex items-center gap-1">
                 <Eye className="h-4 w-4" />
@@ -264,7 +265,7 @@ export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <span>{new Date(relatedArticle.publishedAt).toLocaleDateString('ja-JP')}</span>
+                      <span>{formatDate(relatedArticle.publishedAt, 'yyyy/M/d')}</span>
                       <span>{relatedArticle.viewCount.toLocaleString()} views</span>
                     </div>
                     <Button asChild className="w-full">
