@@ -23,8 +23,8 @@ export function TagExplorer({
 
   return (
     <section className={cn("mb-12", className)}>
-      <h2 className="text-xl font-bold text-gray-900 mb-4">{title}</h2>
-      <div className="flex flex-wrap gap-2">
+      <h2 className="text-2xl font-bold text-gray-900 mb-8">{title}</h2>
+      <div className="flex flex-wrap gap-3">
         {tags.map(({ tag, count }) => (
           <Link
             key={tag}
@@ -33,7 +33,7 @@ export function TagExplorer({
           >
             <Badge
               variant="outline"
-              className="hover:bg-[#2E3A97] hover:text-white hover:border-[#2E3A97] transition-colors cursor-pointer"
+              className="px-3 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-white hover:bg-[#2E3A97] hover:text-white hover:border-[#2E3A97] transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md"
             >
               {tag}
               {showCount && (

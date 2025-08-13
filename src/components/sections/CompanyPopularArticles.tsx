@@ -27,7 +27,7 @@ export function CompanyPopularArticles({
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
         {companyName}の人気記事
       </h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 gap-6">
         {popularArticles.map((article) => (
           <AdaptiveCard
             key={article.id}

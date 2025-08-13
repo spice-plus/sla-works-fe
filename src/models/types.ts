@@ -39,6 +39,7 @@ export interface Company {
   description: string;
   location: string;
   prefecture: string;
+  prefectureCode: string;
   employeeRange: "small" | "medium" | "large" | "enterprise";
   establishedYear: number;
   createdAt: string;

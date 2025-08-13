@@ -328,6 +328,12 @@ export const getPrefectureByCode = (
   return prefectures.find((p) => p.prefectureCode === prefectureCode);
 };
 
+export const getPrefectureByRoman = (
+  prefectureNameRoman: string
+): Prefecture | undefined => {
+  return prefectures.find((p) => p.prefectureNameRoman === prefectureNameRoman);
+};
+
 export const getPrefecturesByArea = (areaCode: string): Prefecture[] => {
   return prefectures.filter((p) => p.areaCode === areaCode);
 };

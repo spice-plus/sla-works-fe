@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 interface LoadingSkeletonProps {
   type?: "card" | "detail" | "list";
   count?: number;
@@ -9,6 +11,7 @@ export function LoadingSkeleton({
   count = 1,
   className = "",
 }: LoadingSkeletonProps) {
+  const baseId = useId();
   const renderSkeleton = () => {
     switch (type) {
       case "card":
@@ -60,9 +63,8 @@ export function LoadingSkeleton({
   return (
     <div className={className}>
       {Array.from({ length: count }, (_, index) => (
-        <div key={`skeleton-${type}-${Date.now()}-${Math.random()}-${index}`}>
-          {renderSkeleton()}
-        </div>
+        // biome-ignore lint/suspicious/noArrayIndexKey: Static skeleton items don't change, index is safe
+        <div key={`${baseId}-${type}-${index}`}>{renderSkeleton()}</div>
       ))}
     </div>
   );

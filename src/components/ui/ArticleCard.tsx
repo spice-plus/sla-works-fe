@@ -44,88 +44,69 @@ export function ArticleCard({
 }: ArticleCardProps) {
   const articleTypeData = getArticleTypeByRoman(article.articleType);
   return (
-    <article
-      className={`group hover:shadow-xl transition-all duration-300 ${className}`}
-    >
-      <Card className="h-full overflow-hidden">
-        <div className="relative">
-          <Image
-            src={article.thumbnailUrl}
-            alt={article.title}
-            width={400}
-            height={192}
-            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          {category && (
-            <div className="absolute top-4 left-4">
-              <Badge variant="category" className="text-sm font-medium">
-                {category.name}
-              </Badge>
-            </div>
-          )}
-          <div className="absolute top-4 right-4">
-            <Badge variant="secondary" className="text-xs">
-              {articleTypeData?.articleTypeName || article.articleType}
-            </Badge>
-          </div>
-        </div>
-
-        <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-semibold line-clamp-2 group-hover:text-[#2E3A97] transition-colors">
-            <Link href={generateArticleUrl(article.id)}>{article.title}</Link>
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent className="pt-0">
-          <p className="text-gray-600 mb-4 line-clamp-2 text-sm">
-            {article.description}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
-            <div className="flex items-center">
-              <Calendar className="w-3 h-3 mr-1" />
-              {formatDate(article.publishedAt, "yyyy/M/d")}
-            </div>
-            <div className="flex items-center">
-              <Eye className="w-3 h-3 mr-1" />
-              {article.viewCount.toLocaleString("ja-JP")}
-            </div>
-            {showCompany && company && (
-              <div className="flex items-center">
-                <Building2 className="w-3 h-3 mr-1" />
-                <Link
-                  href={`/companies/${company.id}`}
-                  className="hover:text-[#2E3A97] font-medium truncate"
-                >
-                  {company.name}
-                </Link>
+    <Link href={generateArticleUrl(article.id)}>
+      <article
+        className={`group hover:shadow-xl transition-all duration-300 cursor-pointer ${className}`}
+      >
+        <Card className="h-full overflow-hidden">
+          <div className="relative">
+            <Image
+              src={article.thumbnailUrl}
+              alt={article.title}
+              width={400}
+              height={192}
+              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            {category && (
+              <div className="absolute top-4 left-4">
+                <Badge variant="category" className="text-sm font-medium">
+                  {category.name}
+                </Badge>
               </div>
             )}
+            <div className="absolute top-4 right-4">
+              <Badge variant="secondary" className="text-xs">
+                {articleTypeData?.articleTypeName || article.articleType}
+              </Badge>
+            </div>
           </div>
 
-          {/* 技術スタック */}
-          {article.techStack && article.techStack.length > 0 && (
-            <div className="mb-3">
-              <div className="flex flex-wrap gap-1">
-                {article.techStack.slice(0, 3).map((tech) => (
-                  <Badge
-                    key={tech}
-                    variant="tech"
-                    className="text-xs px-2 py-0.5"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
-                {article.techStack.length > 3 && (
-                  <span className="text-gray-500 text-xs self-center">
-                    +{article.techStack.length - 3}
-                  </span>
-                )}
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg font-semibold line-clamp-2 group-hover:text-[#2E3A97] transition-colors">
+              {article.title}
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent className="pt-0">
+            <p className="text-gray-600 mb-4 line-clamp-2 text-sm">
+              {article.description}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
+              <div className="flex items-center">
+                <Calendar className="w-3 h-3 mr-1" />
+                {formatDate(article.publishedAt, "yyyy/M/d")}
+              </div>
+              <div className="flex items-center">
+                <Eye className="w-3 h-3 mr-1" />
+                {article.viewCount.toLocaleString("ja-JP")}
               </div>
             </div>
-          )}
-        </CardContent>
-      </Card>
-    </article>
+
+            {/* 会社名表示 */}
+            {showCompany && company && (
+              <div className="mb-3">
+                <div className="flex items-center">
+                  <Building2 className="w-4 h-4 mr-2 text-gray-400" />
+                  <span className="text-sm font-medium text-gray-700">
+                    {company.name}
+                  </span>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </article>
+    </Link>
   );
 }

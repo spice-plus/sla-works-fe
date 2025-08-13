@@ -5,10 +5,8 @@ import {
   Building2,
   ChevronDown,
   Clock,
+  Eye,
   FileText,
-  Folder,
-  Hash,
-  MapPin,
   MessageCircle,
   Search,
   Settings,
@@ -16,12 +14,14 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { CategoryExplorer } from "@/components/sections/CategoryExplorer";
+import { PrefectureExplorer } from "@/components/sections/PrefectureExplorer";
+import { TagExplorer } from "@/components/sections/TagExplorer";
 import { ArticleCard } from "@/components/ui/ArticleCard";
-import { prefectures } from "../masters/prefectures";
+import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
 import { sampleArticles } from "../sample/articles";
 import { sampleCategories } from "../sample/categories";
 import { sampleCompanies } from "../sample/companies";
-import { sampleTags } from "../sample/tags";
 
 export default function HomePage() {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -29,20 +29,8 @@ export default function HomePage() {
   const articles = sampleArticles;
   const categories = sampleCategories;
   const companies = sampleCompanies;
-  const tags = sampleTags;
 
   // データの準備
-  const latestArticles = articles
-    .sort((a, b) => {
-      const dateA = new Date(b.createdAt).getTime();
-      const dateB = new Date(a.createdAt).getTime();
-      if (dateA !== dateB) {
-        return dateA - dateB;
-      }
-      return a.id - b.id; // 同じ日時の場合はIDでソート
-    })
-    .slice(0, 6);
-
   const recentArticles = articles
     .sort((a, b) => {
       const dateA = new Date(b.publishedAt).getTime();
@@ -52,6 +40,10 @@ export default function HomePage() {
       }
       return a.id - b.id; // 同じ日時の場合はIDでソート
     })
+    .slice(0, 6);
+
+  const popularArticles = articles
+    .sort((a, b) => b.viewCount - a.viewCount)
     .slice(0, 6);
 
   const interviewArticles = articles
@@ -71,8 +63,6 @@ export default function HomePage() {
     .slice(0, 3);
 
   const featuredCompanies = companies.slice(0, 4);
-  const featuredCategories = categories.slice(0, 8);
-  const featuredTags = tags.slice(0, 12);
 
   // カテゴリとカンパニーのマップを作成
   const categoryMap = Object.fromEntries(
@@ -168,32 +158,8 @@ export default function HomePage() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 最新記事セクション */}
-        <section className="mt-16">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center">
-              <Clock className="w-6 h-6 text-[#2E3A97] mr-3" />
-              <h2 className="text-2xl font-bold text-gray-900">最新記事</h2>
-              <span className="ml-4 text-sm text-gray-500">
-                作成日順の最新記事
-              </span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {latestArticles.map((article) => (
-              <ArticleCard
-                key={article.id}
-                article={article}
-                category={categoryMap[article.categoryId]}
-                company={companyMap[article.companyId]}
-              />
-            ))}
-          </div>
-        </section>
-
         {/* 新着セクション */}
-        <section className="mt-20">
+        <section className="mt-16">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center">
               <Clock className="w-6 h-6 text-[#059669] mr-3" />
@@ -209,7 +175,34 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentArticles.map((article) => (
-              <ArticleCard
+              <ArticleOverlayCard
+                key={article.id}
+                article={article}
+                category={categoryMap[article.categoryId]}
+                company={companyMap[article.companyId]}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* 人気記事セクション */}
+        <section className="mt-20">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center">
+              <Eye className="w-6 h-6 text-[#EF4444] mr-3" />
+              <h2 className="text-2xl font-bold text-gray-900">人気記事</h2>
+            </div>
+            <Link
+              href="/articles"
+              className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              もっと見る
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {popularArticles.map((article) => (
+              <ArticleOverlayCard
                 key={article.id}
                 article={article}
                 category={categoryMap[article.categoryId]}
@@ -238,7 +231,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center">
               <Building2 className="w-6 h-6 text-white mr-3" />
-              <h2 className="text-2xl font-bold text-white">開発会社を探す</h2>
+              <h2 className="text-3xl font-bold text-white">開発会社を探す</h2>
             </div>
             <Link
               href="/companies"
@@ -286,7 +279,7 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center">
                 <MessageCircle className="w-6 h-6 text-[#F59E0B] mr-3" />
-                <h3 className="text-xl font-bold text-gray-900">
+                <h3 className="text-2xl font-bold text-gray-900">
                   インタビュー
                 </h3>
                 <span className="ml-4 text-sm text-gray-500">
@@ -294,7 +287,7 @@ export default function HomePage() {
                 </span>
               </div>
               <Link
-                href="/articles"
+                href="/articles?articleType=interview"
                 className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 もっと見る
@@ -303,7 +296,12 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {interviewArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  category={categoryMap[article.categoryId]}
+                  company={companyMap[article.companyId]}
+                />
               ))}
             </div>
           </div>
@@ -313,13 +311,13 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center">
                 <Settings className="w-6 h-6 text-[#3B82F6] mr-3" />
-                <h3 className="text-xl font-bold text-gray-900">プロセス</h3>
+                <h3 className="text-2xl font-bold text-gray-900">プロセス</h3>
                 <span className="ml-4 text-sm text-gray-500">
                   開発手順や導入プロセスの解説
                 </span>
               </div>
               <Link
-                href="/articles"
+                href="/articles?articleType=process"
                 className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 もっと見る
@@ -328,7 +326,12 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {processArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  category={categoryMap[article.categoryId]}
+                  company={companyMap[article.companyId]}
+                />
               ))}
             </div>
           </div>
@@ -338,13 +341,13 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center">
                 <FileText className="w-6 h-6 text-[#3B82F6] mr-3" />
-                <h3 className="text-xl font-bold text-gray-900">調査</h3>
+                <h3 className="text-2xl font-bold text-gray-900">調査</h3>
                 <span className="ml-4 text-sm text-gray-500">
                   調査結果やユーザーの声
                 </span>
               </div>
               <Link
-                href="/articles"
+                href="/articles?articleType=survey"
                 className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 もっと見る
@@ -353,7 +356,12 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {surveyArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  category={categoryMap[article.categoryId]}
+                  company={companyMap[article.companyId]}
+                />
               ))}
             </div>
           </div>
@@ -363,13 +371,13 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center">
                 <Award className="w-6 h-6 text-[#EF4444] mr-3" />
-                <h3 className="text-xl font-bold text-gray-900">成果物</h3>
+                <h3 className="text-2xl font-bold text-gray-900">成果物</h3>
                 <span className="ml-4 text-sm text-gray-500">
                   完成したシステムやプロダクトの紹介
                 </span>
               </div>
               <Link
-                href="/articles"
+                href="/articles?articleType=deliverable"
                 className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 もっと見る
@@ -378,81 +386,31 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {deliverableArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  category={categoryMap[article.categoryId]}
+                  company={companyMap[article.companyId]}
+                />
               ))}
             </div>
           </div>
         </section>
-
-        {/* カテゴリ一覧セクション */}
-        <section className="mt-20">
-          <div className="flex items-center mb-8">
-            <Folder className="w-6 h-6 text-[#3B82F6] mr-3" />
-            <h2 className="text-2xl font-bold text-gray-900">カテゴリで探す</h2>
-            <span className="ml-4 text-sm text-gray-500">
-              技術分野別に記事を探す
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
-            {featuredCategories.map((category) => (
-              <Link key={category.id} href="/articles">
-                <div className="p-6 text-center hover:border-[#2E3A97]/20 transition-all duration-300 group bg-white rounded-lg shadow-sm hover:shadow-md border">
-                  <h3 className="text-sm font-semibold text-gray-900 group-hover:text-[#2E3A97] mb-2 transition-colors duration-300">
-                    {category.name}
-                  </h3>
-                  <p className="text-xs text-gray-500 group-hover:text-gray-700 line-clamp-2 transition-colors duration-300">
-                    {category.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* タグ一覧セクション */}
-        <section className="mt-20">
-          <div className="flex items-center mb-8">
-            <Hash className="w-6 h-6 text-[#10B981] mr-3" />
-            <h2 className="text-2xl font-bold text-gray-900">タグで探す</h2>
-            <span className="ml-4 text-sm text-gray-500">
-              技術スタックやキーワードで探す
-            </span>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            {featuredTags.map((tag) => (
-              <Link key={tag.id} href="/articles">
-                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-800 hover:bg-[#2E3A97] hover:text-white transition-colors duration-300">
-                  #{tag.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* 都道府県一覧セクション */}
-        <section className="mt-20 pb-20">
-          <div className="flex items-center mb-8">
-            <MapPin className="w-6 h-6 text-[#F59E0B] mr-3" />
-            <h2 className="text-2xl font-bold text-gray-900">都道府県で探す</h2>
-            <span className="ml-4 text-sm text-gray-500">
-              地域別に記事を探す
-            </span>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            {prefectures.map((prefecture) => (
-              <Link key={prefecture.prefectureCode} href="/articles">
-                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-800 hover:bg-[#F59E0B] hover:text-white transition-colors duration-300">
-                  <MapPin className="w-3 h-3 mr-1" />
-                  {prefecture.prefectureName}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
       </div>
+
+      {/* 探索セクション */}
+      <section className="mt-20 bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* カテゴリ一覧セクション */}
+          <CategoryExplorer limit={8} />
+
+          {/* タグ一覧セクション */}
+          <TagExplorer limit={12} className="mt-16" />
+
+          {/* 都道府県一覧セクション */}
+          <PrefectureExplorer className="mt-16" />
+        </div>
+      </section>
     </div>
   );
 }

@@ -26,16 +26,16 @@ export function CategoryExplorer({
 
   return (
     <section className={cn("mb-12", className)}>
-      <h2 className="text-xl font-bold text-gray-900 mb-4">{title}</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-8">{title}</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {categories.map((category) => (
           <Link
             key={category.id}
             href={`/articles?category=${category.slug}`}
-            className="block p-3 rounded-lg border border-gray-200 hover:border-[#2E3A97] hover:bg-gray-50 transition-colors"
+            className="block p-3 rounded-lg border border-gray-200 bg-white hover:border-[#2E3A97] hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="font-medium text-gray-900 text-sm">
+              <span className="font-medium text-gray-900 text-base">
                 {category.name}
               </span>
               {showCount && (

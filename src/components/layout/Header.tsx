@@ -40,7 +40,7 @@ export function Header() {
             )}
           >
             <Building2 className="h-4 w-4" />
-            <span>企業</span>
+            <span>開発会社</span>
           </Link>
         </nav>
       </div>

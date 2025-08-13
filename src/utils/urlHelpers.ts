@@ -49,6 +49,17 @@ export function getCategorySlug(categoryId: number): string {
 }
 
 /**
+ * 企業詳細ページのURLを生成
+ */
+export function generateCompanyUrl(companyId: number): string {
+  const company = sampleCompanies.find((c) => c.id === companyId);
+  if (!company) return `/companies/${companyId}`;
+
+  const prefectureSlug = getPrefectureSlug(company.prefecture);
+  return `/companies/${prefectureSlug}/${companyId}`;
+}
+
+/**
  * 記事IDから関連データを取得
  */
 export function getArticleRelatedData(articleId: number) {

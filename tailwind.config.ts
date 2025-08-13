@@ -75,6 +75,9 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
       },
+      gridTemplateColumns: {
+        footer: "400px 1fr 1fr 1fr",
+      },
       keyframes: {
         "accordion-down": {
           from: {
@@ -99,6 +102,15 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    ({ addBase }: { addBase: (styles: Record<string, unknown>) => void }) => {
+      addBase({
+        'a, [role="link"]': {
+          cursor: "pointer",
+        },
+      });
+    },
+  ],
 };
 export default config;
