@@ -1,37 +1,54 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { getSystemNameById } from "../../masters/systemNames";
 import { sampleCompanies } from "../../sample/companies";
 import type { Article } from "../models/types";
 import type { SearchFilters, SortBy, ViewMode } from "../types/search";
+import {
+  parsePageFromSearchParams,
+  parseSearchParamsToFilters,
+} from "../utils/searchParams";
 
 interface UseArticleSearchProps {
   articles: Article[];
-  initialFilters?: Partial<SearchFilters>;
-  initialPage?: number;
 }
 
 const ITEMS_PER_PAGE = 30;
 
-export function useArticleSearch({
-  articles,
-  initialFilters,
-  initialPage = 1,
-}: UseArticleSearchProps) {
+export function useArticleSearch({ articles }: UseArticleSearchProps) {
+  const searchParams = useSearchParams();
+
   const [filters, setFilters] = useState<SearchFilters>({
     keyword: "",
     categories: [],
     articleTypes: [],
     prefectures: [],
     company: "",
-    ...initialFilters,
   });
 
   const [sortBy, setSortBy] = useState<SortBy>("publishedAt");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState<number>(initialPage);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  // URLパラメータの変更を監視してフィルタを更新
+  useEffect(() => {
+    const newFilters = parseSearchParamsToFilters(searchParams);
+    const newPage = parsePageFromSearchParams(searchParams);
+
+    setFilters((_prevFilters) => ({
+      keyword: "",
+      categories: [],
+      articleTypes: [],
+      prefectures: [],
+      company: "",
+      ...newFilters,
+    }));
+
+    setCurrentPage(newPage);
+  }, [searchParams]);
 
   // 記事のフィルタリング
   const filteredArticles = useMemo(() => {

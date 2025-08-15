@@ -1,10 +1,10 @@
 "use client";
 
 import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
-import { sampleArticles } from "../../../sample/articles";
 import { categories, getCategoryById } from "../../../masters/categories";
-import { sampleCompanies } from "../../../sample/companies";
 import { getAllSystemNames } from "../../../masters/systemNames";
+import { sampleArticles } from "../../../sample/articles";
+import { sampleCompanies } from "../../../sample/companies";
 
 interface PrefecturePopularArticlesProps {
   prefecture: string;
@@ -46,19 +46,23 @@ export function PrefecturePopularArticles({
         {prefectureArticles.map((article) => {
           // systemIdからcategoryIdを取得
           const system = systemMap.get(article.systemId);
-          const category = system ? getCategoryById(system.categoryId) : undefined;
+          const category = system
+            ? getCategoryById(system.categoryId)
+            : undefined;
 
           // ArticleOverlayCardが期待する形式に変換
           const articleWithCategoryId = {
             ...article,
-            categoryId: system?.categoryId || 0
+            categoryId: system?.categoryId || 0,
           };
 
-          const categoryForCard = category ? {
-            id: category.categoryId,
-            name: category.categoryName,
-            slug: category.categoryNameRoman
-          } : undefined;
+          const categoryForCard = category
+            ? {
+                id: category.categoryId,
+                name: category.categoryName,
+                slug: category.categoryNameRoman,
+              }
+            : undefined;
 
           return (
             <ArticleOverlayCard

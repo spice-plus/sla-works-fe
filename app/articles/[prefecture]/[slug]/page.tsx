@@ -186,15 +186,21 @@ export default async function PrefectureSlugPage({
       href: `/articles/prefecture/${prefecture.prefectureNameRoman}`,
     },
     {
-      label: slugInfo.type === "category"
-        ? slugInfo.data.categoryName
-        : slugInfo.data.systemName,
+      label:
+        slugInfo.type === "category"
+          ? slugInfo.data.categoryName
+          : slugInfo.data.systemName,
       current: true,
     },
   ];
 
-  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbItems);
-  const prefectureSlugStructuredData = generatePrefectureSlugStructuredData(prefecture, slugInfo, filteredArticles);
+  const breadcrumbStructuredData =
+    generateBreadcrumbStructuredData(breadcrumbItems);
+  const prefectureSlugStructuredData = generatePrefectureSlugStructuredData(
+    prefecture,
+    slugInfo,
+    filteredArticles
+  );
 
   return (
     <div>
@@ -212,9 +218,10 @@ export default async function PrefectureSlugPage({
               href: `/articles/prefecture/${prefecture.prefectureNameRoman}`,
             },
             {
-              label: slugInfo.type === "category"
-                ? slugInfo.data.categoryName
-                : slugInfo.data.systemName,
+              label:
+                slugInfo.type === "category"
+                  ? slugInfo.data.categoryName
+                  : slugInfo.data.systemName,
               current: true,
             },
           ]}

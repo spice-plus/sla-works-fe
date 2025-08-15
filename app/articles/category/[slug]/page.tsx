@@ -73,8 +73,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     { label: category.categoryName, current: true },
   ];
 
-  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbItems);
-  const categoryStructuredData = generateCategoryStructuredData(category, filteredArticles);
+  const breadcrumbStructuredData =
+    generateBreadcrumbStructuredData(breadcrumbItems);
+  const categoryStructuredData = generateCategoryStructuredData(
+    category,
+    filteredArticles
+  );
 
   return (
     <div>

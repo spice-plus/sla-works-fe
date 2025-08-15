@@ -67,8 +67,12 @@ export default async function SystemPage({ params }: SystemPageProps) {
     { label: systemName.systemName, current: true },
   ];
 
-  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbItems);
-  const systemStructuredData = generateSystemStructuredData(systemName, filteredArticles);
+  const breadcrumbStructuredData =
+    generateBreadcrumbStructuredData(breadcrumbItems);
+  const systemStructuredData = generateSystemStructuredData(
+    systemName,
+    filteredArticles
+  );
 
   return (
     <div>

@@ -69,8 +69,12 @@ export default async function PrefecturePage({ params }: PrefecturePageProps) {
     { label: prefecture.prefectureName, current: true },
   ];
 
-  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbItems);
-  const prefectureStructuredData = generatePrefectureStructuredData(prefecture, filteredArticles);
+  const breadcrumbStructuredData =
+    generateBreadcrumbStructuredData(breadcrumbItems);
+  const prefectureStructuredData = generatePrefectureStructuredData(
+    prefecture,
+    filteredArticles
+  );
 
   return (
     <div>

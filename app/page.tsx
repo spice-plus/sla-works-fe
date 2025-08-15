@@ -196,18 +196,22 @@ export default function HomePage() {
               const category = getCategoryForArticle(article);
               const articleWithCategoryId = {
                 ...article,
-                categoryId: category?.categoryId || 0
+                categoryId: category?.categoryId || 0,
               };
 
               return (
                 <ArticleOverlayCard
                   key={article.id}
                   article={articleWithCategoryId}
-                  category={category ? {
-                    id: category.categoryId,
-                    name: category.categoryName,
-                    slug: category.categoryNameRoman
-                  } : undefined}
+                  category={
+                    category
+                      ? {
+                          id: category.categoryId,
+                          name: category.categoryName,
+                          slug: category.categoryNameRoman,
+                        }
+                      : undefined
+                  }
                   company={companyMap[article.companyId]}
                 />
               );
@@ -235,18 +239,22 @@ export default function HomePage() {
               const category = getCategoryForArticle(article);
               const articleWithCategoryId = {
                 ...article,
-                categoryId: category?.categoryId || 0
+                categoryId: category?.categoryId || 0,
               };
 
               return (
                 <ArticleOverlayCard
                   key={article.id}
                   article={articleWithCategoryId}
-                  category={category ? {
-                    id: category.categoryId,
-                    name: category.categoryName,
-                    slug: category.categoryNameRoman
-                  } : undefined}
+                  category={
+                    category
+                      ? {
+                          id: category.categoryId,
+                          name: category.categoryName,
+                          slug: category.categoryNameRoman,
+                        }
+                      : undefined
+                  }
                   company={companyMap[article.companyId]}
                 />
               );
@@ -341,18 +349,22 @@ export default function HomePage() {
                 const category = getCategoryForArticle(article);
                 const articleWithCategoryId = {
                   ...article,
-                  categoryId: category?.categoryId || 0
+                  categoryId: category?.categoryId || 0,
                 };
 
                 return (
                   <ArticleCard
                     key={article.id}
                     article={articleWithCategoryId}
-                    category={category ? {
-                      id: category.categoryId,
-                      name: category.categoryName,
-                      slug: category.categoryNameRoman
-                    } : undefined}
+                    category={
+                      category
+                        ? {
+                            id: category.categoryId,
+                            name: category.categoryName,
+                            slug: category.categoryNameRoman,
+                          }
+                        : undefined
+                    }
                     company={companyMap[article.companyId]}
                   />
                 );
@@ -383,18 +395,22 @@ export default function HomePage() {
                 const category = getCategoryForArticle(article);
                 const articleWithCategoryId = {
                   ...article,
-                  categoryId: category?.categoryId || 0
+                  categoryId: category?.categoryId || 0,
                 };
 
                 return (
                   <ArticleCard
                     key={article.id}
                     article={articleWithCategoryId}
-                    category={category ? {
-                      id: category.categoryId,
-                      name: category.categoryName,
-                      slug: category.categoryNameRoman
-                    } : undefined}
+                    category={
+                      category
+                        ? {
+                            id: category.categoryId,
+                            name: category.categoryName,
+                            slug: category.categoryNameRoman,
+                          }
+                        : undefined
+                    }
                     company={companyMap[article.companyId]}
                   />
                 );
@@ -425,18 +441,22 @@ export default function HomePage() {
                 const category = getCategoryForArticle(article);
                 const articleWithCategoryId = {
                   ...article,
-                  categoryId: category?.categoryId || 0
+                  categoryId: category?.categoryId || 0,
                 };
 
                 return (
                   <ArticleCard
                     key={article.id}
                     article={articleWithCategoryId}
-                    category={category ? {
-                      id: category.categoryId,
-                      name: category.categoryName,
-                      slug: category.categoryNameRoman
-                    } : undefined}
+                    category={
+                      category
+                        ? {
+                            id: category.categoryId,
+                            name: category.categoryName,
+                            slug: category.categoryNameRoman,
+                          }
+                        : undefined
+                    }
                     company={companyMap[article.companyId]}
                   />
                 );
@@ -467,18 +487,22 @@ export default function HomePage() {
                 const category = getCategoryForArticle(article);
                 const articleWithCategoryId = {
                   ...article,
-                  categoryId: category?.categoryId || 0
+                  categoryId: category?.categoryId || 0,
                 };
 
                 return (
                   <ArticleCard
                     key={article.id}
                     article={articleWithCategoryId}
-                    category={category ? {
-                      id: category.categoryId,
-                      name: category.categoryName,
-                      slug: category.categoryNameRoman
-                    } : undefined}
+                    category={
+                      category
+                        ? {
+                            id: category.categoryId,
+                            name: category.categoryName,
+                            slug: category.categoryNameRoman,
+                          }
+                        : undefined
+                    }
                     company={companyMap[article.companyId]}
                   />
                 );

@@ -122,10 +122,12 @@ export function useCompanySearch({
     setSearchState((prev) => {
       const newState = { ...prev, ...updates };
       // フィルタが変更された場合は1ページ目に戻る
-      if (updates.keyword !== undefined ||
-          updates.prefecture !== undefined ||
-          updates.prefectures !== undefined ||
-          updates.minArticleCount !== undefined) {
+      if (
+        updates.keyword !== undefined ||
+        updates.prefecture !== undefined ||
+        updates.prefectures !== undefined ||
+        updates.minArticleCount !== undefined
+      ) {
         newState.currentPage = 1;
       }
       return newState;

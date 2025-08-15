@@ -25,8 +25,12 @@ export function CompanyListControls({
   filteredCount,
 }: CompanyListControlsProps) {
   // 表示範囲の計算
-  const startIndex = (searchState.currentPage - 1) * searchState.itemsPerPage + 1;
-  const endIndex = Math.min(searchState.currentPage * searchState.itemsPerPage, filteredCount);
+  const startIndex =
+    (searchState.currentPage - 1) * searchState.itemsPerPage + 1;
+  const endIndex = Math.min(
+    searchState.currentPage * searchState.itemsPerPage,
+    filteredCount
+  );
 
   return (
     <div className="flex items-center justify-between mb-6">

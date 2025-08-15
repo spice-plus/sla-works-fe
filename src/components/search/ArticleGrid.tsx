@@ -42,7 +42,9 @@ export function ArticleGrid({
       {articles.map((article) => {
         // systemIdからcategoryIdを取得
         const systemName = getSystemNameById(article.systemId);
-        const categoryData = systemName ? categories[systemName.categoryId] : undefined;
+        const categoryData = systemName
+          ? categories[systemName.categoryId]
+          : undefined;
         const company = companies[article.companyId];
 
         // ArticleCardが期待する形式にカテゴリを変換
@@ -57,7 +59,7 @@ export function ArticleGrid({
         // ArticleOverlayCardが期待する形式に変換
         const articleWithCategoryId = {
           ...article,
-          categoryId: categoryData?.categoryId || 0
+          categoryId: categoryData?.categoryId || 0,
         };
 
         return viewMode === "grid" ? (

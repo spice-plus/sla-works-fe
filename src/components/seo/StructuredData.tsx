@@ -1,5 +1,5 @@
 interface StructuredDataProps {
-  data: object
+  data: object;
 }
 
 export function StructuredData({ data }: StructuredDataProps) {
@@ -11,5 +11,5 @@ export function StructuredData({ data }: StructuredDataProps) {
         __html: JSON.stringify(data, null, 2),
       }}
     />
-  )
+  );
 }

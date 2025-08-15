@@ -180,7 +180,9 @@ export default async function CompanyDetailPage({
                   // ArticleOverlayCardが期待する形式に変換
                   const articleWithCategoryId = {
                     ...article,
-                    categoryId: parseInt(category?.categoryId.toString() || "0")
+                    categoryId: parseInt(
+                      category?.categoryId.toString() || "0"
+                    ),
                   };
 
                   return (

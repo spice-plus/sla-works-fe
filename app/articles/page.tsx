@@ -1,7 +1,5 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useMemo } from "react";
 import { getAllCategories } from "../../masters/categories";
 import { sampleArticles } from "../../sample/articles";
 import { sampleCompanies } from "../../sample/companies";
@@ -13,14 +11,12 @@ import {
 } from "../../src/components/search";
 import { StructuredData } from "../../src/components/seo/StructuredData";
 import { useArticleSearch } from "../../src/hooks/useArticleSearch";
-import { parseSearchParamsToFilters, parsePageFromSearchParams } from "../../src/utils/searchParams";
 import {
   generateArticleListStructuredData,
   generateBreadcrumbStructuredData,
 } from "../../src/utils/structuredData";
 
 export default function ArticlesPage() {
-  const searchParams = useSearchParams();
   const articles = sampleArticles;
   const categories = getAllCategories();
   const companies = sampleCompanies;
@@ -34,15 +30,6 @@ export default function ArticlesPage() {
   const companyMap = Object.fromEntries(
     companies.map((comp) => [comp.id, comp])
   );
-
-  // URLパラメータから初期フィルタとページ番号を作成
-  const initialFilters = useMemo(() => {
-    return parseSearchParamsToFilters(searchParams);
-  }, [searchParams]);
-
-  const initialPage = useMemo(() => {
-    return parsePageFromSearchParams(searchParams);
-  }, [searchParams]);
 
   const {
     filters,
@@ -61,7 +48,7 @@ export default function ArticlesPage() {
     handleSearch,
     handleReset,
     handlePageChange,
-  } = useArticleSearch({ articles, initialFilters, initialPage });
+  } = useArticleSearch({ articles });
 
   // 構造化データの生成
   const breadcrumbItems = [
@@ -69,7 +56,8 @@ export default function ArticlesPage() {
     { label: "記事一覧", current: true },
   ];
 
-  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbItems);
+  const breadcrumbStructuredData =
+    generateBreadcrumbStructuredData(breadcrumbItems);
   const articleListStructuredData = generateArticleListStructuredData(
     filteredArticles,
     companies,

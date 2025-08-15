@@ -119,7 +119,9 @@ export function CompanyPagination({
 
           {/* ページ番号 */}
           {pageNumbers.map((page, index) => (
-            <PaginationItem key={page === "ellipsis" ? `ellipsis-${index}` : `page-${page}`}>
+            <PaginationItem
+              key={page === "ellipsis" ? `ellipsis-${index}` : `page-${page}`}
+            >
               {page === "ellipsis" ? (
                 <PaginationEllipsis />
               ) : (

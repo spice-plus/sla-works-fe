@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo } from "react";
 import { CompanyList } from "@/components/search/CompanyList";
 import { CompanyListControls } from "@/components/search/CompanyListControls";
 import { CompanyPagination } from "@/components/search/CompanyPagination";
@@ -38,7 +38,7 @@ export default function CompaniesPage() {
 
   // URL同期 - ページ番号の初期化（クライアントサイドのみ）
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     const pageParam = searchParams.get("page");
     const page = pageParam ? parseInt(pageParam, 10) : 1;

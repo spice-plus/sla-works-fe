@@ -5,7 +5,8 @@ export const sampleCompanies: Company[] = [
     id: 1,
     name: "株式会社テックソリューション",
     websiteUrl: "https://tech-solution.co.jp",
-    logoUrl: "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "DXとシステム開発を専門とするテクノロジー企業",
     location: "東京都渋谷区",
     prefecture: "東京都",
@@ -17,7 +18,8 @@ export const sampleCompanies: Company[] = [
     id: 2,
     name: "株式会社クラウドイノベーション",
     websiteUrl: "https://cloud-innovation.jp",
-    logoUrl: "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "クラウドネイティブなソリューションを提供",
     location: "大阪府大阪市",
     prefecture: "大阪府",
@@ -29,7 +31,8 @@ export const sampleCompanies: Company[] = [
     id: 3,
     name: "AI Systems株式会社",
     websiteUrl: "https://ai-systems.com",
-    logoUrl: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "人工知能とML技術を活用したソリューション開発",
     location: "神奈川県横浜市",
     prefecture: "神奈川県",
@@ -41,8 +44,10 @@ export const sampleCompanies: Company[] = [
     id: 4,
     name: "株式会社セキュリティプロ",
     websiteUrl: "https://security-pro.jp",
-    logoUrl: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
-    description: "サイバーセキュリティとプライバシー保護のリーディングカンパニー",
+    logoUrl:
+      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    description:
+      "サイバーセキュリティとプライバシー保護のリーディングカンパニー",
     location: "愛知県名古屋市",
     prefecture: "愛知県",
     prefectureCode: "23",
@@ -53,7 +58,8 @@ export const sampleCompanies: Company[] = [
     id: 5,
     name: "株式会社デジタルワークス",
     websiteUrl: "https://digital-works.co.jp",
-    logoUrl: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "デジタルトランスフォーメーションを支援するIT企業",
     location: "東京都新宿区",
     prefecture: "東京都",
@@ -65,7 +71,8 @@ export const sampleCompanies: Company[] = [
     id: 6,
     name: "株式会社モバイルソリューションズ",
     websiteUrl: "https://mobile-solutions.jp",
-    logoUrl: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "モバイルアプリケーション開発のスペシャリスト",
     location: "福岡県福岡市",
     prefecture: "福岡県",
@@ -77,7 +84,8 @@ export const sampleCompanies: Company[] = [
     id: 7,
     name: "株式会社ウェブクリエイト",
     websiteUrl: "https://web-create.co.jp",
-    logoUrl: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "Webサイト制作とECサイト構築を専門とする企業",
     location: "北海道札幌市",
     prefecture: "北海道",
@@ -89,7 +97,8 @@ export const sampleCompanies: Company[] = [
     id: 8,
     name: "株式会社データアナリティクス",
     websiteUrl: "https://data-analytics.jp",
-    logoUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "ビッグデータ解析とBI構築のエキスパート",
     location: "宮城県仙台市",
     prefecture: "宮城県",
@@ -101,7 +110,8 @@ export const sampleCompanies: Company[] = [
     id: 9,
     name: "株式会社システムインテグレーション",
     websiteUrl: "https://system-integration.co.jp",
-    logoUrl: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "基幹システム構築とシステム統合を手がける企業",
     location: "広島県広島市",
     prefecture: "広島県",
@@ -113,7 +123,8 @@ export const sampleCompanies: Company[] = [
     id: 10,
     name: "株式会社ネットワークソリューション",
     websiteUrl: "https://network-solution.jp",
-    logoUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "ネットワークインフラ構築とクラウド移行支援",
     location: "静岡県静岡市",
     prefecture: "静岡県",
@@ -125,7 +136,8 @@ export const sampleCompanies: Company[] = [
     id: 11,
     name: "株式会社フィンテックラボ",
     websiteUrl: "https://fintech-lab.co.jp",
-    logoUrl: "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "金融テクノロジーとブロックチェーン開発",
     location: "東京都港区",
     prefecture: "東京都",
@@ -137,7 +149,8 @@ export const sampleCompanies: Company[] = [
     id: 12,
     name: "株式会社ゲームデベロップメント",
     websiteUrl: "https://game-dev.jp",
-    logoUrl: "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "モバイルゲームとVRコンテンツの開発",
     location: "京都府京都市",
     prefecture: "京都府",
@@ -149,7 +162,8 @@ export const sampleCompanies: Company[] = [
     id: 13,
     name: "株式会社IoTソリューションズ",
     websiteUrl: "https://iot-solutions.co.jp",
-    logoUrl: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "IoTデバイス開発とスマートシティ構築",
     location: "神奈川県川崎市",
     prefecture: "神奈川県",
@@ -161,7 +175,8 @@ export const sampleCompanies: Company[] = [
     id: 14,
     name: "株式会社エンタープライズシステム",
     websiteUrl: "https://enterprise-system.jp",
-    logoUrl: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "大企業向けERPシステムの導入・カスタマイズ",
     location: "愛知県豊田市",
     prefecture: "愛知県",
@@ -173,7 +188,8 @@ export const sampleCompanies: Company[] = [
     id: 15,
     name: "株式会社マーケティングテック",
     websiteUrl: "https://marketing-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "デジタルマーケティングとMA導入支援",
     location: "大阪府堺市",
     prefecture: "大阪府",
@@ -185,7 +201,8 @@ export const sampleCompanies: Company[] = [
     id: 16,
     name: "株式会社ヘルステックイノベーション",
     websiteUrl: "https://healthtech-innovation.co.jp",
-    logoUrl: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "医療ITシステムと健康管理アプリの開発",
     location: "兵庫県神戸市",
     prefecture: "兵庫県",
@@ -197,7 +214,8 @@ export const sampleCompanies: Company[] = [
     id: 17,
     name: "株式会社エデュテックソリューション",
     websiteUrl: "https://edutech-solution.jp",
-    logoUrl: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "教育テクノロジーとeラーニングプラットフォーム",
     location: "千葉県千葉市",
     prefecture: "千葉県",
@@ -209,7 +227,8 @@ export const sampleCompanies: Company[] = [
     id: 18,
     name: "株式会社ロジスティクステック",
     websiteUrl: "https://logistics-tech.co.jp",
-    logoUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "物流システムと倉庫管理ソリューション",
     location: "埼玉県さいたま市",
     prefecture: "埼玉県",
@@ -221,7 +240,8 @@ export const sampleCompanies: Company[] = [
     id: 19,
     name: "株式会社アグリテック",
     websiteUrl: "https://agri-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "農業ITとスマート農業ソリューション",
     location: "茨城県つくば市",
     prefecture: "茨城県",
@@ -233,7 +253,8 @@ export const sampleCompanies: Company[] = [
     id: 20,
     name: "株式会社リテールテック",
     websiteUrl: "https://retail-tech.co.jp",
-    logoUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "小売業向けPOSシステムと在庫管理",
     location: "栃木県宇都宮市",
     prefecture: "栃木県",
@@ -245,7 +266,8 @@ export const sampleCompanies: Company[] = [
     id: 21,
     name: "株式会社コンストラクションテック",
     websiteUrl: "https://construction-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "建設業界向けプロジェクト管理システム",
     location: "群馬県前橋市",
     prefecture: "群馬県",
@@ -257,7 +279,8 @@ export const sampleCompanies: Company[] = [
     id: 22,
     name: "株式会社エナジーテック",
     websiteUrl: "https://energy-tech.co.jp",
-    logoUrl: "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "エネルギー管理システムとスマートグリッド",
     location: "新潟県新潟市",
     prefecture: "新潟県",
@@ -269,7 +292,8 @@ export const sampleCompanies: Company[] = [
     id: 23,
     name: "株式会社トラベルテック",
     websiteUrl: "https://travel-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "旅行業界向け予約システムと観光DX",
     location: "石川県金沢市",
     prefecture: "石川県",
@@ -281,7 +305,8 @@ export const sampleCompanies: Company[] = [
     id: 24,
     name: "株式会社インシュアテック",
     websiteUrl: "https://insure-tech.co.jp",
-    logoUrl: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "保険業界向けデジタル化支援とInsurTech",
     location: "富山県富山市",
     prefecture: "富山県",
@@ -293,7 +318,8 @@ export const sampleCompanies: Company[] = [
     id: 25,
     name: "株式会社プロップテック",
     websiteUrl: "https://prop-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "不動産テクノロジーと物件管理システム",
     location: "福井県福井市",
     prefecture: "福井県",
@@ -305,7 +331,8 @@ export const sampleCompanies: Company[] = [
     id: 26,
     name: "株式会社スポーツテック",
     websiteUrl: "https://sports-tech.co.jp",
-    logoUrl: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "スポーツ業界向けデータ分析とファン管理システム",
     location: "山梨県甲府市",
     prefecture: "山梨県",
@@ -317,7 +344,8 @@ export const sampleCompanies: Company[] = [
     id: 27,
     name: "株式会社オートモーティブテック",
     websiteUrl: "https://automotive-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "自動車業界向けコネクテッドカーソリューション",
     location: "長野県長野市",
     prefecture: "長野県",
@@ -329,7 +357,8 @@ export const sampleCompanies: Company[] = [
     id: 28,
     name: "株式会社ファッションテック",
     websiteUrl: "https://fashion-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "ファッション業界向けAI試着システムとトレンド分析",
     location: "岐阜県岐阜市",
     prefecture: "岐阜県",
@@ -341,7 +370,8 @@ export const sampleCompanies: Company[] = [
     id: 29,
     name: "株式会社フードテック",
     websiteUrl: "https://food-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "食品業界向けトレーサビリティシステムと品質管理",
     location: "三重県津市",
     prefecture: "三重県",
@@ -353,7 +383,8 @@ export const sampleCompanies: Company[] = [
     id: 30,
     name: "株式会社バイオテック",
     websiteUrl: "https://bio-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "バイオテクノロジー分野の研究支援システム",
     location: "滋賀県大津市",
     prefecture: "滋賀県",
@@ -365,7 +396,8 @@ export const sampleCompanies: Company[] = [
     id: 31,
     name: "株式会社クリーンテック",
     websiteUrl: "https://clean-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "環境技術とカーボンニュートラル支援システム",
     location: "奈良県奈良市",
     prefecture: "奈良県",
@@ -377,7 +409,8 @@ export const sampleCompanies: Company[] = [
     id: 32,
     name: "株式会社ロボティクス",
     websiteUrl: "https://robotics.jp",
-    logoUrl: "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "産業用ロボットとオートメーションシステム",
     location: "和歌山県和歌山市",
     prefecture: "和歌山県",
@@ -389,7 +422,8 @@ export const sampleCompanies: Company[] = [
     id: 33,
     name: "株式会社スマートシティ",
     websiteUrl: "https://smart-city.jp",
-    logoUrl: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "スマートシティ構築とIoT都市インフラ",
     location: "鳥取県鳥取市",
     prefecture: "鳥取県",
@@ -401,7 +435,8 @@ export const sampleCompanies: Company[] = [
     id: 34,
     name: "株式会社ドローンテック",
     websiteUrl: "https://drone-tech.jp",
-    logoUrl: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "ドローン技術と空撮・測量ソリューション",
     location: "島根県松江市",
     prefecture: "島根県",
@@ -413,7 +448,8 @@ export const sampleCompanies: Company[] = [
     id: 35,
     name: "株式会社ブロックチェーンラボ",
     websiteUrl: "https://blockchain-lab.jp",
-    logoUrl: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "ブロックチェーン技術とWeb3アプリケーション開発",
     location: "岡山県岡山市",
     prefecture: "岡山県",
@@ -425,7 +461,8 @@ export const sampleCompanies: Company[] = [
     id: 36,
     name: "株式会社量子コンピューティング",
     websiteUrl: "https://quantum-computing.jp",
-    logoUrl: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "量子コンピューティング技術の研究開発",
     location: "山口県山口市",
     prefecture: "山口県",
@@ -437,7 +474,8 @@ export const sampleCompanies: Company[] = [
     id: 37,
     name: "株式会社サイバーセキュリティ",
     websiteUrl: "https://cyber-security.jp",
-    logoUrl: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "次世代サイバーセキュリティとゼロトラスト",
     location: "徳島県徳島市",
     prefecture: "徳島県",
@@ -449,7 +487,8 @@ export const sampleCompanies: Company[] = [
     id: 38,
     name: "株式会社デジタルツイン",
     websiteUrl: "https://digital-twin.jp",
-    logoUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "デジタルツイン技術とシミュレーションシステム",
     location: "香川県高松市",
     prefecture: "香川県",
@@ -461,7 +500,8 @@ export const sampleCompanies: Company[] = [
     id: 39,
     name: "株式会社メタバース",
     websiteUrl: "https://metaverse.jp",
-    logoUrl: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "メタバース空間構築とVR/ARソリューション",
     location: "愛媛県松山市",
     prefecture: "愛媛県",
@@ -473,7 +513,8 @@ export const sampleCompanies: Company[] = [
     id: 40,
     name: "株式会社エッジコンピューティング",
     websiteUrl: "https://edge-computing.jp",
-    logoUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "エッジコンピューティングとリアルタイム処理",
     location: "高知県高知市",
     prefecture: "高知県",
@@ -485,7 +526,8 @@ export const sampleCompanies: Company[] = [
     id: 41,
     name: "株式会社クラウドストレージ",
     websiteUrl: "https://cloud-storage.jp",
-    logoUrl: "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/207580/pexels-photo-207580.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "クラウドストレージとデータバックアップソリューション",
     location: "福岡県北九州市",
     prefecture: "福岡県",
@@ -497,7 +539,8 @@ export const sampleCompanies: Company[] = [
     id: 42,
     name: "株式会社ビッグデータ",
     websiteUrl: "https://big-data.jp",
-    logoUrl: "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "ビッグデータ処理とリアルタイム分析",
     location: "佐賀県佐賀市",
     prefecture: "佐賀県",
@@ -509,7 +552,8 @@ export const sampleCompanies: Company[] = [
     id: 43,
     name: "株式会社マイクロサービス",
     websiteUrl: "https://microservices.jp",
-    logoUrl: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "マイクロサービスアーキテクチャとコンテナ技術",
     location: "長崎県長崎市",
     prefecture: "長崎県",
@@ -521,7 +565,8 @@ export const sampleCompanies: Company[] = [
     id: 44,
     name: "株式会社DevOpsソリューション",
     websiteUrl: "https://devops-solution.jp",
-    logoUrl: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "DevOps導入とCI/CDパイプライン構築",
     location: "熊本県熊本市",
     prefecture: "熊本県",
@@ -533,7 +578,8 @@ export const sampleCompanies: Company[] = [
     id: 45,
     name: "株式会社APIゲートウェイ",
     websiteUrl: "https://api-gateway.jp",
-    logoUrl: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "API管理とマイクロサービス連携",
     location: "大分県大分市",
     prefecture: "大分県",
@@ -545,7 +591,8 @@ export const sampleCompanies: Company[] = [
     id: 46,
     name: "株式会社コンテナオーケストレーション",
     websiteUrl: "https://container-orchestration.jp",
-    logoUrl: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "Kubernetesとコンテナオーケストレーション",
     location: "宮崎県宮崎市",
     prefecture: "宮崎県",
@@ -557,7 +604,8 @@ export const sampleCompanies: Company[] = [
     id: 47,
     name: "株式会社サーバーレスアーキテクチャ",
     websiteUrl: "https://serverless-architecture.jp",
-    logoUrl: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "サーバーレス技術とFaaS開発",
     location: "鹿児島県鹿児島市",
     prefecture: "鹿児島県",
@@ -569,7 +617,8 @@ export const sampleCompanies: Company[] = [
     id: 48,
     name: "株式会社インフラストラクチャ",
     websiteUrl: "https://infrastructure.jp",
-    logoUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "ITインフラ構築とクラウド基盤設計",
     location: "沖縄県那覇市",
     prefecture: "沖縄県",
@@ -581,7 +630,8 @@ export const sampleCompanies: Company[] = [
     id: 49,
     name: "株式会社モニタリングシステム",
     websiteUrl: "https://monitoring-system.jp",
-    logoUrl: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "システム監視とパフォーマンス最適化",
     location: "青森県青森市",
     prefecture: "青森県",
@@ -593,7 +643,8 @@ export const sampleCompanies: Company[] = [
     id: 50,
     name: "株式会社オートメーション",
     websiteUrl: "https://automation.jp",
-    logoUrl: "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    logoUrl:
+      "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
     description: "業務自動化とRPAソリューション",
     location: "岩手県盛岡市",
     prefecture: "岩手県",
