@@ -16,18 +16,20 @@ import Link from "next/link";
 import { useState } from "react";
 import { CategoryExplorer } from "@/components/sections/CategoryExplorer";
 import { PrefectureExplorer } from "@/components/sections/PrefectureExplorer";
-import { TagExplorer } from "@/components/sections/TagExplorer";
+import { SystemExplorer } from "@/components/sections/SystemExplorer";
 import { ArticleCard } from "@/components/ui/ArticleCard";
 import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
+import { categories } from "../masters/categories";
+import { getPurposeById } from "../masters/purposes";
+import { getSystemNameById } from "../masters/systemNames";
 import { sampleArticles } from "../sample/articles";
-import { sampleCategories } from "../sample/categories";
 import { sampleCompanies } from "../sample/companies";
+import type { Article } from "../src/models/types";
 
 export default function HomePage() {
   const [searchKeyword, setSearchKeyword] = useState("");
 
   const articles = sampleArticles;
-  const categories = sampleCategories;
   const companies = sampleCompanies;
 
   // データの準備
@@ -66,11 +68,27 @@ export default function HomePage() {
 
   // カテゴリとカンパニーのマップを作成
   const categoryMap = Object.fromEntries(
-    categories.map((cat) => [cat.id, cat])
+    categories.map((cat) => [cat.categoryId, cat])
   );
   const companyMap = Object.fromEntries(
     companies.map((comp) => [comp.id, comp])
   );
+
+  // 記事からカテゴリを取得するヘルパー関数
+  const getCategoryForArticle = (article: Article) => {
+    const systemName = getSystemNameById(article.systemId);
+    return systemName ? categoryMap[systemName.categoryId] : undefined;
+  };
+
+  // 記事からシステム名を取得するヘルパー関数
+  const getSystemNameForArticle = (article: Article) => {
+    return getSystemNameById(article.systemId);
+  };
+
+  // 記事から目的を取得するヘルパー関数
+  const getPurposeForArticle = (article: Article) => {
+    return getPurposeById(article.purposeId);
+  };
 
   // 検索実行
   const handleSearch = (e: React.FormEvent) => {
@@ -174,14 +192,26 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentArticles.map((article) => (
-              <ArticleOverlayCard
-                key={article.id}
-                article={article}
-                category={categoryMap[article.categoryId]}
-                company={companyMap[article.companyId]}
-              />
-            ))}
+            {recentArticles.map((article) => {
+              const category = getCategoryForArticle(article);
+              const articleWithCategoryId = {
+                ...article,
+                categoryId: category?.categoryId || 0
+              };
+
+              return (
+                <ArticleOverlayCard
+                  key={article.id}
+                  article={articleWithCategoryId}
+                  category={category ? {
+                    id: category.categoryId,
+                    name: category.categoryName,
+                    slug: category.categoryNameRoman
+                  } : undefined}
+                  company={companyMap[article.companyId]}
+                />
+              );
+            })}
           </div>
         </section>
 
@@ -201,14 +231,26 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularArticles.map((article) => (
-              <ArticleOverlayCard
-                key={article.id}
-                article={article}
-                category={categoryMap[article.categoryId]}
-                company={companyMap[article.companyId]}
-              />
-            ))}
+            {popularArticles.map((article) => {
+              const category = getCategoryForArticle(article);
+              const articleWithCategoryId = {
+                ...article,
+                categoryId: category?.categoryId || 0
+              };
+
+              return (
+                <ArticleOverlayCard
+                  key={article.id}
+                  article={articleWithCategoryId}
+                  category={category ? {
+                    id: category.categoryId,
+                    name: category.categoryName,
+                    slug: category.categoryNameRoman
+                  } : undefined}
+                  company={companyMap[article.companyId]}
+                />
+              );
+            })}
           </div>
         </section>
       </div>
@@ -295,14 +337,26 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {interviewArticles.map((article) => (
-                <ArticleCard
-                  key={article.id}
-                  article={article}
-                  category={categoryMap[article.categoryId]}
-                  company={companyMap[article.companyId]}
-                />
-              ))}
+              {interviewArticles.map((article) => {
+                const category = getCategoryForArticle(article);
+                const articleWithCategoryId = {
+                  ...article,
+                  categoryId: category?.categoryId || 0
+                };
+
+                return (
+                  <ArticleCard
+                    key={article.id}
+                    article={articleWithCategoryId}
+                    category={category ? {
+                      id: category.categoryId,
+                      name: category.categoryName,
+                      slug: category.categoryNameRoman
+                    } : undefined}
+                    company={companyMap[article.companyId]}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -325,14 +379,26 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {processArticles.map((article) => (
-                <ArticleCard
-                  key={article.id}
-                  article={article}
-                  category={categoryMap[article.categoryId]}
-                  company={companyMap[article.companyId]}
-                />
-              ))}
+              {processArticles.map((article) => {
+                const category = getCategoryForArticle(article);
+                const articleWithCategoryId = {
+                  ...article,
+                  categoryId: category?.categoryId || 0
+                };
+
+                return (
+                  <ArticleCard
+                    key={article.id}
+                    article={articleWithCategoryId}
+                    category={category ? {
+                      id: category.categoryId,
+                      name: category.categoryName,
+                      slug: category.categoryNameRoman
+                    } : undefined}
+                    company={companyMap[article.companyId]}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -355,14 +421,26 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {surveyArticles.map((article) => (
-                <ArticleCard
-                  key={article.id}
-                  article={article}
-                  category={categoryMap[article.categoryId]}
-                  company={companyMap[article.companyId]}
-                />
-              ))}
+              {surveyArticles.map((article) => {
+                const category = getCategoryForArticle(article);
+                const articleWithCategoryId = {
+                  ...article,
+                  categoryId: category?.categoryId || 0
+                };
+
+                return (
+                  <ArticleCard
+                    key={article.id}
+                    article={articleWithCategoryId}
+                    category={category ? {
+                      id: category.categoryId,
+                      name: category.categoryName,
+                      slug: category.categoryNameRoman
+                    } : undefined}
+                    company={companyMap[article.companyId]}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -385,14 +463,26 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {deliverableArticles.map((article) => (
-                <ArticleCard
-                  key={article.id}
-                  article={article}
-                  category={categoryMap[article.categoryId]}
-                  company={companyMap[article.companyId]}
-                />
-              ))}
+              {deliverableArticles.map((article) => {
+                const category = getCategoryForArticle(article);
+                const articleWithCategoryId = {
+                  ...article,
+                  categoryId: category?.categoryId || 0
+                };
+
+                return (
+                  <ArticleCard
+                    key={article.id}
+                    article={articleWithCategoryId}
+                    category={category ? {
+                      id: category.categoryId,
+                      name: category.categoryName,
+                      slug: category.categoryNameRoman
+                    } : undefined}
+                    company={companyMap[article.companyId]}
+                  />
+                );
+              })}
             </div>
           </div>
         </section>
@@ -404,8 +494,8 @@ export default function HomePage() {
           {/* カテゴリ一覧セクション */}
           <CategoryExplorer limit={8} />
 
-          {/* タグ一覧セクション */}
-          <TagExplorer limit={12} className="mt-16" />
+          {/* システム一覧セクション */}
+          <SystemExplorer limit={12} className="mt-16" />
 
           {/* 都道府県一覧セクション */}
           <PrefectureExplorer className="mt-16" />

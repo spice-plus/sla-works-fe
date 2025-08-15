@@ -2,7 +2,8 @@
 export interface Article {
   id: number;
   companyId: number;
-  categoryId: number;
+  purposeId: number;
+  systemId: number;
   title: string;
   description: string;
   sourceUrl: string;
@@ -12,8 +13,6 @@ export interface Article {
   publishedAt: string;
   viewCount: number;
   popularityScore: number;
-  techStack?: string[];
-  projectScale: "small" | "medium" | "large" | "enterprise";
   articleType: "process" | "interview" | "deliverable" | "survey";
   customerName?: string;
   createdAt: string;
@@ -40,8 +39,6 @@ export interface Company {
   location: string;
   prefecture: string;
   prefectureCode: string;
-  employeeRange: "small" | "medium" | "large" | "enterprise";
-  establishedYear: number;
   createdAt: string;
   updatedAt: string;
 }

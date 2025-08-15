@@ -24,10 +24,20 @@ export function CompanyListControls({
   totalCount: _totalCount,
   filteredCount,
 }: CompanyListControlsProps) {
+  // 表示範囲の計算
+  const startIndex = (searchState.currentPage - 1) * searchState.itemsPerPage + 1;
+  const endIndex = Math.min(searchState.currentPage * searchState.itemsPerPage, filteredCount);
+
   return (
     <div className="flex items-center justify-between mb-6">
       <div className="text-lg text-muted-foreground">
-        {filteredCount}社の開発会社が見つかりました
+        {filteredCount > 0 ? (
+          <>
+            {startIndex}-{endIndex}社目 / 全{filteredCount}社
+          </>
+        ) : (
+          "0社の開発会社が見つかりました"
+        )}
       </div>
 
       <div className="flex items-center gap-4">

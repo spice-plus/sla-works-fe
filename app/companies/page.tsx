@@ -1,14 +1,17 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { CompanyList } from "@/components/search/CompanyList";
 import { CompanyListControls } from "@/components/search/CompanyListControls";
+import { CompanyPagination } from "@/components/search/CompanyPagination";
 import { CompanySearchSidebar } from "@/components/search/CompanySearchSidebar";
 import { useCompanySearch } from "@/hooks/useCompanySearch";
 import { sampleArticles } from "../../sample/articles";
 import { sampleCompanies } from "../../sample/companies";
 
 export default function CompaniesPage() {
+  const searchParams = useSearchParams();
   // 各企業の記事数を計算
   const articleCountMap = useMemo(() => {
     const map = new Map<number, number>();
@@ -27,10 +30,23 @@ export default function CompaniesPage() {
     resetFilters,
     totalCount,
     filteredCount,
+    totalPages,
   } = useCompanySearch({
     companies: sampleCompanies,
     articleCountMap,
   });
+
+  // URL同期 - ページ番号の初期化（クライアントサイドのみ）
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const pageParam = searchParams.get("page");
+    const page = pageParam ? parseInt(pageParam, 10) : 1;
+
+    if (page !== searchState.currentPage && page > 0) {
+      updateSearch({ currentPage: page });
+    }
+  }, [searchParams, searchState.currentPage, updateSearch]);
 
   return (
     <div className="container py-8">
@@ -66,6 +82,13 @@ export default function CompaniesPage() {
             <CompanyList
               companies={filteredCompanies}
               articleCountMap={articleCountMap}
+            />
+
+            {/* ページネーション */}
+            <CompanyPagination
+              currentPage={searchState.currentPage}
+              totalPages={totalPages}
+              onPageChange={(page) => updateSearch({ currentPage: page })}
             />
           </main>
         </div>

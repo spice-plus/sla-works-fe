@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 import {
   CategoryExplorer,
   PrefectureExplorer,
-  TagExplorer,
+  SystemExplorer,
 } from "@/components/sections";
 import { PrefecturePopularArticles } from "@/components/sections/PrefecturePopularArticles";
 import { Button } from "@/components/ui/button";
@@ -23,8 +23,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
+import type { Category } from "../../../../masters/categories";
+import { categories } from "../../../../masters/categories";
+import { getSystemNameById } from "../../../../masters/systemNames";
 import { sampleArticles } from "../../../../sample/articles";
-import { sampleCategories } from "../../../../sample/categories";
 import { sampleCompanies } from "../../../../sample/companies";
 import { getPrefectureSlug } from "../../../../src/utils/urlHelpers";
 
@@ -72,7 +74,7 @@ export default async function CompanyDetailPage({
     );
 
   // カテゴリーマップを作成
-  const categoryMap = new Map(sampleCategories.map((cat) => [cat.id, cat]));
+  const categoryMap = new Map(categories.map((cat) => [cat.categoryId, cat]));
 
   return (
     <div>
@@ -162,16 +164,38 @@ export default async function CompanyDetailPage({
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                 {companyArticles.map((article) => {
-                  const category = categoryMap.get(article.categoryId);
+                  // systemIdからカテゴリを特定
+                  let category: Category | undefined;
+                  if (article.systemId) {
+                    const systemName = getSystemNameById(article.systemId);
+                    if (systemName) {
+                      category = categoryMap.get(systemName.categoryId);
+                    }
+                  }
+
                   const companyData = sampleCompanies.find(
                     (c) => c.id === article.companyId
                   );
 
+                  // ArticleOverlayCardが期待する形式に変換
+                  const articleWithCategoryId = {
+                    ...article,
+                    categoryId: parseInt(category?.categoryId.toString() || "0")
+                  };
+
                   return (
                     <ArticleOverlayCard
                       key={article.id}
-                      article={article}
-                      category={category}
+                      article={articleWithCategoryId}
+                      category={
+                        category
+                          ? {
+                              id: category.categoryId,
+                              name: category.categoryName,
+                              slug: category.categoryNameRoman,
+                            }
+                          : undefined
+                      }
                       company={companyData}
                     />
                   );
@@ -192,7 +216,7 @@ export default async function CompanyDetailPage({
       <section className="bg-white py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <CategoryExplorer limit={8} />
-          <TagExplorer limit={12} className="mt-16" />
+          <SystemExplorer limit={12} className="mt-16" />
           <PrefectureExplorer className="mt-16" />
         </div>
       </section>

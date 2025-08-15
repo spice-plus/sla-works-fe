@@ -8,10 +8,16 @@ import { sampleCompanies } from "../../sample/companies";
 import {
   ArticleGrid,
   ArticleListControls,
+  ArticlePagination,
   ArticleSearchSidebar,
 } from "../../src/components/search";
+import { StructuredData } from "../../src/components/seo/StructuredData";
 import { useArticleSearch } from "../../src/hooks/useArticleSearch";
-import { parseSearchParamsToFilters } from "../../src/utils/searchParams";
+import { parseSearchParamsToFilters, parsePageFromSearchParams } from "../../src/utils/searchParams";
+import {
+  generateArticleListStructuredData,
+  generateBreadcrumbStructuredData,
+} from "../../src/utils/structuredData";
 
 export default function ArticlesPage() {
   const searchParams = useSearchParams();
@@ -21,7 +27,7 @@ export default function ArticlesPage() {
 
   // カテゴリーマップを作成（categoryIdをキーとする）
   const categoryMap = Object.fromEntries(
-    categories.map((cat) => [parseInt(cat.categoryId), cat])
+    categories.map((cat) => [cat.categoryId, cat])
   );
 
   // 企業マップを作成
@@ -29,9 +35,13 @@ export default function ArticlesPage() {
     companies.map((comp) => [comp.id, comp])
   );
 
-  // URLパラメータから初期フィルタを作成
+  // URLパラメータから初期フィルタとページ番号を作成
   const initialFilters = useMemo(() => {
     return parseSearchParamsToFilters(searchParams);
+  }, [searchParams]);
+
+  const initialPage = useMemo(() => {
+    return parsePageFromSearchParams(searchParams);
   }, [searchParams]);
 
   const {
@@ -41,16 +51,38 @@ export default function ArticlesPage() {
     isAdvancedSearchOpen,
     filteredArticles,
     totalCount,
+    currentPage,
+    totalPages,
+    itemsPerPage,
     handleFiltersChange,
     handleSortChange,
     handleViewModeChange,
     handleAdvancedSearchToggle,
     handleSearch,
     handleReset,
-  } = useArticleSearch({ articles, initialFilters });
+    handlePageChange,
+  } = useArticleSearch({ articles, initialFilters, initialPage });
+
+  // 構造化データの生成
+  const breadcrumbItems = [
+    { label: "ホーム", href: "/" },
+    { label: "記事一覧", current: true },
+  ];
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbItems);
+  const articleListStructuredData = generateArticleListStructuredData(
+    filteredArticles,
+    companies,
+    "記事一覧",
+    "システム開発・導入事例をご紹介。様々な業界・業種の成功事例をご覧いただけます。",
+    "/articles"
+  );
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* 構造化データ */}
+      <StructuredData data={breadcrumbStructuredData} />
+      <StructuredData data={articleListStructuredData} />
       {/* ヘッダーセクション */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-4">記事一覧</h1>
@@ -74,6 +106,8 @@ export default function ArticlesPage() {
         <div className="lg:col-span-3">
           <ArticleListControls
             totalCount={totalCount}
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
             sortBy={sortBy}
             onSortChange={handleSortChange}
             viewMode={viewMode}
@@ -85,6 +119,12 @@ export default function ArticlesPage() {
             categories={categoryMap}
             companies={companyMap}
             viewMode={viewMode}
+          />
+
+          <ArticlePagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
           />
         </div>
       </div>

@@ -10,6 +10,8 @@ interface UseCompanySearchProps {
   articleCountMap: Map<number, number>;
 }
 
+const ITEMS_PER_PAGE = 30;
+
 export function useCompanySearch({
   companies,
   articleCountMap,
@@ -21,6 +23,8 @@ export function useCompanySearch({
     minArticleCount: 0,
     sortBy: "articleCount",
     sortOrder: "desc",
+    currentPage: 1,
+    itemsPerPage: ITEMS_PER_PAGE,
   });
 
   // フィルタリングされた企業リスト
@@ -105,9 +109,27 @@ export function useCompanySearch({
     articleCountMap,
   ]);
 
+  // ページネーション計算
+  const totalPages = Math.ceil(sortedCompanies.length / ITEMS_PER_PAGE);
+  const paginatedCompanies = useMemo(() => {
+    const startIndex = (searchState.currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return sortedCompanies.slice(startIndex, endIndex);
+  }, [sortedCompanies, searchState.currentPage]);
+
   // 検索状態の更新関数
   const updateSearch = (updates: Partial<CompanySearchState>) => {
-    setSearchState((prev) => ({ ...prev, ...updates }));
+    setSearchState((prev) => {
+      const newState = { ...prev, ...updates };
+      // フィルタが変更された場合は1ページ目に戻る
+      if (updates.keyword !== undefined ||
+          updates.prefecture !== undefined ||
+          updates.prefectures !== undefined ||
+          updates.minArticleCount !== undefined) {
+        newState.currentPage = 1;
+      }
+      return newState;
+    });
   };
 
   // フィルターのリセット
@@ -119,15 +141,18 @@ export function useCompanySearch({
       minArticleCount: 0,
       sortBy: "articleCount",
       sortOrder: "desc",
+      currentPage: 1,
+      itemsPerPage: ITEMS_PER_PAGE,
     });
   };
 
   return {
     searchState,
-    filteredCompanies: sortedCompanies,
+    filteredCompanies: paginatedCompanies,
     updateSearch,
     resetFilters,
     totalCount: companies.length,
     filteredCount: sortedCompanies.length,
+    totalPages,
   };
 }

@@ -9,33 +9,41 @@ import {
   CompanyPopularArticles,
   PrefectureExplorer,
   RecommendedArticles,
-  TagExplorer,
+  SystemExplorer,
 } from "@/components/sections";
 import { Badge } from "@/components/ui/badge";
 import { getArticleTypeByRoman } from "../../../../../masters/articleTypes";
+import { getCategoryById } from "../../../../../masters/categories";
+import { prefectures } from "../../../../../masters/prefectures";
+import { getPurposeById } from "../../../../../masters/purposes";
+import { getSystemNameById } from "../../../../../masters/systemNames";
 import { sampleArticles } from "../../../../../sample/articles";
-import {
-  generateCompanyUrl,
-  getArticleRelatedData,
-  getPrefectureSlug,
-} from "../../../../../src/utils/urlHelpers";
+import { sampleCompanies } from "../../../../../sample/companies";
+import { generateCompanyUrl } from "../../../../../src/utils/urlHelpers";
 
 export async function generateStaticParams() {
   // すべての記事に対してパラメータを生成
   return sampleArticles
     .map((article) => {
-      const relatedData = getArticleRelatedData(article.id);
-      if (!relatedData) return null;
+      // 企業情報を取得
+      const company = sampleCompanies.find((c) => c.id === article.companyId);
+      if (!company) return null;
 
-      const { category, company } = relatedData;
-      if (!category || !company) return null;
+      // システム名からカテゴリを取得
+      const systemName = getSystemNameById(article.systemId);
+      if (!systemName) return null;
 
-      // 都道府県スラッグを生成（会社の都道府県から）
-      const prefectureSlug = getPrefectureSlug(company.prefecture);
+      const category = getCategoryById(systemName.categoryId);
+      if (!category) return null;
+
+      // 都道府県スラッグを生成
+      const prefecture = prefectures.find(
+        (p) => p.prefectureName === company.prefecture
+      );
+      if (!prefecture) return null;
 
       return {
-        prefectureSlug,
-        categorySlug: category.slug,
+        prefecture: prefecture.prefectureNameRoman.toLowerCase(),
         articleId: article.id.toString(),
       };
     })
@@ -44,8 +52,7 @@ export async function generateStaticParams() {
 
 interface ArticleDetailPageProps {
   params: Promise<{
-    prefectureSlug: string;
-    categorySlug: string;
+    prefecture: string;
     articleId: string;
   }>;
 }
@@ -55,13 +62,49 @@ export default async function ArticleDetailPage({
 }: ArticleDetailPageProps) {
   const resolvedParams = await params;
   const articleId = parseInt(resolvedParams.articleId);
-  const relatedData = getArticleRelatedData(articleId);
+  const article = sampleArticles.find((a) => a.id === articleId);
 
-  if (!relatedData) {
+  if (!article) {
     notFound();
   }
 
-  const { article, category, company } = relatedData;
+  // 企業情報を取得
+  const company = sampleCompanies.find((c) => c.id === article.companyId);
+  if (!company) {
+    notFound();
+  }
+
+  // システム名からカテゴリを取得
+  const systemName = getSystemNameById(article.systemId);
+  if (!systemName) {
+    notFound();
+  }
+
+  const category = getCategoryById(systemName.categoryId);
+  if (!category) {
+    notFound();
+  }
+
+  // 目的情報を取得
+  const purpose = getPurposeById(article.purposeId);
+  if (!purpose) {
+    notFound();
+  }
+
+  // 都道府県情報を取得
+  const prefecture = prefectures.find(
+    (p) => p.prefectureName === company.prefecture
+  );
+  if (!prefecture) {
+    notFound();
+  }
+
+  // URLパラメータの検証
+  if (
+    resolvedParams.prefecture !== prefecture.prefectureNameRoman.toLowerCase()
+  ) {
+    notFound();
+  }
 
   // 日付フォーマット
   const publishedDate = new Date(article.publishedAt).toLocaleDateString(
@@ -100,7 +143,14 @@ export default async function ArticleDetailPage({
           items={[
             { label: "ホーム", href: "/" },
             { label: "記事一覧", href: "/articles" },
-            ...(category ? [{ label: category.name, href: "/articles" }] : []),
+            {
+              label: prefecture.prefectureName,
+              href: `/articles/prefecture/${prefecture.prefectureNameRoman}`,
+            },
+            {
+              label: category.categoryName,
+              href: `/articles/${prefecture.prefectureNameRoman}/${category.categoryNameRoman}`,
+            },
             { label: article.title, current: true },
           ]}
         />
@@ -109,11 +159,9 @@ export default async function ArticleDetailPage({
         <header className="mb-8">
           {/* カテゴリと記事タイプ */}
           <div className="mb-4 flex flex-wrap items-center gap-3">
-            {category && (
-              <span className="inline-block bg-[#2E3A97] text-white px-3 py-1 rounded-full text-sm font-medium">
-                {category.name}
-              </span>
-            )}
+            <span className="inline-block bg-[#2E3A97] text-white px-3 py-1 rounded-full text-sm font-medium">
+              {category.categoryName}
+            </span>
             {articleTypeData && (
               <span
                 className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getTypeColor(article.articleType)}`}
@@ -156,27 +204,25 @@ export default async function ArticleDetailPage({
           </div>
 
           {/* 企業情報 */}
-          {company && (
-            <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-              <div className="w-12 h-12 bg-white rounded-lg overflow-hidden flex-shrink-0 shadow-sm">
-                <Image
-                  src={company.logoUrl}
-                  alt={`${company.name} logo`}
-                  width={48}
-                  height={48}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <Link href={generateCompanyUrl(company.id)}>
-                  <h3 className="font-semibold text-gray-900 hover:text-[#2E3A97]">
-                    {company.name}
-                  </h3>
-                </Link>
-                <p className="text-sm text-gray-600">{company.location}</p>
-              </div>
+          <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+            <div className="w-12 h-12 bg-white rounded-lg overflow-hidden flex-shrink-0 shadow-sm">
+              <Image
+                src={company.logoUrl}
+                alt={`${company.name} logo`}
+                width={48}
+                height={48}
+                className="w-full h-full object-cover"
+              />
             </div>
-          )}
+            <div>
+              <Link href={generateCompanyUrl(company.id)}>
+                <h3 className="font-semibold text-gray-900 hover:text-[#2E3A97]">
+                  {company.name}
+                </h3>
+              </Link>
+              <p className="text-sm text-gray-600">{company.location}</p>
+            </div>
+          </div>
         </div>
 
         {/* 記事詳細情報 */}
@@ -202,19 +248,17 @@ export default async function ArticleDetailPage({
             )}
           </div>
 
-          {/* 技術スタック */}
-          {article.techStack && article.techStack.length > 0 && (
-            <div className="mt-6">
-              <h3 className="font-semibold text-gray-900 mb-3">技術スタック</h3>
-              <div className="flex flex-wrap gap-2">
-                {article.techStack.map((tech) => (
-                  <Badge key={tech} variant="tech">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* 課題・目的 */}
+          <div className="mt-6">
+            <h3 className="font-semibold text-gray-900 mb-3">課題・目的</h3>
+            <Badge variant="secondary">{purpose.purposeName}</Badge>
+          </div>
+
+          {/* 成果物 */}
+          <div className="mt-6">
+            <h3 className="font-semibold text-gray-900 mb-3">成果物</h3>
+            <Badge variant="secondary">{systemName.systemName}</Badge>
+          </div>
 
           {/* キーワード */}
           {article.keywords.length > 0 && (
@@ -240,19 +284,17 @@ export default async function ArticleDetailPage({
         <SourceArticleButton sourceUrl={article.sourceUrl} />
 
         {/* 企業の人気記事 */}
-        {company && (
-          <CompanyPopularArticles
-            companyId={company.id}
-            companyName={company.name}
-            excludeArticleId={article.id}
-            limit={4}
-          />
-        )}
+        <CompanyPopularArticles
+          companyId={company.id}
+          companyName={company.name}
+          excludeArticleId={article.id}
+          limit={4}
+        />
 
         {/* おすすめ記事（関連記事） */}
         <RecommendedArticles
           currentArticleId={article.id}
-          categoryId={article.categoryId}
+          categoryId={category.categoryId}
           title="おすすめ記事"
           limit={4}
         />
@@ -261,15 +303,13 @@ export default async function ArticleDetailPage({
         <div className="flex justify-between items-center pt-8 border-t">
           <BackButton href="/articles" label="記事一覧に戻る" />
 
-          {company && (
-            <Link
-              href={generateCompanyUrl(company.id)}
-              className="inline-flex items-center text-[#2E3A97] hover:text-[#1E2875] font-medium"
-            >
-              {company.name}の詳細
-              <Building2 className="w-4 h-4 ml-2" />
-            </Link>
-          )}
+          <Link
+            href={generateCompanyUrl(company.id)}
+            className="inline-flex items-center text-[#2E3A97] hover:text-[#1E2875] font-medium"
+          >
+            {company.name}の詳細
+            <Building2 className="w-4 h-4 ml-2" />
+          </Link>
         </div>
       </div>
 
@@ -277,7 +317,7 @@ export default async function ArticleDetailPage({
       <section className="bg-white py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <CategoryExplorer limit={6} />
-          <TagExplorer limit={15} className="mt-16" />
+          <SystemExplorer limit={15} className="mt-16" />
           <PrefectureExplorer className="mt-16" />
         </div>
       </section>

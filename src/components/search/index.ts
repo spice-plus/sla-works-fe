@@ -1,9 +1,11 @@
 export { AdvancedSearchModal } from "./AdvancedSearchModal";
 export { ArticleGrid } from "./ArticleGrid";
 export { ArticleListControls } from "./ArticleListControls";
+export { ArticlePagination } from "./ArticlePagination";
 export { ArticleSearchSidebar } from "./ArticleSearchSidebar";
 export { ArticleTypeFilter } from "./ArticleTypeFilter";
 export { CategoryFilter } from "./CategoryFilter";
+export { CompanyPagination } from "./CompanyPagination";
 export { PrefectureSelector } from "./PrefectureSelector";
 export { SearchInput } from "./SearchInput";
 export { SortControls } from "./SortControls";

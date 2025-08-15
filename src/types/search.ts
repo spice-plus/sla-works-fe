@@ -2,7 +2,7 @@
 
 export interface SearchFilters {
   keyword: string;
-  categories: string[];
+  categories: number[];
   articleTypes: string[];
   prefectures: string[];
   company: string;
@@ -17,8 +17,16 @@ export type ViewMode = "grid" | "list";
 
 export type SortBy = "publishedAt" | "viewCount" | "name" | "articleCount";
 
+export interface PaginationState {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+}
+
 export interface SearchState {
   filters: SearchFilters;
   sortBy: SortBy;
   viewMode: ViewMode;
+  pagination: PaginationState;
 }

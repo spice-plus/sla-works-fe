@@ -3,7 +3,9 @@
  */
 
 import { getCategoryById } from "../../masters/categories";
-import { prefectures } from "../../masters/prefectures";
+import { getPrefectureByRoman, prefectures } from "../../masters/prefectures";
+import { getPurposeById } from "../../masters/purposes";
+import { getSystemNameById } from "../../masters/systemNames";
 import { sampleArticles } from "../../sample/articles";
 import { sampleCompanies } from "../../sample/companies";
 
@@ -12,9 +14,11 @@ import { sampleCompanies } from "../../sample/companies";
  */
 export function generateArticleUrl(articleId: number): string {
   const article = sampleArticles.find((a) => a.id === articleId);
-  if (!article) return `/articles/${articleId}`;
+  if (!article || !article.systemId) return `/articles/${articleId}`;
 
-  const category = getCategoryById(article.categoryId.toString());
+  // systemIdからカテゴリを取得
+  const systemName = getSystemNameById(article.systemId);
+  const category = systemName ? getCategoryById(systemName.categoryId) : null;
   const company = sampleCompanies.find((c) => c.id === article.companyId);
 
   if (!category || !company) return `/articles/${articleId}`;
@@ -23,11 +27,9 @@ export function generateArticleUrl(articleId: number): string {
   const prefecture = prefectures.find(
     (p) => company.prefecture === p.prefectureName
   );
-  const prefectureSlug = prefecture
-    ? prefecture.prefectureNameRoman.toLowerCase()
-    : "japan";
+  const prefectureSlug = prefecture ? prefecture.prefectureNameRoman : "japan";
 
-  return `/articles/${prefectureSlug}/${category.categoryNameRoman}/${articleId}`;
+  return `/articles/${prefectureSlug}/article/${articleId}`;
 }
 
 /**
@@ -44,7 +46,7 @@ export function getPrefectureSlug(prefectureName: string): string {
  * カテゴリIDからスラッグを取得
  */
 export function getCategorySlug(categoryId: number): string {
-  const category = getCategoryById(categoryId.toString());
+  const category = getCategoryById(categoryId);
   return category ? category.categoryNameRoman : "general";
 }
 
@@ -60,19 +62,56 @@ export function generateCompanyUrl(companyId: number): string {
 }
 
 /**
+ * 都道府県別記事一覧ページのURLを生成
+ */
+export function generatePrefectureArticlesUrl(prefectureName: string): string {
+  const prefectureSlug = getPrefectureSlug(prefectureName);
+  return `/articles/${prefectureSlug}`;
+}
+
+/**
+ * 都道府県×カテゴリ別記事一覧ページのURLを生成
+ */
+export function generatePrefectureCategoryArticlesUrl(
+  prefectureName: string,
+  categoryId: number
+): string {
+  const prefectureSlug = getPrefectureSlug(prefectureName);
+  const category = getCategoryById(categoryId);
+  const categorySlug = category ? category.categoryNameRoman : "general";
+  return `/articles/${prefectureSlug}/${categorySlug}`;
+}
+
+/**
+ * URLパラメータから都道府県情報を取得
+ */
+export function getPrefectureFromSlug(prefectureSlug: string) {
+  const normalizedSlug =
+    prefectureSlug.charAt(0).toUpperCase() + prefectureSlug.slice(1);
+  return getPrefectureByRoman(normalizedSlug);
+}
+
+/**
  * 記事IDから関連データを取得
  */
 export function getArticleRelatedData(articleId: number) {
   const article = sampleArticles.find((a) => a.id === articleId);
   if (!article) return null;
 
-  const categoryMaster = getCategoryById(article.categoryId.toString());
+  // systemIdからカテゴリを取得
+  const systemName = getSystemNameById(article.systemId);
+  const categoryMaster = systemName
+    ? getCategoryById(systemName.categoryId)
+    : null;
   const company = sampleCompanies.find((c) => c.id === article.companyId);
+
+  // 目的を取得
+  const purpose = getPurposeById(article.purposeId);
 
   // マスタデータを既存の型に変換
   const category = categoryMaster
     ? {
-        id: parseInt(categoryMaster.categoryId),
+        id: categoryMaster.categoryId,
         name: categoryMaster.categoryName,
         slug: categoryMaster.categoryNameRoman,
         description: categoryMaster.description,
@@ -85,5 +124,7 @@ export function getArticleRelatedData(articleId: number) {
     article,
     category,
     company,
+    systemName,
+    purpose,
   };
 }

@@ -29,7 +29,7 @@ export function ArticleSearchSidebar({
   isAdvancedSearchOpen,
   onAdvancedSearchToggle,
 }: ArticleSearchSidebarProps) {
-  const handleCategoriesChange = (categories: string[]) => {
+  const handleCategoriesChange = (categories: number[]) => {
     onFiltersChange({ ...filters, categories });
   };
 

@@ -5,8 +5,8 @@ import { Label } from "@/components/ui/label";
 import { getAllCategories } from "../../../masters/categories";
 
 interface CategoryFilterProps {
-  selectedCategories: string[];
-  onChange: (categories: string[]) => void;
+  selectedCategories: number[];
+  onChange: (categories: number[]) => void;
 }
 
 export function CategoryFilter({
@@ -15,7 +15,7 @@ export function CategoryFilter({
 }: CategoryFilterProps) {
   const categories = getAllCategories();
 
-  const handleCategoryChange = (categoryId: string, checked: boolean) => {
+  const handleCategoryChange = (categoryId: number, checked: boolean) => {
     if (checked) {
       onChange([...selectedCategories, categoryId]);
     } else {

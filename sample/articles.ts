@@ -4,7 +4,8 @@ export const sampleArticles: Article[] = [
   {
     id: 1,
     companyId: 1,
-    categoryId: 1,
+    purposeId: 9, // レガシーシステム刷新
+    systemId: 1, // ERP・基幹システム
     title:
       "製造業向け基幹システムのモダナイゼーション事例：レガシーからクラウドネイティブへの完全移行",
     description:
@@ -18,8 +19,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-01-15T09:00:00Z",
     viewCount: 1250,
     popularityScore: 8.5,
-    techStack: ["AWS", "Docker", "Kubernetes", "React"],
-    projectScale: "large",
     articleType: "process",
     customerName: "大手製造業A社",
     createdAt: "2024-01-15T09:00:00Z",
@@ -28,7 +27,8 @@ export const sampleArticles: Article[] = [
   {
     id: 2,
     companyId: 2,
-    categoryId: 2,
+    purposeId: 6, // DX推進
+    systemId: 19, // ECサイト・通販システム
     title:
       "小売業のDX推進：顧客体験向上とデータ活用によるオムニチャネル戦略の実現",
     description:
@@ -41,8 +41,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-01-20T10:30:00Z",
     viewCount: 890,
     popularityScore: 7.2,
-    techStack: ["Azure", "React", "Node.js"],
-    projectScale: "medium",
     articleType: "interview",
     customerName: "小売チェーンB社",
     createdAt: "2024-01-20T10:30:00Z",
@@ -51,7 +49,8 @@ export const sampleArticles: Article[] = [
   {
     id: 3,
     companyId: 3,
-    categoryId: 4,
+    purposeId: 5, // データ活用
+    systemId: 38, // AI・RAG
     title:
       "RAGシステムによる社内ナレッジ検索の革新：OpenAI GPTとベクトルDBの活用事例",
     description:
@@ -64,8 +63,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-01-25T14:00:00Z",
     viewCount: 2100,
     popularityScore: 9.1,
-    techStack: ["AWS", "Docker", "React"],
-    projectScale: "small",
     articleType: "deliverable",
     customerName: "スタートアップC社",
     createdAt: "2024-01-25T14:00:00Z",
@@ -74,7 +71,8 @@ export const sampleArticles: Article[] = [
   {
     id: 4,
     companyId: 4,
-    categoryId: 3,
+    purposeId: 7, // セキュリティ対策
+    systemId: 52, // セキュリティ
     title:
       "ゼロトラストセキュリティの段階的導入戦略：既存ネットワークからの安全な移行プロセス",
     description:
@@ -87,8 +85,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-02-01T11:15:00Z",
     viewCount: 675,
     popularityScore: 6.8,
-    techStack: ["Terraform", "Kubernetes"],
-    projectScale: "large",
     articleType: "process",
     customerName: "金融機関D社",
     createdAt: "2024-02-01T11:15:00Z",
@@ -97,7 +93,8 @@ export const sampleArticles: Article[] = [
   {
     id: 5,
     companyId: 1,
-    categoryId: 5,
+    purposeId: 4, // 業務生産性向上
+    systemId: 50, // クラウド移行・構築
     title:
       "マルチクラウド環境でのコスト最適化戦略：AWS・Azure・GCP活用による30%削減",
     description:
@@ -110,8 +107,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-02-05T16:00:00Z",
     viewCount: 1450,
     popularityScore: 8.7,
-    techStack: ["AWS", "Azure", "Terraform"],
-    projectScale: "enterprise",
     articleType: "survey",
     customerName: "グローバル企業E社",
     createdAt: "2024-02-05T16:00:00Z",
@@ -120,7 +115,8 @@ export const sampleArticles: Article[] = [
   {
     id: 6,
     companyId: 1,
-    categoryId: 1,
+    purposeId: 4, // 業務生産性向上
+    systemId: 2, // 業務管理システム
     title:
       "エンタープライズ向けマイクロサービス化プロジェクト：モノリスからの段階的移行戦略",
     description:
@@ -133,8 +129,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-02-10T09:30:00Z",
     viewCount: 1850,
     popularityScore: 8.9,
-    techStack: ["AWS", "Docker", "Kubernetes", "Node.js"],
-    projectScale: "enterprise",
     articleType: "process",
     customerName: "大手金融機関F社",
     createdAt: "2024-02-10T09:30:00Z",
@@ -143,7 +137,8 @@ export const sampleArticles: Article[] = [
   {
     id: 7,
     companyId: 1,
-    categoryId: 2,
+    purposeId: 8, // 働き方改革
+    systemId: 29, // グループウェア
     title:
       "デジタルワークプレイス構築による働き方改革：リモートワーク環境の最適化",
     description:
@@ -161,8 +156,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-02-15T14:20:00Z",
     viewCount: 920,
     popularityScore: 7.4,
-    techStack: ["Azure", "React", "Teams"],
-    projectScale: "large",
     articleType: "interview",
     customerName: "総合商社G社",
     createdAt: "2024-02-15T14:20:00Z",
@@ -171,7 +164,8 @@ export const sampleArticles: Article[] = [
   {
     id: 8,
     companyId: 1,
-    categoryId: 5,
+    purposeId: 4, // 業務生産性向上
+    systemId: 53, // バックアップ・災害対策システム
     title:
       "ハイブリッドクラウド戦略による事業継続性の向上：災害対策とコスト最適化の両立",
     description:
@@ -189,8 +183,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-02-20T11:45:00Z",
     viewCount: 1320,
     popularityScore: 8.2,
-    techStack: ["AWS", "VMware", "Terraform"],
-    projectScale: "large",
     articleType: "deliverable",
     customerName: "製薬会社H社",
     createdAt: "2024-02-20T11:45:00Z",
@@ -199,7 +191,8 @@ export const sampleArticles: Article[] = [
   {
     id: 9,
     companyId: 2,
-    categoryId: 2,
+    purposeId: 3, // 顧客体験向上
+    systemId: 16, // MA・マーケティングオートメーション
     title: "EC事業者向けパーソナライゼーション基盤：AIを活用した顧客体験の革新",
     description:
       "AI駆動のパーソナライゼーション基盤により、コンバージョン率35%向上、顧客単価20%増加を実現したDX事例",
@@ -211,8 +204,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-02-25T13:15:00Z",
     viewCount: 1680,
     popularityScore: 8.6,
-    techStack: ["Azure", "Python", "React", "TensorFlow"],
-    projectScale: "medium",
     articleType: "process",
     customerName: "ECプラットフォームI社",
     createdAt: "2024-02-25T13:15:00Z",
@@ -221,7 +212,8 @@ export const sampleArticles: Article[] = [
   {
     id: 10,
     companyId: 2,
-    categoryId: 1,
+    purposeId: 4, // 業務生産性向上
+    systemId: 60, // モバイルシステム
     title:
       "サーバーレスアーキテクチャによるスケーラブルなWebアプリケーション開発",
     description:
@@ -234,8 +226,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-03-01T10:00:00Z",
     viewCount: 1420,
     popularityScore: 8.3,
-    techStack: ["AWS", "Lambda", "React", "DynamoDB"],
-    projectScale: "medium",
     articleType: "deliverable",
     customerName: "フィンテック企業J社",
     createdAt: "2024-03-01T10:00:00Z",
@@ -244,7 +234,8 @@ export const sampleArticles: Article[] = [
   {
     id: 11,
     companyId: 2,
-    categoryId: 4,
+    purposeId: 3, // 顧客体験向上
+    systemId: 23, // チャットボット
     title:
       "コンタクトセンター向けAIチャットボット：自然言語処理による顧客対応の自動化",
     description:
@@ -257,8 +248,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-03-05T15:30:00Z",
     viewCount: 1950,
     popularityScore: 9.0,
-    techStack: ["Azure", "Python", "OpenAI", "React"],
-    projectScale: "large",
     articleType: "interview",
     customerName: "通信事業者K社",
     createdAt: "2024-03-05T15:30:00Z",
@@ -267,7 +256,8 @@ export const sampleArticles: Article[] = [
   {
     id: 12,
     companyId: 3,
-    categoryId: 4,
+    purposeId: 4, // 業務生産性向上
+    systemId: 40, // 画像処理・解析システム
     title: "画像認識AIによる製造業の品質管理革新：不良品検出精度99.5%を実現",
     description:
       "ディープラーニングを活用した画像認識システムで、製造ラインの品質管理を自動化し、不良品検出精度を大幅に向上",
@@ -279,8 +269,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-03-10T12:00:00Z",
     viewCount: 2250,
     popularityScore: 9.3,
-    techStack: ["AWS", "Python", "TensorFlow", "OpenCV"],
-    projectScale: "large",
     articleType: "deliverable",
     customerName: "自動車部品メーカーL社",
     createdAt: "2024-03-10T12:00:00Z",
@@ -289,7 +277,8 @@ export const sampleArticles: Article[] = [
   {
     id: 13,
     companyId: 3,
-    categoryId: 4,
+    purposeId: 2, // 売上拡大
+    systemId: 36, // BI・データ分析システム
     title: "予測分析AIによる需要予測システム：在庫最適化と売上向上の実現",
     description:
       "機械学習を活用した需要予測システムで、在庫コスト30%削減と売上15%向上を同時に実現した小売業向けソリューション",
@@ -301,8 +290,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-03-15T09:45:00Z",
     viewCount: 1780,
     popularityScore: 8.8,
-    techStack: ["AWS", "Python", "Scikit-learn", "React"],
-    projectScale: "medium",
     articleType: "process",
     customerName: "小売大手M社",
     createdAt: "2024-03-15T09:45:00Z",
@@ -311,7 +298,8 @@ export const sampleArticles: Article[] = [
   {
     id: 14,
     companyId: 3,
-    categoryId: 4,
+    purposeId: 4, // 業務生産性向上
+    systemId: 38, // AI・RAG
     title:
       "音声認識AIによる議事録自動作成システム：会議効率化の新たなアプローチ",
     description:
@@ -324,8 +312,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-03-20T14:10:00Z",
     viewCount: 1560,
     popularityScore: 8.1,
-    techStack: ["AWS", "Python", "Whisper", "React"],
-    projectScale: "small",
     articleType: "survey",
     customerName: "コンサルティング会社N社",
     createdAt: "2024-03-20T14:10:00Z",
@@ -334,7 +320,8 @@ export const sampleArticles: Article[] = [
   {
     id: 15,
     companyId: 4,
-    categoryId: 3,
+    purposeId: 7, // セキュリティ対策
+    systemId: 52, // セキュリティ
     title: "クラウドセキュリティ統合管理基盤：マルチクラウド環境の包括的保護",
     description:
       "AWS、Azure、GCPにまたがるマルチクラウド環境のセキュリティを統合管理し、脅威検知精度95%を実現した基盤構築事例",
@@ -351,8 +338,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-03-25T11:20:00Z",
     viewCount: 1890,
     popularityScore: 8.9,
-    techStack: ["AWS", "Azure", "Terraform", "Python"],
-    projectScale: "enterprise",
     articleType: "deliverable",
     customerName: "グローバル製造業O社",
     createdAt: "2024-03-25T11:20:00Z",
@@ -361,7 +346,8 @@ export const sampleArticles: Article[] = [
   {
     id: 16,
     companyId: 4,
-    categoryId: 3,
+    purposeId: 7, // セキュリティ対策
+    systemId: 52, // セキュリティ
     title:
       "エンドポイントセキュリティ強化プロジェクト：リモートワーク時代の新たな脅威対策",
     description:
@@ -379,8 +365,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-03-30T16:00:00Z",
     viewCount: 1340,
     popularityScore: 8.0,
-    techStack: ["Windows", "macOS", "Python", "PowerShell"],
-    projectScale: "large",
     articleType: "process",
     customerName: "IT企業P社",
     createdAt: "2024-03-30T16:00:00Z",
@@ -389,7 +373,8 @@ export const sampleArticles: Article[] = [
   {
     id: 17,
     companyId: 4,
-    categoryId: 3,
+    purposeId: 7, // セキュリティ対策
+    systemId: 52, // セキュリティ
     title: "データ暗号化とアクセス制御の最適化：機密情報保護の包括的アプローチ",
     description:
       "機密データの暗号化とアクセス制御を最適化し、データ漏洩リスクを99%削減した金融機関向けセキュリティソリューション",
@@ -401,8 +386,6 @@ export const sampleArticles: Article[] = [
     publishedAt: "2024-04-05T13:30:00Z",
     viewCount: 2180,
     popularityScore: 9.2,
-    techStack: ["AWS", "HSM", "LDAP", "Python"],
-    projectScale: "enterprise",
     articleType: "interview",
     customerName: "地方銀行Q社",
     createdAt: "2024-04-05T13:30:00Z",

@@ -22,7 +22,6 @@ interface ArticleHorizontalCardProps {
     thumbnailUrl: string;
     publishedAt: string;
     viewCount: number;
-    techStack?: string[];
     keywords: string[];
     articleType: "process" | "interview" | "deliverable" | "survey";
     categoryId: number;
@@ -107,26 +106,6 @@ export function ArticleHorizontalCard({
                   </div>
                 )}
               </div>
-
-              {/* 技術スタック */}
-              {article.techStack && article.techStack.length > 0 && (
-                <div className="flex flex-wrap gap-1">
-                  {article.techStack.slice(0, 4).map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="tech"
-                      className="text-xs px-2 py-0.5"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                  {article.techStack.length > 4 && (
-                    <span className="text-muted-foreground text-xs self-center">
-                      +{article.techStack.length - 4}
-                    </span>
-                  )}
-                </div>
-              )}
             </div>
           </CardContent>
         </div>

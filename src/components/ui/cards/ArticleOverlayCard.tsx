@@ -17,7 +17,6 @@ interface ArticleOverlayCardProps {
     thumbnailUrl: string;
     publishedAt: string;
     viewCount: number;
-    techStack?: string[];
     keywords: string[];
     articleType: "process" | "interview" | "deliverable" | "survey";
     categoryId: number;

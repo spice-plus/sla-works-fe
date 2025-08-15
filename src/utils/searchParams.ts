@@ -67,6 +67,20 @@ export function parseSearchParamsToFilters(
 }
 
 /**
+ * URLSearchParamsからページ番号を取得する
+ */
+export function parsePageFromSearchParams(
+  searchParams: URLSearchParams
+): number {
+  const page = searchParams.get("page");
+  if (page) {
+    const pageNumber = parseInt(page, 10);
+    return pageNumber > 0 ? pageNumber : 1;
+  }
+  return 1;
+}
+
+/**
  * 検索フィルタからURLSearchParamsを作成する
  */
 export function filtersToSearchParams(filters: SearchFilters): URLSearchParams {

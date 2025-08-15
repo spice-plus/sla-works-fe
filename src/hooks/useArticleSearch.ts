@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { getSystemNameById } from "../../masters/systemNames";
 import { sampleCompanies } from "../../sample/companies";
 import type { Article } from "../models/types";
 import type { SearchFilters, SortBy, ViewMode } from "../types/search";
@@ -8,11 +9,15 @@ import type { SearchFilters, SortBy, ViewMode } from "../types/search";
 interface UseArticleSearchProps {
   articles: Article[];
   initialFilters?: Partial<SearchFilters>;
+  initialPage?: number;
 }
+
+const ITEMS_PER_PAGE = 30;
 
 export function useArticleSearch({
   articles,
   initialFilters,
+  initialPage = 1,
 }: UseArticleSearchProps) {
   const [filters, setFilters] = useState<SearchFilters>({
     keyword: "",
@@ -26,6 +31,7 @@ export function useArticleSearch({
   const [sortBy, setSortBy] = useState<SortBy>("publishedAt");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<number>(initialPage);
 
   // 記事のフィルタリング
   const filteredArticles = useMemo(() => {
@@ -40,7 +46,12 @@ export function useArticleSearch({
 
       // カテゴリフィルター
       if (filters.categories.length > 0) {
-        if (!filters.categories.includes(article.categoryId.toString())) {
+        if (!article.systemId) return false;
+
+        const systemName = getSystemNameById(article.systemId);
+        if (!systemName) return false;
+
+        if (!filters.categories.includes(systemName.categoryId)) {
           return false;
         }
       }
@@ -106,8 +117,17 @@ export function useArticleSearch({
     }
   }, [filteredArticles, sortBy]);
 
+  // ページネーション計算
+  const totalPages = Math.ceil(sortedArticles.length / ITEMS_PER_PAGE);
+  const paginatedArticles = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return sortedArticles.slice(startIndex, endIndex);
+  }, [sortedArticles, currentPage]);
+
   const handleFiltersChange = useCallback((newFilters: SearchFilters) => {
     setFilters(newFilters);
+    setCurrentPage(1); // フィルタ変更時は1ページ目に戻る
   }, []);
 
   const handleSortChange = useCallback((newSort: string) => {
@@ -134,6 +154,11 @@ export function useArticleSearch({
       prefectures: [],
       company: "",
     });
+    setCurrentPage(1); // リセット時は1ページ目に戻る
+  }, []);
+
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page);
   }, []);
 
   return {
@@ -141,13 +166,17 @@ export function useArticleSearch({
     sortBy,
     viewMode,
     isAdvancedSearchOpen,
-    filteredArticles: sortedArticles,
+    filteredArticles: paginatedArticles,
     totalCount: sortedArticles.length,
+    currentPage,
+    totalPages,
+    itemsPerPage: ITEMS_PER_PAGE,
     handleFiltersChange,
     handleSortChange,
     handleViewModeChange,
     handleAdvancedSearchToggle,
     handleSearch,
     handleReset,
+    handlePageChange,
   };
 }

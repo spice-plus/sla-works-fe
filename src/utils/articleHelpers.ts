@@ -1,5 +1,9 @@
 import type { Article } from "@/models/types";
 import { categories } from "../../masters/categories";
+import {
+  getAllSystemNames,
+  getSystemNameById,
+} from "../../masters/systemNames";
 import { sampleArticles } from "../../sample/articles";
 import { getArticleRelatedData } from "./urlHelpers";
 
@@ -34,12 +38,16 @@ export function getRecommendedArticles(
 
   // カテゴリが指定されている場合は同じカテゴリの記事を優先
   if (categoryId) {
-    const sameCategoryArticles = articles.filter(
-      (article) => article.categoryId === categoryId
-    );
-    const otherArticles = articles.filter(
-      (article) => article.categoryId !== categoryId
-    );
+    const sameCategoryArticles = articles.filter((article) => {
+      if (!article.systemId) return false;
+      const systemName = getSystemNameById(article.systemId);
+      return systemName && systemName.categoryId === categoryId;
+    });
+    const otherArticles = articles.filter((article) => {
+      if (!article.systemId) return true;
+      const systemName = getSystemNameById(article.systemId);
+      return !systemName || systemName.categoryId !== categoryId;
+    });
 
     // 同じカテゴリの記事を優先し、足りない場合は他のカテゴリから補完
     articles = [
@@ -61,17 +69,23 @@ export function getCategoryArticleCounts() {
   const counts: Record<number, number> = {};
 
   sampleArticles.forEach((article) => {
-    counts[article.categoryId] = (counts[article.categoryId] || 0) + 1;
+    if (article.systemId) {
+      const systemName = getSystemNameById(article.systemId);
+      if (systemName) {
+        const categoryId = systemName.categoryId;
+        counts[categoryId] = (counts[categoryId] || 0) + 1;
+      }
+    }
   });
 
   return categories.map((category) => ({
-    id: parseInt(category.categoryId),
+    id: category.categoryId,
     name: category.categoryName,
     slug: category.categoryNameRoman,
     description: category.description,
     createdAt: "2024-01-01T00:00:00Z",
     updatedAt: "2024-01-01T00:00:00Z",
-    articleCount: counts[parseInt(category.categoryId)] || 0,
+    articleCount: counts[category.categoryId] || 0,
   }));
 }
 
@@ -88,6 +102,30 @@ export function getTagArticleCounts() {
   return Object.entries(tagCounts)
     .map(([tag, count]) => ({ tag, count }))
     .sort((a, b) => b.count - a.count); // 記事数順でソート
+}
+
+// システム名別記事数を取得
+export function getSystemArticleCounts() {
+  const counts: Record<string, number> = {};
+
+  sampleArticles.forEach((article) => {
+    if (article.systemId) {
+      counts[article.systemId] = (counts[article.systemId] || 0) + 1;
+    }
+  });
+
+  const allSystemNames = getAllSystemNames();
+
+  return allSystemNames.map((systemName) => ({
+    id: systemName.systemId,
+    name: systemName.systemName,
+    slug: systemName.systemNameRoman,
+    description: systemName.description,
+    categoryId: systemName.categoryId,
+    createdAt: "2024-01-01T00:00:00Z",
+    updatedAt: "2024-01-01T00:00:00Z",
+    articleCount: counts[systemName.systemId] || 0,
+  }));
 }
 
 // 都道府県別記事数を取得

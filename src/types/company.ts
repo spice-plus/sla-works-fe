@@ -7,6 +7,8 @@ export interface CompanySearchState {
   minArticleCount: number;
   sortBy: CompanySortOption;
   sortOrder: "asc" | "desc";
+  currentPage: number;
+  itemsPerPage: number;
 }
 
 export interface CompanySearchFilters {

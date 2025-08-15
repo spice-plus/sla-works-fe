@@ -2,8 +2,9 @@
 
 import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
 import { sampleArticles } from "../../../sample/articles";
-import { sampleCategories } from "../../../sample/categories";
+import { categories, getCategoryById } from "../../../masters/categories";
 import { sampleCompanies } from "../../../sample/companies";
+import { getAllSystemNames } from "../../../masters/systemNames";
 
 interface PrefecturePopularArticlesProps {
   prefecture: string;
@@ -29,8 +30,9 @@ export function PrefecturePopularArticles({
     .sort((a, b) => b.popularityScore - a.popularityScore)
     .slice(0, maxArticles);
 
-  // カテゴリーと企業のマップを作成
-  const categoryMap = new Map(sampleCategories.map((cat) => [cat.id, cat]));
+  // システム名からカテゴリIDを取得するためのマップ
+  const systemNames = getAllSystemNames();
+  const systemMap = new Map(systemNames.map((sys) => [sys.systemId, sys]));
   const companyMap = new Map(sampleCompanies.map((comp) => [comp.id, comp]));
 
   if (prefectureArticles.length === 0) {
@@ -41,14 +43,32 @@ export function PrefecturePopularArticles({
     <section>
       <h2 className="text-2xl font-bold mb-6">本社が{prefecture}の人気記事</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        {prefectureArticles.map((article) => (
-          <ArticleOverlayCard
-            key={article.id}
-            article={article}
-            category={categoryMap.get(article.categoryId)}
-            company={companyMap.get(article.companyId)}
-          />
-        ))}
+        {prefectureArticles.map((article) => {
+          // systemIdからcategoryIdを取得
+          const system = systemMap.get(article.systemId);
+          const category = system ? getCategoryById(system.categoryId) : undefined;
+
+          // ArticleOverlayCardが期待する形式に変換
+          const articleWithCategoryId = {
+            ...article,
+            categoryId: system?.categoryId || 0
+          };
+
+          const categoryForCard = category ? {
+            id: category.categoryId,
+            name: category.categoryName,
+            slug: category.categoryNameRoman
+          } : undefined;
+
+          return (
+            <ArticleOverlayCard
+              key={article.id}
+              article={articleWithCategoryId}
+              category={categoryForCard}
+              company={companyMap.get(article.companyId)}
+            />
+          );
+        })}
       </div>
     </section>
   );

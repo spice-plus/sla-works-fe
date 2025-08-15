@@ -28,6 +28,13 @@ export interface TagExplorerProps {
   className?: string;
 }
 
+export interface SystemExplorerProps {
+  title?: string;
+  showCount?: boolean; // 各項目の記事数を表示するか
+  limit?: number;
+  className?: string;
+}
+
 export interface PrefectureExplorerProps {
   title?: string;
   showCount?: boolean; // 各項目の記事数を表示するか

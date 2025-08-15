@@ -44,7 +44,7 @@ export function PrefectureExplorer({
         {prefectureList.map((prefecture) => (
           <Link
             key={prefecture.prefectureCode}
-            href={`/articles?prefecture=${prefecture.prefectureNameRoman}`}
+            href={`/articles/prefecture/${prefecture.prefectureNameRoman.toLowerCase()}`}
             className="inline-block"
           >
             <Badge
