@@ -35,7 +35,9 @@ export function ArticleGrid({
   }
 
   const gridClassName =
-    viewMode === "grid" ? "grid grid-cols-1 md:grid-cols-2 gap-6" : "";
+    viewMode === "grid"
+      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6"
+      : "space-y-4 sm:space-y-6";
 
   return (
     <div className={gridClassName}>

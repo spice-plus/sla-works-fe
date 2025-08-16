@@ -49,28 +49,30 @@ export default function CompaniesPage() {
   }, [searchParams, searchState.currentPage, updateSearch]);
 
   return (
-    <div className="container py-8">
-      <div className="mx-auto max-w-7xl">
+    <div className="w-[90%] max-w-7xl mx-auto py-8">
+      <div>
         {/* ヘッダーセクション */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">開発会社一覧</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-4">開発会社一覧</h1>
         </div>
 
-        {/* 2カラムレイアウト */}
-        <div className="flex gap-8">
-          {/* 左サイドバー - 検索・フィルター */}
-          <aside className="flex-shrink-0">
-            <CompanySearchSidebar
-              searchState={searchState}
-              onSearchChange={updateSearch}
-              onReset={resetFilters}
-              totalCount={totalCount}
-              filteredCount={filteredCount}
-            />
+        {/* レスポンシブレイアウト */}
+        <div className="space-y-6 lg:space-y-0 lg:flex lg:gap-8">
+          {/* 検索・フィルターエリア（モバイルでは上部、デスクトップでは左サイドバー） */}
+          <aside className="lg:flex-shrink-0 lg:w-80">
+            <div className="lg:sticky lg:top-24">
+              <CompanySearchSidebar
+                searchState={searchState}
+                onSearchChange={updateSearch}
+                onReset={resetFilters}
+                totalCount={totalCount}
+                filteredCount={filteredCount}
+              />
+            </div>
           </aside>
 
-          {/* 右メインエリア - 企業リスト */}
-          <main className="flex-1 min-w-0">
+          {/* メインコンテンツエリア */}
+          <main className="lg:flex-1 lg:min-w-0">
             <CompanyListControls
               searchState={searchState}
               onSearchChange={updateSearch}

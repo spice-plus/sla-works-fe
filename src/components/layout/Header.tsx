@@ -1,22 +1,33 @@
 "use client";
 
-import { Building2, FileText } from "lucide-react";
+import { Building2, FileText, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { APP_NAME } from "@/lib/constants";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/ui/Logo";
 
 export function Header() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="font-bold text-xl">{APP_NAME}</span>
+      <div className="w-[90%] max-w-7xl mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="flex items-center" onClick={closeMobileMenu}>
+          <Logo size="md" />
         </Link>
 
-        <nav className="flex items-center space-x-6">
+        {/* デスクトップナビゲーション */}
+        <nav className="hidden md:flex items-center space-x-6">
           <Link
             href="/articles"
             className={cn(
@@ -43,7 +54,56 @@ export function Header() {
             <span>開発会社</span>
           </Link>
         </nav>
+
+        {/* モバイルメニューボタン */}
+        <button
+          type="button"
+          className="md:hidden p-2 rounded-md hover:bg-accent"
+          onClick={toggleMobileMenu}
+          aria-label="メニューを開く"
+        >
+          {isMobileMenuOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
+        </button>
       </div>
+
+        {/* モバイルナビゲーション */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t bg-background/95 backdrop-blur">
+            <nav className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-4">
+            <Link
+              href="/articles"
+              className={cn(
+                "flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors hover:bg-accent",
+                pathname?.startsWith("/articles")
+                  ? "text-primary bg-accent"
+                  : "text-muted-foreground"
+              )}
+              onClick={closeMobileMenu}
+            >
+              <FileText className="h-5 w-5" />
+              <span>記事</span>
+            </Link>
+
+            <Link
+              href="/companies"
+              className={cn(
+                "flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors hover:bg-accent",
+                pathname?.startsWith("/companies")
+                  ? "text-primary bg-accent"
+                  : "text-muted-foreground"
+              )}
+              onClick={closeMobileMenu}
+            >
+              <Building2 className="h-5 w-5" />
+              <span>開発会社</span>
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

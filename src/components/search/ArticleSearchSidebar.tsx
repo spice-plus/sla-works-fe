@@ -1,6 +1,7 @@
 "use client";
 
-import { Settings } from "lucide-react";
+import { ChevronDown, ChevronUp, Search, Settings } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -29,6 +30,8 @@ export function ArticleSearchSidebar({
   isAdvancedSearchOpen,
   onAdvancedSearchToggle,
 }: ArticleSearchSidebarProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const handleCategoriesChange = (categories: number[]) => {
     onFiltersChange({ ...filters, categories });
   };
@@ -118,10 +121,34 @@ export function ArticleSearchSidebar({
   return (
     <>
       <Card className="sticky top-4">
-        <CardHeader>
-          <CardTitle className="text-lg">検索・フィルター</CardTitle>
+        {/* モバイル用の折りたたみヘッダー */}
+        <CardHeader className="lg:block">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-base sm:text-lg">検索・フィルター</CardTitle>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="lg:hidden"
+              aria-label="検索フィルターを開閉"
+            >
+              <Search className="w-4 h-4 mr-1" />
+              {activeFiltersCount > 0 && (
+                <span className="bg-primary text-primary-foreground text-xs px-1.5 py-0.5 rounded-full mr-1">
+                  {activeFiltersCount}
+                </span>
+              )}
+              {isExpanded ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
+            </Button>
+          </div>
         </CardHeader>
-        <CardContent className="space-y-6">
+
+        {/* 検索フィルター内容 */}
+        <CardContent className={`space-y-6 ${isExpanded ? 'block' : 'hidden lg:block'}`}>
           {/* カテゴリフィルター */}
           <CategoryFilter
             selectedCategories={filters.categories}

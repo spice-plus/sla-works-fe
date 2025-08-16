@@ -26,7 +26,7 @@ export function CategoryExplorer({
 
   return (
     <section className={cn("mb-12", className)}>
-      <h2 className="text-2xl font-bold text-gray-900 mb-8">{title}</h2>
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-8">{title}</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {categories.map((category) => (
           <Link

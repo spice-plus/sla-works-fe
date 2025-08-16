@@ -67,30 +67,32 @@ export default function ArticlesPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="w-[90%] max-w-7xl mx-auto px-4 py-8">
       {/* 構造化データ */}
       <StructuredData data={breadcrumbStructuredData} />
       <StructuredData data={articleListStructuredData} />
       {/* ヘッダーセクション */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">記事一覧</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4">記事一覧</h1>
       </div>
 
-      {/* 2カラムレイアウト */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* 左サイドバー（検索エリア） */}
+      {/* レスポンシブレイアウト */}
+      <div className="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-8">
+        {/* 検索エリア（モバイルでは上部、デスクトップでは左サイドバー） */}
         <div className="lg:col-span-1">
-          <ArticleSearchSidebar
-            filters={filters}
-            onFiltersChange={handleFiltersChange}
-            onSearch={handleSearch}
-            onReset={handleReset}
-            isAdvancedSearchOpen={isAdvancedSearchOpen}
-            onAdvancedSearchToggle={handleAdvancedSearchToggle}
-          />
+          <div className="lg:sticky lg:top-24">
+            <ArticleSearchSidebar
+              filters={filters}
+              onFiltersChange={handleFiltersChange}
+              onSearch={handleSearch}
+              onReset={handleReset}
+              isAdvancedSearchOpen={isAdvancedSearchOpen}
+              onAdvancedSearchToggle={handleAdvancedSearchToggle}
+            />
+          </div>
         </div>
 
-        {/* 右メインエリア（コンテンツ） */}
+        {/* メインコンテンツエリア */}
         <div className="lg:col-span-3">
           <ArticleListControls
             totalCount={totalCount}

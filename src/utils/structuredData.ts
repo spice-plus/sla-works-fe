@@ -74,7 +74,7 @@ export function generateArticleListStructuredData(
               name: "SLA Works",
               logo: {
                 "@type": "ImageObject",
-                url: `${baseUrl}/logo.png`,
+                url: `${baseUrl}/images/logo/logo-horizontal.svg`,
               },
             },
           },
@@ -109,7 +109,7 @@ export function generateArticleStructuredData(
       name: "SLA Works",
       logo: {
         "@type": "ImageObject",
-        url: `${baseUrl}/logo.png`,
+        url: `${baseUrl}/images/logo/logo-horizontal.svg`,
       },
     },
     mainEntityOfPage: {

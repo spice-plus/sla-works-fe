@@ -78,8 +78,8 @@ export default async function CompanyDetailPage({
 
   return (
     <div>
-      <div className="container py-8">
-        <div className="mx-auto max-w-6xl">
+      <div className="w-[90%] max-w-7xl mx-auto py-8">
+        <div>
           {/* 戻るボタン */}
           <div className="mb-6">
             <Button asChild variant="ghost">
@@ -120,10 +120,6 @@ export default async function CompanyDetailPage({
                       <div className="flex items-center gap-2">
                         <MapPin className="h-4 w-4 text-muted-foreground" />
                         <span>{company.location}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-muted-foreground" />
-                        <span>{company.establishedYear}年設立</span>
                       </div>
                     </div>
                   </div>
@@ -216,7 +212,7 @@ export default async function CompanyDetailPage({
 
       {/* 探索セクション */}
       <section className="bg-white py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <CategoryExplorer limit={8} />
           <SystemExplorer limit={12} className="mt-16" />
           <PrefectureExplorer className="mt-16" />

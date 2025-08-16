@@ -33,26 +33,33 @@ export function ArticleListControls({
   const endIndex = Math.min(currentPage * itemsPerPage, totalCount);
 
   return (
-    <div className="flex items-center justify-between mb-6 p-4 bg-gray-50 rounded-lg">
-      <div className="flex items-center gap-4">
-        <span className="text-lg text-gray-600">
-          {totalCount > 0 ? (
-            <>
-              {startIndex}-{endIndex}件目 / 全{totalCount}件
-            </>
-          ) : (
-            "0件の記事が見つかりました"
-          )}
-        </span>
-      </div>
+    <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex items-center">
+          <span className="text-sm sm:text-base text-gray-600">
+            {totalCount > 0 ? (
+              <>
+                <span className="hidden sm:inline">
+                  {startIndex}-{endIndex}件目 / 全{totalCount}件
+                </span>
+                <span className="sm:hidden">
+                  全{totalCount}件
+                </span>
+              </>
+            ) : (
+              "0件の記事が見つかりました"
+            )}
+          </span>
+        </div>
 
-      <div className="flex items-center gap-4">
-        <SortControls
-          sortOptions={sortOptions}
-          currentSort={sortBy}
-          onChange={onSortChange}
-        />
-        <ViewToggle view={viewMode} onChange={onViewModeChange} />
+        <div className="flex items-center gap-2 sm:gap-4">
+          <SortControls
+            sortOptions={sortOptions}
+            currentSort={sortBy}
+            onChange={onSortChange}
+          />
+          <ViewToggle view={viewMode} onChange={onViewModeChange} />
+        </div>
       </div>
     </div>
   );

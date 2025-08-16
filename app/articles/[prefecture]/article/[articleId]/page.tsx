@@ -137,7 +137,7 @@ export default async function ArticleDetailPage({
 
   return (
     <div>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* パンくずナビ */}
         <Breadcrumb
           items={[
@@ -193,13 +193,13 @@ export default async function ArticleDetailPage({
         {/* メイン画像と企業情報 */}
         <div className="mb-8">
           {/* メイン画像 */}
-          <div className="mb-6">
+          <div className="mb-6 aspect-video">
             <Image
               src={article.thumbnailUrl}
               alt={article.title}
               width={800}
-              height={448}
-              className="w-full h-80 md:h-[28rem] object-cover rounded-xl shadow-lg"
+              height={450}
+              className="w-full h-full object-cover rounded-xl shadow-lg"
             />
           </div>
 
@@ -315,7 +315,7 @@ export default async function ArticleDetailPage({
 
       {/* 探索セクション */}
       <section className="bg-white py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <CategoryExplorer limit={6} />
           <SystemExplorer limit={15} className="mt-16" />
           <PrefectureExplorer className="mt-16" />

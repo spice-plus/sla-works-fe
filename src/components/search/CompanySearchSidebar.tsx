@@ -1,6 +1,7 @@
 "use client";
 
-import { Filter } from "lucide-react";
+import { ChevronDown, ChevronUp, Filter, Search } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPrefectureByCode } from "../../../masters/prefectures";
@@ -23,6 +24,8 @@ export function CompanySearchSidebar({
   totalCount: _totalCount,
   filteredCount: _filteredCount,
 }: CompanySearchSidebarProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   // 現在の検索条件をサマリー表示用に整理
   const getActiveFiltersCount = () => {
     let count = 0;
@@ -65,12 +68,36 @@ export function CompanySearchSidebar({
   const activeFiltersText = getActiveFiltersText();
 
   return (
-    <div className="w-80 space-y-6">
+    <div className="lg:w-80 space-y-6">
       <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">検索・フィルター</CardTitle>
+        {/* モバイル用の折りたたみヘッダー */}
+        <CardHeader className="lg:block">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-base sm:text-lg">検索・フィルター</CardTitle>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="lg:hidden"
+              aria-label="検索フィルターを開閉"
+            >
+              <Search className="w-4 h-4 mr-1" />
+              {activeFiltersCount > 0 && (
+                <span className="bg-primary text-primary-foreground text-xs px-1.5 py-0.5 rounded-full mr-1">
+                  {activeFiltersCount}
+                </span>
+              )}
+              {isExpanded ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
+            </Button>
+          </div>
         </CardHeader>
-        <CardContent className="space-y-6">
+
+        {/* 検索フィルター内容 */}
+        <CardContent className={`space-y-6 ${isExpanded ? 'block' : 'hidden lg:block'}`}>
           {/* キーワード検索 */}
           <div>
             <SearchInput
