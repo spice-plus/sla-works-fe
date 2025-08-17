@@ -11,9 +11,9 @@ import {
   RecommendedArticles,
   SystemExplorer,
 } from "@/components/sections";
-import { typography } from "@/design/tokens/typography";
-import { spacingTokens } from "@/design/tokens/spacing";
 import { Badge } from "@/components/ui/badge";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import { getArticleTypeByRoman } from "../../../../../masters/articleTypes";
 import { getCategoryById } from "../../../../../masters/categories";
 import { prefectures } from "../../../../../masters/prefectures";
@@ -188,14 +188,18 @@ export default async function ArticleDetailPage({
           <div className="flex flex-wrap items-center gap-4 md:gap-6">
             <div className="flex items-center">
               <Calendar className="w-4 h-4 mr-2" />
-              <span className={`${typography.variants["body-small"]} text-gray-600`}>
+              <span
+                className={`${typography.variants["body-small"]} text-gray-600`}
+              >
                 {publishedDate}
               </span>
             </div>
 
             <div className="flex items-center">
               <Eye className="w-4 h-4 mr-2" />
-              <span className={`${typography.variants["body-small"]} text-gray-600`}>
+              <span
+                className={`${typography.variants["body-small"]} text-gray-600`}
+              >
                 {article.viewCount.toLocaleString("ja-JP")} 回閲覧
               </span>
             </div>
@@ -234,7 +238,9 @@ export default async function ArticleDetailPage({
                   {company.name}
                 </h4>
               </Link>
-              <span className={`${typography.variants["body-small"]} text-gray-600`}>
+              <span
+                className={`${typography.variants["body-small"]} text-gray-600`}
+              >
                 {company.location}
               </span>
             </div>

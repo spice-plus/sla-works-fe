@@ -2,14 +2,13 @@ import { ArrowLeft, ExternalLink, FileText, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArticleOverlayCard } from "@/components/cards/ArticleOverlayCard";
 import {
   CategoryExplorer,
   PrefectureExplorer,
   SystemExplorer,
 } from "@/components/sections";
 import { PrefecturePopularArticles } from "@/components/sections/PrefecturePopularArticles";
-import { spacingTokens } from "@/design/tokens/spacing";
-import { typography } from "@/design/tokens/typography";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,7 +17,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import type { Category } from "../../../../masters/categories";
 import { categories } from "../../../../masters/categories";
 import { getSystemNameById } from "../../../../masters/systemNames";
@@ -110,7 +110,9 @@ export default async function CompanyDetailPage({
                       </h1>
                     </CardTitle>
                     <CardDescription>
-                      <p className={`${typography.variants["body-large"]} mb-4`}>
+                      <p
+                        className={`${typography.variants["body-large"]} mb-4`}
+                      >
                         {company.description}
                       </p>
                     </CardDescription>
@@ -158,7 +160,9 @@ export default async function CompanyDetailPage({
               <Card>
                 <CardContent className="py-8 text-center">
                   <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className={`${typography.variants.body} text-muted-foreground`}>
+                  <p
+                    className={`${typography.variants.body} text-muted-foreground`}
+                  >
                     まだ記事が投稿されていません。
                   </p>
                 </CardContent>

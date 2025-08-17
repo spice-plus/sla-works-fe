@@ -91,13 +91,17 @@ export function ArticleOverlayCard({
               <div className="flex items-center gap-3 mb-1">
                 <div className="flex items-center">
                   <Calendar className="w-3 h-3 mr-1" />
-                  <span className={`${typography.variants.caption} text-white/80`}>
+                  <span
+                    className={`${typography.variants.caption} text-white/80`}
+                  >
                     {formatDate(article.publishedAt, "yyyy/M/d")}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <Eye className="w-3 h-3 mr-1" />
-                  <span className={`${typography.variants.caption} text-white/80`}>
+                  <span
+                    className={`${typography.variants.caption} text-white/80`}
+                  >
                     {article.viewCount.toLocaleString("ja-JP")}
                   </span>
                 </div>

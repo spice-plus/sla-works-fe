@@ -39,7 +39,9 @@ export default function ContactPage() {
             >
               お問い合わせフォーム
             </h3>
-            <p className={`${typography.variants["body-small"]} text-muted-foreground`}>
+            <p
+              className={`${typography.variants["body-small"]} text-muted-foreground`}
+            >
               以下のフォームからお問い合わせください。通常1-2営業日以内にご返信いたします。
             </p>
           </div>
@@ -47,7 +49,9 @@ export default function ContactPage() {
           {/* Googleフォーム埋め込み用プレースホルダー */}
           <div className="w-full">
             <div className="bg-muted/50 border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center">
-              <p className={`${typography.variants.body} text-muted-foreground mb-4`}>
+              <p
+                className={`${typography.variants.body} text-muted-foreground mb-4`}
+              >
                 こちらにGoogleフォームを埋め込んでください
               </p>
               <div className="space-y-2">

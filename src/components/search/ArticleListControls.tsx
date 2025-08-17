@@ -37,7 +37,9 @@ export function ArticleListControls({
     <div className="mb-6 p-4 bg-gray-50 rounded-lg">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center">
-          <span className={`${typography.variants["body-small"]} text-gray-600`}>
+          <span
+            className={`${typography.variants["body-small"]} text-gray-600`}
+          >
             {totalCount > 0 ? (
               <>
                 <span className="hidden sm:inline">

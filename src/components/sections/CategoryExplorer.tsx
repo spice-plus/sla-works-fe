@@ -1,7 +1,7 @@
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import { spacingTokens } from "@/design/tokens/spacing";
 import { typography } from "@/design/tokens/typography";
-import { Badge } from "@/components/ui/badge";
 import { getCategoryArticleCounts } from "@/utils/articleHelpers";
 import type { CategoryExplorerProps } from "./types";
 
@@ -28,9 +28,7 @@ export function CategoryExplorer({
   return (
     <section className={`${spacingTokens.variants.large} ${className}`}>
       <div className={spacingTokens.variants.large}>
-        <h2 className={`${typography.variants.h2} text-gray-900`}>
-          {title}
-        </h2>
+        <h2 className={`${typography.variants.h2} text-gray-900`}>{title}</h2>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {categories.map((category) => (

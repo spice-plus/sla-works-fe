@@ -1,10 +1,10 @@
 import { Building2, Calendar, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { spacingTokens } from "@/design/tokens/spacing";
-import { typography } from "@/design/tokens/typography";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import { getArticleTypeByRoman } from "../../../masters/articleTypes";
 import { formatDate } from "../../utils/formatDate";
 import { generateArticleUrl } from "../../utils/urlHelpers";

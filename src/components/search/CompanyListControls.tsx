@@ -48,7 +48,11 @@ export function CompanyListControls({
       <div className="flex items-center gap-4">
         {/* 並び順 */}
         <div className="flex items-center gap-2">
-          <span className={`${typography.variants.label} text-muted-foreground`}>並び順:</span>
+          <span
+            className={`${typography.variants.label} text-muted-foreground`}
+          >
+            並び順:
+          </span>
           <Select
             value={
               searchState.sortBy === "articleCount" ? "articleCount" : "name"

@@ -1,7 +1,7 @@
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import { spacingTokens } from "@/design/tokens/spacing";
 import { typography } from "@/design/tokens/typography";
-import { Badge } from "@/components/ui/badge";
 import { getSystemArticleCounts } from "@/utils/articleHelpers";
 import type { SystemExplorerProps } from "./types";
 
@@ -43,7 +43,9 @@ export function SystemExplorer({
             className="block p-3 rounded-lg border border-gray-200 bg-white hover:border-primary hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className={`${typography.variants.body} font-medium text-gray-900`}>
+              <span
+                className={`${typography.variants.body} font-medium text-gray-900`}
+              >
                 {system.name}
               </span>
               {showCount && (

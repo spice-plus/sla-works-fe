@@ -2,9 +2,9 @@
 
 import { ChevronDown, ChevronUp, Filter, Search } from "lucide-react";
 import { useState } from "react";
-import { typography } from "@/design/tokens/typography";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { typography } from "@/design/tokens/typography";
 import { getPrefectureByCode } from "../../../masters/prefectures";
 import type { CompanySearchState } from "../../types/company";
 import { CompanyAdvancedSearchModal } from "./CompanyAdvancedSearchModal";

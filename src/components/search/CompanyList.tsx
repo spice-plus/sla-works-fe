@@ -1,7 +1,7 @@
 "use client";
 
 import type { Company } from "../../models/types";
-import { CompanyHorizontalCard } from "../ui/cards/CompanyHorizontalCard";
+import { CompanyHorizontalCard } from "../cards/CompanyHorizontalCard";
 
 interface CompanyListProps {
   companies: Company[];

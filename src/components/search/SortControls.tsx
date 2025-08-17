@@ -26,7 +26,9 @@ export function SortControls({
 }: SortControlsProps) {
   return (
     <div className="flex items-center gap-2">
-      <span className={`${typography.variants.label} whitespace-nowrap`}>{label}:</span>
+      <span className={`${typography.variants.label} whitespace-nowrap`}>
+        {label}:
+      </span>
       <Select value={currentSort} onValueChange={onChange}>
         <SelectTrigger className="w-[140px]">
           <SelectValue />

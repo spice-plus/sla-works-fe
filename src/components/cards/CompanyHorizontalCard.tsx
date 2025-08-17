@@ -3,14 +3,14 @@
 import { FileText, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { typography } from "@/design/tokens/typography";
-import { spacingTokens } from "@/design/tokens/spacing";
 import {
   Card,
   CardContent,
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import { generateCompanyUrl } from "@/utils/urlHelpers";
 
 interface CompanyHorizontalCardProps {
@@ -72,7 +72,9 @@ export function CompanyHorizontalCard({
               <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
                 <div className="flex items-center">
                   <MapPin className="w-3 h-3 mr-1" />
-                  <span className={typography.variants.caption}>{company.location}</span>
+                  <span className={typography.variants.caption}>
+                    {company.location}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <FileText className="w-3 h-3 mr-1" />

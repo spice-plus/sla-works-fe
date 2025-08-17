@@ -24,7 +24,9 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
                 href={item.href || "#"}
                 className="hover:text-primary transition-colors truncate"
               >
-                <span className={`${typography.variants["body-small"]} text-gray-600`}>
+                <span
+                  className={`${typography.variants["body-small"]} text-gray-600`}
+                >
                   {item.label}
                 </span>
               </Link>

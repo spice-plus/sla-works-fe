@@ -93,7 +93,10 @@ export function CompanyAdvancedSearchModal({
               <TabsContent value="keyword" className="space-y-6 mt-6">
                 {/* キーワード検索 */}
                 <div>
-                  <label htmlFor="keyword" className={typography.variants.label}>
+                  <label
+                    htmlFor="keyword"
+                    className={typography.variants.label}
+                  >
                     開発会社名で検索
                   </label>
                   <div className="mt-2">
@@ -114,7 +117,10 @@ export function CompanyAdvancedSearchModal({
               <TabsContent value="articles" className="space-y-6 mt-6">
                 {/* 記事数フィルター */}
                 <div>
-                  <label htmlFor="minArticleCount" className={typography.variants.label}>
+                  <label
+                    htmlFor="minArticleCount"
+                    className={typography.variants.label}
+                  >
                     最小記事数
                   </label>
                   <div className="mt-2">

@@ -1,7 +1,10 @@
 import type { Config } from "tailwindcss";
-import { generateTailwindColors, generateTailwindGradients } from "./src/design/tokens/colors";
-import { generateTailwindTypography } from "./src/design/tokens/typography";
+import {
+  generateTailwindColors,
+  generateTailwindGradients,
+} from "./src/design/tokens/colors";
 import { generateTailwindSpacing } from "./src/design/tokens/spacing";
+import { generateTailwindTypography } from "./src/design/tokens/typography";
 
 const config: Config = {
   darkMode: ["class"],

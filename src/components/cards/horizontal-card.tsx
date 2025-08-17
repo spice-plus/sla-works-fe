@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import type { BaseCardContentProps } from "./card-variants";
 
 export function HorizontalCard({

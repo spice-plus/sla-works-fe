@@ -2,10 +2,10 @@
 
 import { ChevronDown, ChevronUp, Search, Settings } from "lucide-react";
 import { useState } from "react";
-import { typography } from "@/design/tokens/typography";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { typography } from "@/design/tokens/typography";
 import { getAllArticleTypes } from "../../../masters/articleTypes";
 import { getAllCategories } from "../../../masters/categories";
 import { getPrefectureByCode } from "../../../masters/prefectures";

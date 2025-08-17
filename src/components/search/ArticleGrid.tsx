@@ -1,10 +1,7 @@
 "use client";
 
+import { ArticleHorizontalCard, ArticleOverlayCard } from "@/components/cards";
 import { typography } from "@/design/tokens/typography";
-import {
-  ArticleHorizontalCard,
-  ArticleOverlayCard,
-} from "@/components/cards";
 import type { Category } from "../../../masters/categories";
 import { getSystemNameById } from "../../../masters/systemNames";
 import type { Article, Company } from "../../models/types";
@@ -27,7 +24,9 @@ export function ArticleGrid({
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center">
         <div className="text-6xl mb-4">📝</div>
-        <h4 className={`${typography.variants.h4} font-medium text-gray-900 mb-2`}>
+        <h4
+          className={`${typography.variants.h4} font-medium text-gray-900 mb-2`}
+        >
           記事が見つかりませんでした
         </h4>
         <p className={`${typography.variants.body} text-gray-500`}>

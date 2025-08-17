@@ -1,7 +1,7 @@
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import { spacingTokens } from "@/design/tokens/spacing";
 import { typography } from "@/design/tokens/typography";
-import { Badge } from "@/components/ui/badge";
 import { getPrefectureArticleCounts } from "@/utils/articleHelpers";
 import { prefectures } from "../../../masters/prefectures";
 import type { PrefectureExplorerProps } from "./types";

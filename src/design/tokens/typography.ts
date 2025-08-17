@@ -213,7 +213,8 @@ const variants = {
   "body-large": "text-lg md:text-xl leading-relaxed tracking-normal",
   body: "text-base md:text-lg leading-relaxed tracking-normal",
   "body-small": "text-sm md:text-base leading-normal tracking-normal",
-  caption: "text-xs md:text-sm leading-tight tracking-normal text-muted-foreground",
+  caption:
+    "text-xs md:text-sm leading-tight tracking-normal text-muted-foreground",
   label: "text-sm font-medium leading-none tracking-normal",
 } as const;
 
@@ -265,14 +266,38 @@ export function generateTailwindTypography() {
       "8xl": fontSize["8xl"] as [string, { lineHeight: string }],
       "9xl": fontSize["9xl"] as [string, { lineHeight: string }],
       // レスポンシブタイポグラフィ
-      "responsive-h1": ["1.75rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
-      "responsive-h2": ["1.5rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
-      "responsive-h3": ["1.25rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
-      "responsive-h4": ["1.125rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
-      "responsive-body-large": ["1.125rem", { lineHeight: "1.6" }] as [string, { lineHeight: string }],
-      "responsive-body": ["1rem", { lineHeight: "1.6" }] as [string, { lineHeight: string }],
-      "responsive-body-small": ["0.875rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
-      "responsive-caption": ["0.75rem", { lineHeight: "1.4" }] as [string, { lineHeight: string }],
+      "responsive-h1": ["1.75rem", { lineHeight: "1.5" }] as [
+        string,
+        { lineHeight: string },
+      ],
+      "responsive-h2": ["1.5rem", { lineHeight: "1.5" }] as [
+        string,
+        { lineHeight: string },
+      ],
+      "responsive-h3": ["1.25rem", { lineHeight: "1.5" }] as [
+        string,
+        { lineHeight: string },
+      ],
+      "responsive-h4": ["1.125rem", { lineHeight: "1.5" }] as [
+        string,
+        { lineHeight: string },
+      ],
+      "responsive-body-large": ["1.125rem", { lineHeight: "1.6" }] as [
+        string,
+        { lineHeight: string },
+      ],
+      "responsive-body": ["1rem", { lineHeight: "1.6" }] as [
+        string,
+        { lineHeight: string },
+      ],
+      "responsive-body-small": ["0.875rem", { lineHeight: "1.5" }] as [
+        string,
+        { lineHeight: string },
+      ],
+      "responsive-caption": ["0.75rem", { lineHeight: "1.4" }] as [
+        string,
+        { lineHeight: string },
+      ],
     },
     fontWeight: {
       thin: fontWeight.thin,

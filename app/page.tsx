@@ -11,14 +11,14 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArticleCard } from "@/components/cards/ArticleCard";
+import { ArticleOverlayCard } from "@/components/cards/ArticleOverlayCard";
 import { CategoryExplorer } from "@/components/sections/CategoryExplorer";
 import { HeroImageGrid } from "@/components/sections/HeroImageGrid";
 import { PrefectureExplorer } from "@/components/sections/PrefectureExplorer";
 import { SystemExplorer } from "@/components/sections/SystemExplorer";
-import { typography } from "@/design/tokens/typography";
 import { spacingTokens } from "@/design/tokens/spacing";
-import { ArticleCard } from "@/components/cards/ArticleCard";
-import { ArticleOverlayCard } from "@/components/cards/ArticleOverlayCard";
+import { typography } from "@/design/tokens/typography";
 import { categories } from "../masters/categories";
 import { getSystemNameById } from "../masters/systemNames";
 import { sampleArticles } from "../sample/articles";
@@ -101,7 +101,9 @@ export default function HomePage() {
           {/* 説明テキスト */}
           <div className={spacingTokens.variants.large}>
             <div className="text-center">
-              <p className={`${typography.variants.body} text-white leading-relaxed`}>
+              <p
+                className={`${typography.variants.body} text-white leading-relaxed`}
+              >
                 <Link
                   href="/about"
                   className="text-white hover:text-blue-200 underline underline-offset-2 transition-colors"
@@ -290,7 +292,9 @@ export default function HomePage() {
               <h2 className={`${typography.variants.h2} text-gray-900`}>
                 記事タイプで探す
               </h2>
-              <p className={`${typography.variants["body-large"]} text-gray-600`}>
+              <p
+                className={`${typography.variants["body-large"]} text-gray-600`}
+              >
                 目的に応じて記事を探すことができます
               </p>
             </div>
@@ -305,7 +309,9 @@ export default function HomePage() {
                   <h3 className={`${typography.variants.h3} text-gray-900`}>
                     インタビュー
                   </h3>
-                  <p className={`${typography.variants["body-small"]} text-gray-500`}>
+                  <p
+                    className={`${typography.variants["body-small"]} text-gray-500`}
+                  >
                     開発者や企業担当者への取材記事
                   </p>
                 </div>
@@ -355,7 +361,9 @@ export default function HomePage() {
                   <h3 className={`${typography.variants.h3} text-gray-900`}>
                     プロセス
                   </h3>
-                  <p className={`${typography.variants["body-small"]} text-gray-500`}>
+                  <p
+                    className={`${typography.variants["body-small"]} text-gray-500`}
+                  >
                     開発手順や導入プロセスの解説
                   </p>
                 </div>
@@ -405,7 +413,9 @@ export default function HomePage() {
                   <h3 className={`${typography.variants.h3} text-gray-900`}>
                     調査
                   </h3>
-                  <p className={`${typography.variants["body-small"]} text-gray-500`}>
+                  <p
+                    className={`${typography.variants["body-small"]} text-gray-500`}
+                  >
                     調査結果やユーザーの声
                   </p>
                 </div>
@@ -455,7 +465,9 @@ export default function HomePage() {
                   <h3 className={`${typography.variants.h3} text-gray-900`}>
                     成果物
                   </h3>
-                  <p className={`${typography.variants["body-small"]} text-gray-500`}>
+                  <p
+                    className={`${typography.variants["body-small"]} text-gray-500`}
+                  >
                     完成したシステムやプロダクトの紹介
                   </p>
                 </div>

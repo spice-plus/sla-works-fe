@@ -4,13 +4,13 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Logo } from "@/components/layout/Logo";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Logo } from "@/components/ui/Logo";
 import { typography } from "@/design/tokens/typography";
 import { cn } from "@/lib/utils";
 import { articleTypes } from "../../../masters/articleTypes";
@@ -110,7 +110,9 @@ export function Header() {
               pathname === "/about" ? "text-primary" : "text-muted-foreground"
             )}
           >
-            <span className={`${typography.variants["body-small"]} font-medium`}>
+            <span
+              className={`${typography.variants["body-small"]} font-medium`}
+            >
               /WORKSについて
             </span>
           </Link>
@@ -123,7 +125,9 @@ export function Header() {
               pathname === "/contact" ? "text-primary" : "text-muted-foreground"
             )}
           >
-            <span className={`${typography.variants["body-small"]} font-medium`}>
+            <span
+              className={`${typography.variants["body-small"]} font-medium`}
+            >
               お問い合わせ
             </span>
           </Link>

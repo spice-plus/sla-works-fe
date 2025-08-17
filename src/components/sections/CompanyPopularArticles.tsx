@@ -1,6 +1,6 @@
+import { AdaptiveCard } from "@/components/cards";
 import { spacingTokens } from "@/design/tokens/spacing";
 import { typography } from "@/design/tokens/typography";
-import { AdaptiveCard } from "@/components/cards";
 import { getCompanyPopularArticles } from "@/utils/articleHelpers";
 import { formatDate } from "@/utils/formatDate";
 import { generateArticleUrl } from "@/utils/urlHelpers";

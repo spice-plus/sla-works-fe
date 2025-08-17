@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { typography } from "@/design/tokens/typography";
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +14,7 @@ import {
   ANIMATION_DELAY_STEP,
   ANIMATION_INTERVAL,
 } from "@/config/heroArticles";
+import { typography } from "@/design/tokens/typography";
 import { chunkArticles, getHeroArticles } from "@/utils/heroArticleSelector";
 import { generateArticleUrl } from "@/utils/urlHelpers";
 import { categories } from "../../../masters/categories";
@@ -72,7 +72,9 @@ export function HeroImageGrid({ className = "" }: HeroImageGridProps) {
   }
 
   return (
-    <section className={`relative w-full min-h-[300px] lg:min-h-[500px] ${className}`}>
+    <section
+      className={`relative w-full min-h-[300px] lg:min-h-[500px] ${className}`}
+    >
       {/* デスクトップレイアウト (lg以上) */}
       <div className="hidden lg:flex h-[500px] gap-0 w-full relative z-10">
         {/* メインの大きなブロック - 左側50% */}
@@ -256,7 +258,9 @@ function HeroImageBlock({
           {/* タイトル */}
           <h3
             className={`${
-              isMain ? typography.variants.body : typography.variants["body-small"]
+              isMain
+                ? typography.variants.body
+                : typography.variants["body-small"]
             } font-semibold text-white line-clamp-2 group-hover:text-blue-200 transition-colors mb-2`}
           >
             {article.title}
@@ -264,7 +268,9 @@ function HeroImageBlock({
 
           {/* メタデータ */}
           {company && (
-            <span className={`${typography.variants.caption} text-white/80 truncate`}>
+            <span
+              className={`${typography.variants.caption} text-white/80 truncate`}
+            >
               {company.name}
             </span>
           )}

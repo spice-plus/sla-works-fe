@@ -1,8 +1,8 @@
 "use client";
 
+import { ArticleOverlayCard } from "@/components/cards/ArticleOverlayCard";
 import { spacingTokens } from "@/design/tokens/spacing";
 import { typography } from "@/design/tokens/typography";
-import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
 import { getCategoryById } from "../../../masters/categories";
 import { getAllSystemNames } from "../../../masters/systemNames";
 import { sampleArticles } from "../../../sample/articles";
