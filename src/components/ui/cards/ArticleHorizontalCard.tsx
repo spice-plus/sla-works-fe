@@ -3,6 +3,8 @@
 import { Building2, Calendar, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -79,30 +81,46 @@ export function ArticleHorizontalCard({
           </div>
 
           {/* コンテンツ部分 */}
-          <CardContent className="flex-1 p-4 sm:p-6">
+          <CardContent className="flex-1 p-4 md:p-6 lg:p-8">
             <div className="flex flex-col h-full">
-              <CardTitle className="line-clamp-2 text-base sm:text-lg mb-2 group-hover:text-[#2E3A97] transition-colors">
-                {article.title}
+              <CardTitle>
+                <h3
+                  className={`${typography.variants.h3} line-clamp-2 group-hover:text-primary transition-colors`}
+                >
+                  {article.title}
+                </h3>
               </CardTitle>
 
-              <CardDescription className="line-clamp-2 mb-4 flex-grow hidden sm:block">
-                {article.description}
-              </CardDescription>
+              <div className={spacingTokens.variants.element}>
+                <CardDescription>
+                  <p
+                    className={`${typography.variants["body-small"]} line-clamp-2 flex-grow hidden sm:block`}
+                  >
+                    {article.description}
+                  </p>
+                </CardDescription>
+              </div>
 
               {/* メタデータ */}
-              <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground mb-3">
+              <div className="flex flex-wrap items-center gap-4 md:gap-6 text-muted-foreground">
                 <div className="flex items-center">
                   <Calendar className="w-3 h-3 mr-1" />
-                  {formatDate(article.publishedAt, "yyyy/M/d")}
+                  <span className={typography.variants.caption}>
+                    {formatDate(article.publishedAt, "yyyy/M/d")}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <Eye className="w-3 h-3 mr-1" />
-                  {article.viewCount.toLocaleString("ja-JP")}
+                  <span className={typography.variants.caption}>
+                    {article.viewCount.toLocaleString("ja-JP")}
+                  </span>
                 </div>
                 {company && (
                   <div className="flex items-center">
                     <Building2 className="w-3 h-3 mr-1" />
-                    <span className="truncate">{company.name}</span>
+                    <span className={`${typography.variants.caption} truncate`}>
+                      {company.name}
+                    </span>
                   </div>
                 )}
               </div>

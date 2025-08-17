@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { typography } from "@/design/tokens/typography";
 import type { CompanySearchState } from "../../types/company";
 
 interface CompanyListControlsProps {
@@ -47,7 +48,7 @@ export function CompanyListControls({
       <div className="flex items-center gap-4">
         {/* 並び順 */}
         <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">並び順:</span>
+          <span className={`${typography.variants.label} text-muted-foreground`}>並び順:</span>
           <Select
             value={
               searchState.sortBy === "articleCount" ? "articleCount" : "name"

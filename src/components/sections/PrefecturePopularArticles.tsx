@@ -1,7 +1,9 @@
 "use client";
 
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
-import { categories, getCategoryById } from "../../../masters/categories";
+import { getCategoryById } from "../../../masters/categories";
 import { getAllSystemNames } from "../../../masters/systemNames";
 import { sampleArticles } from "../../../sample/articles";
 import { sampleCompanies } from "../../../sample/companies";
@@ -40,8 +42,12 @@ export function PrefecturePopularArticles({
   }
 
   return (
-    <section>
-      <h2 className="text-2xl font-bold mb-6">本社が{prefecture}の人気記事</h2>
+    <section className={spacingTokens.variants.large}>
+      <div className={spacingTokens.variants.large}>
+        <h2 className={`${typography.variants.h2} font-bold`}>
+          本社が{prefecture}の人気記事
+        </h2>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {prefectureArticles.map((article) => {
           // systemIdからcategoryIdを取得

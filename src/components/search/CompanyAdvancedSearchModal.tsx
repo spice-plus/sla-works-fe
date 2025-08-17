@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { typography } from "@/design/tokens/typography";
 import type { CompanySearchState } from "../../types/company";
 import { PrefectureSelector } from "./PrefectureSelector";
 import { SearchInput } from "./SearchInput";
@@ -52,6 +53,8 @@ export function CompanyAdvancedSearchModal({
       minArticleCount: 0,
       sortBy: "articleCount" as const,
       sortOrder: "desc" as const,
+      currentPage: 1,
+      itemsPerPage: 12,
     };
     setLocalSearchState(resetState);
     onReset();
@@ -90,9 +93,9 @@ export function CompanyAdvancedSearchModal({
               <TabsContent value="keyword" className="space-y-6 mt-6">
                 {/* キーワード検索 */}
                 <div>
-                  <Label htmlFor="keyword" className="text-sm font-medium">
+                  <label htmlFor="keyword" className={typography.variants.label}>
                     開発会社名で検索
-                  </Label>
+                  </label>
                   <div className="mt-2">
                     <SearchInput
                       placeholder="開発会社名を検索..."
@@ -111,12 +114,9 @@ export function CompanyAdvancedSearchModal({
               <TabsContent value="articles" className="space-y-6 mt-6">
                 {/* 記事数フィルター */}
                 <div>
-                  <Label
-                    htmlFor="minArticleCount"
-                    className="text-sm font-medium"
-                  >
+                  <label htmlFor="minArticleCount" className={typography.variants.label}>
                     最小記事数
-                  </Label>
+                  </label>
                   <div className="mt-2">
                     <Input
                       id="minArticleCount"

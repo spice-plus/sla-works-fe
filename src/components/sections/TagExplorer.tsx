@@ -33,7 +33,7 @@ export function TagExplorer({
           >
             <Badge
               variant="outline"
-              className="px-3 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-white hover:bg-[#2E3A97] hover:text-white hover:border-[#2E3A97] transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md"
+              className="px-3 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-white hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md"
             >
               {tag}
               {showCount && (

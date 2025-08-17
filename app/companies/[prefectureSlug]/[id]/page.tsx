@@ -1,10 +1,4 @@
-import {
-  ArrowLeft,
-  Calendar,
-  ExternalLink,
-  FileText,
-  MapPin,
-} from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -14,6 +8,8 @@ import {
   SystemExplorer,
 } from "@/components/sections";
 import { PrefecturePopularArticles } from "@/components/sections/PrefecturePopularArticles";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -108,18 +104,24 @@ export default async function CompanyDetailPage({
 
                   {/* 企業情報 */}
                   <div className="flex-1">
-                    <CardTitle className="text-3xl mb-2">
-                      {company.name}
+                    <CardTitle>
+                      <h1 className={`${typography.variants.h1} mb-2`}>
+                        {company.name}
+                      </h1>
                     </CardTitle>
-                    <CardDescription className="text-lg mb-4">
-                      {company.description}
+                    <CardDescription>
+                      <p className={`${typography.variants["body-large"]} mb-4`}>
+                        {company.description}
+                      </p>
                     </CardDescription>
 
                     {/* 基本情報 */}
-                    <div className="flex flex-wrap gap-6 text-sm">
+                    <div className="flex flex-wrap gap-6">
                       <div className="flex items-center gap-2">
                         <MapPin className="h-4 w-4 text-muted-foreground" />
-                        <span>{company.location}</span>
+                        <span className={typography.variants["body-small"]}>
+                          {company.location}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -145,14 +147,18 @@ export default async function CompanyDetailPage({
           </div>
 
           {/* 記事一覧 */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">記事一覧</h2>
+          <section className={spacingTokens.variants.large}>
+            <div className={spacingTokens.variants.large}>
+              <h2 className={`${typography.variants.h2} font-bold`}>
+                記事一覧
+              </h2>
+            </div>
 
             {companyArticles.length === 0 ? (
               <Card>
                 <CardContent className="py-8 text-center">
                   <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground">
+                  <p className={`${typography.variants.body} text-muted-foreground`}>
                     まだ記事が投稿されていません。
                   </p>
                 </CardContent>

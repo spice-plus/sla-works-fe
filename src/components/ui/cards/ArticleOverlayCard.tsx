@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { typography } from "@/design/tokens/typography";
 import { getArticleTypeByRoman } from "../../../../masters/articleTypes";
 import { formatDate } from "../../../utils/formatDate";
 import { generateArticleUrl } from "../../../utils/urlHelpers";
@@ -79,26 +80,36 @@ export function ArticleOverlayCard({
 
           {/* コンテンツオーバーレイ */}
           <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-            <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-blue-200 transition-colors">
+            <h3
+              className={`${typography.variants.h3} mb-2 line-clamp-2 group-hover:text-blue-200 transition-colors text-white`}
+            >
               {article.title}
             </h3>
 
             {/* メタデータ */}
-            <div className="text-xs text-white/80">
+            <div className="text-white/80">
               <div className="flex items-center gap-3 mb-1">
                 <div className="flex items-center">
                   <Calendar className="w-3 h-3 mr-1" />
-                  {formatDate(article.publishedAt, "yyyy/M/d")}
+                  <span className={`${typography.variants.caption} text-white/80`}>
+                    {formatDate(article.publishedAt, "yyyy/M/d")}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <Eye className="w-3 h-3 mr-1" />
-                  {article.viewCount.toLocaleString("ja-JP")}
+                  <span className={`${typography.variants.caption} text-white/80`}>
+                    {article.viewCount.toLocaleString("ja-JP")}
+                  </span>
                 </div>
               </div>
               {company && (
                 <div className="flex items-center">
                   <Building2 className="w-3 h-3 mr-1" />
-                  <span className="truncate">{company.name}</span>
+                  <span
+                    className={`${typography.variants.caption} truncate text-white/80`}
+                  >
+                    {company.name}
+                  </span>
                 </div>
               )}
             </div>

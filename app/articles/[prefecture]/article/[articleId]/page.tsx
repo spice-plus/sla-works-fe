@@ -11,6 +11,8 @@ import {
   RecommendedArticles,
   SystemExplorer,
 } from "@/components/sections";
+import { typography } from "@/design/tokens/typography";
+import { spacingTokens } from "@/design/tokens/spacing";
 import { Badge } from "@/components/ui/badge";
 import { getArticleTypeByRoman } from "../../../../../masters/articleTypes";
 import { getCategoryById } from "../../../../../masters/categories";
@@ -172,21 +174,31 @@ export default async function ArticleDetailPage({
           </div>
 
           {/* タイトル */}
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-            {article.title}
-          </h1>
+          <div className={spacingTokens.variants.large}>
+            <h1
+              className={`${typography.variants.h1} font-bold text-gray-900 leading-tight`}
+            >
+              {article.title}
+            </h1>
+          </div>
         </header>
 
         {/* メタデータ */}
-        <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-8">
-          <div className="flex items-center text-sm text-gray-600">
-            <Calendar className="w-4 h-4 mr-2" />
-            {publishedDate}
-          </div>
+        <div className={spacingTokens.variants.large}>
+          <div className="flex flex-wrap items-center gap-4 md:gap-6">
+            <div className="flex items-center">
+              <Calendar className="w-4 h-4 mr-2" />
+              <span className={`${typography.variants["body-small"]} text-gray-600`}>
+                {publishedDate}
+              </span>
+            </div>
 
-          <div className="flex items-center">
-            <Eye className="w-4 h-4 mr-2" />
-            {article.viewCount.toLocaleString("ja-JP")} 回閲覧
+            <div className="flex items-center">
+              <Eye className="w-4 h-4 mr-2" />
+              <span className={`${typography.variants["body-small"]} text-gray-600`}>
+                {article.viewCount.toLocaleString("ja-JP")} 回閲覧
+              </span>
+            </div>
           </div>
         </div>
 
@@ -216,54 +228,80 @@ export default async function ArticleDetailPage({
             </div>
             <div>
               <Link href={generateCompanyUrl(company.id)}>
-                <h3 className="font-semibold text-gray-900 hover:text-[#2E3A97]">
+                <h4
+                  className={`${typography.variants.h4} font-semibold text-gray-900 hover:text-[#2E3A97]`}
+                >
                   {company.name}
-                </h3>
+                </h4>
               </Link>
-              <p className="text-sm text-gray-600">{company.location}</p>
+              <span className={`${typography.variants["body-small"]} text-gray-600`}>
+                {company.location}
+              </span>
             </div>
           </div>
         </div>
 
         {/* 記事詳細情報 */}
-        <section className="mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">
-            プロジェクト詳細
-          </h2>
+        <section className={spacingTokens.variants.large}>
+          <div className={spacingTokens.variants.large}>
+            <h2 className={`${typography.variants.h2} font-bold text-gray-900`}>
+              プロジェクト詳細
+            </h2>
+          </div>
 
           {/* 説明文 */}
-          <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            {article.description}
-          </p>
+          <div className={spacingTokens.variants.large}>
+            <p
+              className={`${typography.variants["body-large"]} text-gray-700 leading-relaxed`}
+            >
+              {article.description}
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* 顧客情報 */}
             {article.customerName && (
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">
+                <h4
+                  className={`${typography.variants.h4} font-semibold text-gray-900 mb-2`}
+                >
                   クライアント
-                </h3>
-                <p className="text-gray-700">{article.customerName}</p>
+                </h4>
+                <p className={`${typography.variants.body} text-gray-700`}>
+                  {article.customerName}
+                </p>
               </div>
             )}
           </div>
 
           {/* 課題・目的 */}
           <div className="mt-6">
-            <h3 className="font-semibold text-gray-900 mb-3">課題・目的</h3>
+            <h4
+              className={`${typography.variants.h4} font-semibold text-gray-900 mb-3`}
+            >
+              課題・目的
+            </h4>
             <Badge variant="secondary">{purpose.purposeName}</Badge>
           </div>
 
           {/* 成果物 */}
           <div className="mt-6">
-            <h3 className="font-semibold text-gray-900 mb-3">成果物</h3>
+            <h4
+              className={`${typography.variants.h4} font-semibold text-gray-900 mb-3`}
+            >
+              成果物
+            </h4>
             <Badge variant="secondary">{systemName.systemName}</Badge>
           </div>
 
           {/* キーワード */}
           {article.keywords.length > 0 && (
             <div className="mt-6">
-              <h3 className="font-semibold text-gray-900 mb-3">キーワード</h3>
+              <h4
+                className={`${typography.variants.h4} font-semibold text-gray-900 mb-3`}
+              >
+                キーワード
+              </h4>
               <div className="flex flex-wrap gap-2">
                 {article.keywords.map((keyword) => (
                   <Badge

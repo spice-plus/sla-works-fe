@@ -1,8 +1,10 @@
 import { Building2, FileText } from "lucide-react";
 import Link from "next/link";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
+import { Logo } from "@/components/ui/Logo";
 import { articleTypes } from "../../../masters/articleTypes";
 import { categories } from "../../../masters/categories";
-import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   // 主要カテゴリ（最初の5つ）
@@ -15,30 +17,34 @@ export function Footer() {
         <div className="py-8 sm:py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* ブランド情報セクション */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="mb-4">
+            <div className={spacingTokens.variants.element}>
               <Logo variant="dark" size="md" />
             </div>
-            <p className="text-gray-300 text-sm mb-6 leading-relaxed lg:pr-4">
-              開発事例やインタビュー記事を横断的に検索できるプラットフォーム。
-              技術トレンドや実装事例を通じて、より良い開発を支援します。
-            </p>
+            <div className={spacingTokens.variants.large}>
+              <p
+                className={`${typography.variants["body-small"]} text-gray-300 leading-relaxed lg:pr-4`}
+              >
+                開発事例やインタビュー記事を横断的に検索できるプラットフォーム。
+                技術トレンドや実装事例を通じて、より良い開発を支援します。
+              </p>
+            </div>
             <div className="space-y-2">
               <div>
                 <Link
                   href="/articles"
-                  className="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2"
+                  className="text-gray-300 hover:text-white transition-colors flex items-center gap-2"
                 >
                   <FileText className="h-4 w-4" />
-                  記事を探す
+                  <span className={typography.variants["body-small"]}>記事を探す</span>
                 </Link>
               </div>
               <div>
                 <Link
                   href="/companies"
-                  className="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2"
+                  className="text-gray-300 hover:text-white transition-colors flex items-center gap-2"
                 >
                   <Building2 className="h-4 w-4" />
-                  開発会社を探す
+                  <span className={typography.variants["body-small"]}>開発会社を探す</span>
                 </Link>
               </div>
             </div>
@@ -46,15 +52,19 @@ export function Footer() {
 
           {/* 記事タイプセクション */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">記事タイプ</h4>
+            <div className={spacingTokens.variants.element}>
+              <h4 className={typography.variants.h4}>記事タイプ</h4>
+            </div>
             <ul className="space-y-2">
               {articleTypes.map((type) => (
                 <li key={type.articleTypeId}>
                   <Link
                     href={`/articles?type=${type.articleTypeNameRoman}`}
-                    className="text-sm text-gray-300 hover:text-white transition-colors"
+                    className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {type.articleTypeName}
+                    <span className={typography.variants["body-small"]}>
+                      {type.articleTypeName}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -63,15 +73,19 @@ export function Footer() {
 
           {/* カテゴリセクション */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">カテゴリ</h4>
+            <div className={spacingTokens.variants.element}>
+              <h4 className={typography.variants.h4}>カテゴリ</h4>
+            </div>
             <ul className="space-y-2">
               {mainCategories.map((category) => (
                 <li key={category.categoryId}>
                   <Link
                     href={`/articles?category=${category.categoryNameRoman}`}
-                    className="text-sm text-gray-300 hover:text-white transition-colors"
+                    className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {category.categoryName}
+                    <span className={typography.variants["body-small"]}>
+                      {category.categoryName}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -80,14 +94,16 @@ export function Footer() {
 
           {/* サイト情報セクション */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">サイト情報</h4>
+            <div className={spacingTokens.variants.element}>
+              <h4 className={typography.variants.h4}>サイト情報</h4>
+            </div>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors"
                 >
-                  サイトについて
+                  <span className={typography.variants["body-small"]}>サイトについて</span>
                 </Link>
               </li>
               <li>
@@ -95,33 +111,35 @@ export function Footer() {
                   href="https://spice-plus.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors"
                 >
-                  運営会社
+                  <span className={typography.variants["body-small"]}>運営会社</span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/privacy"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors"
                 >
-                  プライバシーポリシー
+                  <span className={typography.variants["body-small"]}>
+                    プライバシーポリシー
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/terms"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors"
                 >
-                  利用規約
+                  <span className={typography.variants["body-small"]}>利用規約</span>
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/sitemap"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  href="/contact"
+                  className="text-gray-300 hover:text-white transition-colors"
                 >
-                  サイトマップ
+                  <span className={typography.variants["body-small"]}>お問い合わせ</span>
                 </Link>
               </li>
             </ul>
@@ -133,9 +151,9 @@ export function Footer() {
 
         {/* 下部セクション */}
         <div className="py-6 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
-          <p className="text-sm text-gray-400">
+          <span className={`${typography.variants["body-small"]} text-gray-400`}>
             © 2025 /WORKS. すべての権利を保有します。
-          </p>
+          </span>
         </div>
       </div>
     </footer>

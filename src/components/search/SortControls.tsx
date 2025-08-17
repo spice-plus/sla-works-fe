@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { typography } from "@/design/tokens/typography";
 import type { SortOption } from "../../types/search";
 
 interface SortControlsProps {
@@ -25,7 +26,7 @@ export function SortControls({
 }: SortControlsProps) {
   return (
     <div className="flex items-center gap-2">
-      <Label className="text-sm font-medium whitespace-nowrap">{label}:</Label>
+      <span className={`${typography.variants.label} whitespace-nowrap`}>{label}:</span>
       <Select value={currentSort} onValueChange={onChange}>
         <SelectTrigger className="w-[140px]">
           <SelectValue />

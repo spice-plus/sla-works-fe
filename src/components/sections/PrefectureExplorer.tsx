@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 import { getPrefectureArticleCounts } from "@/utils/articleHelpers";
 import { prefectures } from "../../../masters/prefectures";
 import type { PrefectureExplorerProps } from "./types";
@@ -38,8 +39,12 @@ export function PrefectureExplorer({
   }
 
   return (
-    <section className={cn("mb-12", className)}>
-      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-8">{title}</h2>
+    <section className={`${spacingTokens.variants.large} ${className}`}>
+      <div className={spacingTokens.variants.large}>
+        <h2 className={`${typography.variants.h2} font-bold text-gray-900`}>
+          {title}
+        </h2>
+      </div>
       <div className="flex flex-wrap gap-3">
         {prefectureList.map((prefecture) => (
           <Link
@@ -49,7 +54,7 @@ export function PrefectureExplorer({
           >
             <Badge
               variant="outline"
-              className="px-3 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-white hover:bg-[#2E3A97] hover:text-white hover:border-[#2E3A97] transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md"
+              className="px-3 py-1.5 text-sm font-medium rounded-full border border-gray-300 bg-white hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md"
             >
               {prefecture.prefectureName}
               {showCount && (

@@ -2,6 +2,7 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { typography } from "@/design/tokens/typography";
 import { getAllCategories } from "../../../masters/categories";
 
 interface CategoryFilterProps {
@@ -25,7 +26,7 @@ export function CategoryFilter({
 
   return (
     <div className="space-y-3">
-      <Label className="text-sm font-medium">カテゴリ</Label>
+      <div className={typography.variants.label}>カテゴリ</div>
       <div className="space-y-2">
         {categories.map((category) => (
           <div

@@ -2,6 +2,7 @@
 
 import { ChevronDown, ChevronUp, Search, Settings } from "lucide-react";
 import { useState } from "react";
+import { typography } from "@/design/tokens/typography";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -124,7 +125,7 @@ export function ArticleSearchSidebar({
         {/* モバイル用の折りたたみヘッダー */}
         <CardHeader className="lg:block">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base sm:text-lg">検索・フィルター</CardTitle>
+            <CardTitle>検索・フィルター</CardTitle>
             <Button
               variant="ghost"
               size="sm"
@@ -148,7 +149,9 @@ export function ArticleSearchSidebar({
         </CardHeader>
 
         {/* 検索フィルター内容 */}
-        <CardContent className={`space-y-6 ${isExpanded ? 'block' : 'hidden lg:block'}`}>
+        <CardContent
+          className={`space-y-6 ${isExpanded ? "block" : "hidden lg:block"}`}
+        >
           {/* カテゴリフィルター */}
           <CategoryFilter
             selectedCategories={filters.categories}
@@ -183,12 +186,17 @@ export function ArticleSearchSidebar({
           {/* 現在の検索条件表示 */}
           {activeFiltersText.length > 0 && (
             <div className="space-y-2">
-              <div className="text-sm font-medium text-muted-foreground">
+              <div
+                className={`${typography.variants["body-small"]} font-medium text-muted-foreground`}
+              >
                 現在の検索条件:
               </div>
               <div className="space-y-1">
                 {activeFiltersText.map((filter) => (
-                  <div key={filter} className="text-xs text-muted-foreground">
+                  <div
+                    key={filter}
+                    className={`${typography.variants.caption} text-muted-foreground`}
+                  >
                     {filter}
                   </div>
                 ))}

@@ -2,6 +2,7 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { typography } from "@/design/tokens/typography";
 import { getAllArticleTypes } from "../../../masters/articleTypes";
 
 interface ArticleTypeFilterProps {
@@ -25,7 +26,7 @@ export function ArticleTypeFilter({
 
   return (
     <div className="space-y-3">
-      <Label className="text-sm font-medium">記事タイプ</Label>
+      <div className={typography.variants.label}>記事タイプ</div>
       <div className="space-y-2">
         {articleTypes.map((articleType) => (
           <div

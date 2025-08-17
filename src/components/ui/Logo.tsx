@@ -26,17 +26,19 @@ export function Logo({
   variant = "light",
   size = "md",
   shape = "horizontal",
-  className
+  className,
 }: LogoProps) {
-  const logoSrc = shape === "square"
-    ? (variant === "dark"
+  const logoSrc =
+    shape === "square"
+      ? variant === "dark"
         ? "/images/logo/logo-dark-square.svg"
-        : "/images/logo/logo-square.svg")
-    : (variant === "dark"
+        : "/images/logo/logo-square.svg"
+      : variant === "dark"
         ? "/images/logo/logo-dark-horizontal.svg"
-        : "/images/logo/logo-horizontal.svg");
+        : "/images/logo/logo-horizontal.svg";
 
-  const dimensions = shape === "square" ? squareSizeMap[size] : horizontalSizeMap[size];
+  const dimensions =
+    shape === "square" ? squareSizeMap[size] : horizontalSizeMap[size];
 
   return (
     <Image

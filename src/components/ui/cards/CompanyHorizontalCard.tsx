@@ -3,6 +3,8 @@
 import { FileText, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import {
   Card,
   CardContent,
@@ -18,8 +20,6 @@ interface CompanyHorizontalCardProps {
     description: string;
     logoUrl: string;
     location: string;
-    establishedYear: number;
-    employeeRange: string;
     websiteUrl?: string;
   };
   articleCount: number;
@@ -50,23 +50,35 @@ export function CompanyHorizontalCard({
           {/* コンテンツ部分 */}
           <CardContent className="flex-1 p-4 sm:p-6">
             <div className="flex flex-col h-full">
-              <CardTitle className="line-clamp-2 text-base sm:text-lg mb-2 group-hover:text-[#2E3A97] transition-colors">
-                {company.name}
+              <CardTitle>
+                <h4
+                  className={`${typography.variants.h4} line-clamp-2 group-hover:text-primary transition-colors`}
+                >
+                  {company.name}
+                </h4>
               </CardTitle>
 
-              <CardDescription className="line-clamp-2 mb-4 flex-grow hidden sm:block">
-                {company.description}
-              </CardDescription>
+              <div className={spacingTokens.variants.element}>
+                <CardDescription>
+                  <p
+                    className={`${typography.variants["body-small"]} line-clamp-2 flex-grow hidden sm:block`}
+                  >
+                    {company.description}
+                  </p>
+                </CardDescription>
+              </div>
 
               {/* メタデータ */}
-              <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
                 <div className="flex items-center">
                   <MapPin className="w-3 h-3 mr-1" />
-                  {company.location}
+                  <span className={typography.variants.caption}>{company.location}</span>
                 </div>
                 <div className="flex items-center">
                   <FileText className="w-3 h-3 mr-1" />
-                  {articleCount}件の記事
+                  <span className={typography.variants.caption}>
+                    {articleCount}件の記事
+                  </span>
                 </div>
               </div>
             </div>

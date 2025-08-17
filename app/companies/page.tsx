@@ -6,6 +6,8 @@ import { CompanyList } from "@/components/search/CompanyList";
 import { CompanyListControls } from "@/components/search/CompanyListControls";
 import { CompanyPagination } from "@/components/search/CompanyPagination";
 import { CompanySearchSidebar } from "@/components/search/CompanySearchSidebar";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
 import { useCompanySearch } from "@/hooks/useCompanySearch";
 import { sampleArticles } from "../../sample/articles";
 import { sampleCompanies } from "../../sample/companies";
@@ -49,11 +51,11 @@ export default function CompaniesPage() {
   }, [searchParams, searchState.currentPage, updateSearch]);
 
   return (
-    <div className="w-[90%] max-w-7xl mx-auto py-8">
+    <div className="container-responsive py-responsive-page">
       <div>
         {/* ヘッダーセクション */}
-        <div className="mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-4">開発会社一覧</h1>
+        <div className={spacingTokens.variants.xl}>
+          <h1 className={typography.variants.h1}>開発会社一覧</h1>
         </div>
 
         {/* レスポンシブレイアウト */}

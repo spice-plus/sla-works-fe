@@ -162,6 +162,14 @@ const backgroundColors = {
   },
 };
 
+// グラデーション定義
+const gradients = {
+  radial: "radial-gradient(var(--tw-gradient-stops))",
+  conic: "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+  subtle: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)",
+  warm: "linear-gradient(135deg, #fefbff 0%, #f8fafc 50%, #f1f5f9 100%)",
+} as const;
+
 /**
  * エクスポート用のカラーオブジェクト
  */
@@ -217,6 +225,9 @@ export const colors = {
     },
   },
 
+  // グラデーション
+  gradients,
+
   // レガシー互換性のための定義（既存のコードとの互換性）
   component: {
     card: "hsl(var(--card))",
@@ -257,16 +268,154 @@ export const colorUtils = {
 
 /**
  * Tailwind CSS用のカラー設定を生成
+ * shadcn/uiとの完全互換性を提供
  */
 export function generateTailwindColors() {
   return {
-    primary: colors.brand.primary,
-    secondary: colors.brand.secondary,
-    tertiary: colors.brand.tertiary,
-    success: colors.semantic.success.base,
-    warning: colors.semantic.warning.base,
-    error: colors.semantic.error.base,
-    info: colors.semantic.info.base,
+    // shadcn/ui互換のカラー定義
+    background: colors.background.primary,
+    foreground: colors.text.primary,
+    card: {
+      DEFAULT: colors.background.primary,
+      foreground: colors.text.primary,
+    },
+    popover: {
+      DEFAULT: colors.background.primary,
+      foreground: colors.text.primary,
+    },
+    primary: {
+      DEFAULT: colors.brand.primary[500],
+      foreground: colors.text.inverse,
+      50: colors.brand.primary[50],
+      100: colors.brand.primary[100],
+      200: colors.brand.primary[200],
+      300: colors.brand.primary[300],
+      400: colors.brand.primary[400],
+      500: colors.brand.primary[500],
+      600: colors.brand.primary[600],
+      700: colors.brand.primary[700],
+      800: colors.brand.primary[800],
+      900: colors.brand.primary[900],
+    },
+    secondary: {
+      DEFAULT: colors.background.secondary,
+      foreground: colors.text.secondary,
+      50: colors.brand.secondary[50],
+      100: colors.brand.secondary[100],
+      200: colors.brand.secondary[200],
+      300: colors.brand.secondary[300],
+      400: colors.brand.secondary[400],
+      500: colors.brand.secondary[500],
+      600: colors.brand.secondary[600],
+      700: colors.brand.secondary[700],
+      800: colors.brand.secondary[800],
+      900: colors.brand.secondary[900],
+    },
+    muted: {
+      DEFAULT: colors.background.tertiary,
+      foreground: colors.text.secondary,
+    },
+    accent: {
+      DEFAULT: colors.background.tertiary,
+      foreground: colors.text.primary,
+    },
+    destructive: {
+      DEFAULT: colors.semantic.error.base,
+      foreground: colors.text.inverse,
+    },
+    border: colors.neutral.gray[200],
+    input: colors.neutral.gray[200],
+    ring: colors.brand.primary[500],
+
+    // セマンティックカラー
+    success: {
+      DEFAULT: colors.semantic.success.base,
+      foreground: colors.text.inverse,
+      light: colors.semantic.success.light,
+      dark: colors.semantic.success.dark,
+    },
+    warning: {
+      DEFAULT: colors.semantic.warning.base,
+      foreground: colors.text.primary,
+      light: colors.semantic.warning.light,
+      dark: colors.semantic.warning.dark,
+    },
+    error: {
+      DEFAULT: colors.semantic.error.base,
+      foreground: colors.text.inverse,
+      light: colors.semantic.error.light,
+      dark: colors.semantic.error.dark,
+    },
+    info: {
+      DEFAULT: colors.semantic.info.base,
+      foreground: colors.text.inverse,
+      light: colors.semantic.info.light,
+      dark: colors.semantic.info.dark,
+    },
+
+    // 中性色
     gray: colors.neutral.gray,
+
+    // チャートカラー（既存のものを保持）
+    chart: {
+      "1": "hsl(12, 76%, 61%)",
+      "2": "hsl(173, 58%, 39%)",
+      "3": "hsl(197, 37%, 24%)",
+      "4": "hsl(43, 74%, 66%)",
+      "5": "hsl(27, 87%, 67%)",
+    },
+  };
+}
+
+/**
+ * Tailwind CSS用のグラデーション設定を生成
+ */
+export function generateTailwindGradients() {
+  return {
+    "gradient-radial": gradients.radial,
+    "gradient-conic": gradients.conic,
+    "gradient-subtle": gradients.subtle,
+    "gradient-warm": gradients.warm,
+  };
+}
+
+/**
+ * ダークモード用のカラー設定を生成
+ */
+export function generateDarkModeColors() {
+  return {
+    background: colors.neutral.gray[900],
+    foreground: colors.text.inverse,
+    card: {
+      DEFAULT: colors.neutral.gray[900],
+      foreground: colors.text.inverse,
+    },
+    popover: {
+      DEFAULT: colors.neutral.gray[900],
+      foreground: colors.text.inverse,
+    },
+    primary: {
+      DEFAULT: colors.text.inverse,
+      foreground: colors.neutral.gray[900],
+    },
+    secondary: {
+      DEFAULT: colors.neutral.gray[800],
+      foreground: colors.text.inverse,
+    },
+    muted: {
+      DEFAULT: colors.neutral.gray[800],
+      foreground: colors.neutral.gray[400],
+    },
+    accent: {
+      DEFAULT: colors.neutral.gray[800],
+      foreground: colors.text.inverse,
+    },
+    destructive: {
+      DEFAULT: "hsl(0, 62.8%, 30.6%)",
+      foreground: colors.text.inverse,
+    },
+    border: colors.neutral.gray[800],
+    input: colors.neutral.gray[800],
+    ring: colors.neutral.gray[300],
   };
 }

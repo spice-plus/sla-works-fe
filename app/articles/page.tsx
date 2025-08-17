@@ -10,6 +10,8 @@ import {
   ArticleSearchSidebar,
 } from "../../src/components/search";
 import { StructuredData } from "../../src/components/seo/StructuredData";
+import { spacingTokens } from "../../src/design/tokens/spacing";
+import { typography } from "../../src/design/tokens/typography";
 import { useArticleSearch } from "../../src/hooks/useArticleSearch";
 import {
   generateArticleListStructuredData,
@@ -67,13 +69,13 @@ export default function ArticlesPage() {
   );
 
   return (
-    <div className="w-[90%] max-w-7xl mx-auto px-4 py-8">
+    <div className="container-responsive py-8 md:py-12">
       {/* 構造化データ */}
       <StructuredData data={breadcrumbStructuredData} />
       <StructuredData data={articleListStructuredData} />
       {/* ヘッダーセクション */}
-      <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-4">記事一覧</h1>
+      <div className={spacingTokens.variants.element}>
+        <h1 className={typography.variants.h1}>記事一覧</h1>
       </div>
 
       {/* レスポンシブレイアウト */}

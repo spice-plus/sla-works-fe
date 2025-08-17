@@ -18,7 +18,7 @@ const fontFamily = {
     "serif",
   ],
   mono: ["SFMono-Regular", "Consolas", "Menlo", "Monaco", "monospace"],
-} as const;
+};
 
 // フォントサイズ（基本サイズ定義）
 const fontSize = {
@@ -35,7 +35,7 @@ const fontSize = {
   "7xl": ["4.5rem", { lineHeight: "1" }], // 72px
   "8xl": ["6rem", { lineHeight: "1" }], // 96px
   "9xl": ["8rem", { lineHeight: "1" }], // 128px
-} as const;
+};
 
 // フォントウェイト
 const fontWeight = {
@@ -204,6 +204,26 @@ const breakpoints = {
   desktop: "1024px",
 } as const;
 
+// Typography variants (from Typography.tsx component)
+const variants = {
+  h1: "text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight md:tracking-normal",
+  h2: "text-xl md:text-2xl lg:text-3xl font-semibold tracking-tight md:tracking-normal",
+  h3: "text-lg md:text-xl lg:text-2xl font-semibold tracking-normal",
+  h4: "text-base md:text-lg lg:text-xl font-medium tracking-normal",
+  "body-large": "text-lg md:text-xl leading-relaxed tracking-normal",
+  body: "text-base md:text-lg leading-relaxed tracking-normal",
+  "body-small": "text-sm md:text-base leading-normal tracking-normal",
+  caption: "text-xs md:text-sm leading-tight tracking-normal text-muted-foreground",
+  label: "text-sm font-medium leading-none tracking-normal",
+} as const;
+
+// Tracking classes for responsive design
+const trackingClasses = {
+  tight: "tracking-responsive-tight",
+  normal: "tracking-responsive-normal",
+  wide: "tracking-responsive-wide",
+} as const;
+
 export const typography = {
   fontFamily,
   fontSize,
@@ -212,6 +232,78 @@ export const typography = {
   letterSpacing,
   textStyles,
   breakpoints,
+  variants,
+  trackingClasses,
 } as const;
 
 export type Typography = typeof typography;
+export type TypographyVariant = keyof typeof variants;
+export type TrackingVariant = keyof typeof trackingClasses;
+
+/**
+ * Generate Tailwind CSS typography configuration
+ */
+export function generateTailwindTypography() {
+  return {
+    fontFamily: {
+      sans: fontFamily.sans,
+      serif: fontFamily.serif,
+      mono: fontFamily.mono,
+    },
+    fontSize: {
+      xs: fontSize.xs as [string, { lineHeight: string }],
+      sm: fontSize.sm as [string, { lineHeight: string }],
+      base: fontSize.base as [string, { lineHeight: string }],
+      lg: fontSize.lg as [string, { lineHeight: string }],
+      xl: fontSize.xl as [string, { lineHeight: string }],
+      "2xl": fontSize["2xl"] as [string, { lineHeight: string }],
+      "3xl": fontSize["3xl"] as [string, { lineHeight: string }],
+      "4xl": fontSize["4xl"] as [string, { lineHeight: string }],
+      "5xl": fontSize["5xl"] as [string, { lineHeight: string }],
+      "6xl": fontSize["6xl"] as [string, { lineHeight: string }],
+      "7xl": fontSize["7xl"] as [string, { lineHeight: string }],
+      "8xl": fontSize["8xl"] as [string, { lineHeight: string }],
+      "9xl": fontSize["9xl"] as [string, { lineHeight: string }],
+      // レスポンシブタイポグラフィ
+      "responsive-h1": ["1.75rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
+      "responsive-h2": ["1.5rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
+      "responsive-h3": ["1.25rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
+      "responsive-h4": ["1.125rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
+      "responsive-body-large": ["1.125rem", { lineHeight: "1.6" }] as [string, { lineHeight: string }],
+      "responsive-body": ["1rem", { lineHeight: "1.6" }] as [string, { lineHeight: string }],
+      "responsive-body-small": ["0.875rem", { lineHeight: "1.5" }] as [string, { lineHeight: string }],
+      "responsive-caption": ["0.75rem", { lineHeight: "1.4" }] as [string, { lineHeight: string }],
+    },
+    fontWeight: {
+      thin: fontWeight.thin,
+      extralight: fontWeight.extralight,
+      light: fontWeight.light,
+      normal: fontWeight.normal,
+      medium: fontWeight.medium,
+      semibold: fontWeight.semibold,
+      bold: fontWeight.bold,
+      extrabold: fontWeight.extrabold,
+      black: fontWeight.black,
+    },
+    lineHeight: {
+      none: lineHeight.none,
+      tight: lineHeight.tight,
+      snug: lineHeight.snug,
+      normal: lineHeight.normal,
+      relaxed: lineHeight.relaxed,
+      loose: lineHeight.loose,
+    },
+    letterSpacing: {
+      tighter: letterSpacing.tighter,
+      tight: letterSpacing.tight,
+      normal: letterSpacing.normal,
+      wide: letterSpacing.wide,
+      wider: letterSpacing.wider,
+      widest: letterSpacing.widest,
+      // レスポンシブトラッキング
+      "responsive-tight": "-0.025em",
+      "responsive-normal": "0em",
+      "responsive-wide": "0.025em",
+    },
+  };
+}

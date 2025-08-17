@@ -2,6 +2,7 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { typography } from "@/design/tokens/typography";
 import { areas, getPrefecturesByArea } from "../../../masters/prefectures";
 
 interface PrefectureSelectorProps {
@@ -23,13 +24,13 @@ export function PrefectureSelector({
 
   return (
     <div className="space-y-4">
-      <Label className="text-lg font-medium">都道府県を選択</Label>
+      <h4 className={typography.variants.h4}>都道府県を選択</h4>
       <div className="space-y-6">
         {areas.map((area) => {
           const prefectures = getPrefecturesByArea(area.areaCode);
           return (
             <div key={area.areaCode} className="space-y-3">
-              <h3 className="font-medium text-sm text-gray-700">
+              <h3 className={`${typography.variants.label} text-gray-700`}>
                 {area.areaName}
               </h3>
               <div className="grid grid-cols-2 gap-2">

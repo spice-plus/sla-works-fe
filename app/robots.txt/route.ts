@@ -1,5 +1,3 @@
-import type { MetadataRoute } from "next";
-
 export function GET(): Response {
   const baseUrl = "https://sla-works.com";
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { typography } from "@/design/tokens/typography";
 import type { SortOption, ViewMode } from "../../types/search";
 import { SortControls } from "./SortControls";
 import { ViewToggle } from "./ViewToggle";
@@ -36,15 +37,13 @@ export function ArticleListControls({
     <div className="mb-6 p-4 bg-gray-50 rounded-lg">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center">
-          <span className="text-sm sm:text-base text-gray-600">
+          <span className={`${typography.variants["body-small"]} text-gray-600`}>
             {totalCount > 0 ? (
               <>
                 <span className="hidden sm:inline">
                   {startIndex}-{endIndex}件目 / 全{totalCount}件
                 </span>
-                <span className="sm:hidden">
-                  全{totalCount}件
-                </span>
+                <span className="sm:hidden">全{totalCount}件</span>
               </>
             ) : (
               "0件の記事が見つかりました"

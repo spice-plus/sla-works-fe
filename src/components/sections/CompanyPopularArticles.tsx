@@ -1,5 +1,6 @@
-import { AdaptiveCard } from "@/components/ui/adaptive-card";
-import { cn } from "@/lib/utils";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { typography } from "@/design/tokens/typography";
+import { AdaptiveCard } from "@/components/cards";
 import { getCompanyPopularArticles } from "@/utils/articleHelpers";
 import { formatDate } from "@/utils/formatDate";
 import { generateArticleUrl } from "@/utils/urlHelpers";
@@ -23,10 +24,12 @@ export function CompanyPopularArticles({
   }
 
   return (
-    <section className={cn("mb-12", className)}>
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">
-        {companyName}の人気記事
-      </h2>
+    <section className={`${spacingTokens.variants.large} ${className}`}>
+      <div className={spacingTokens.variants.large}>
+        <h2 className={`${typography.variants.h2} font-bold text-gray-900`}>
+          {companyName}の人気記事
+        </h2>
+      </div>
       <div className="grid md:grid-cols-2 gap-6">
         {popularArticles.map((article) => (
           <AdaptiveCard

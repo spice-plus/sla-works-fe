@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { typography } from "@/design/tokens/typography";
 import { cn } from "@/lib/utils";
 import type { BackButtonProps } from "./types";
 
@@ -13,12 +14,14 @@ export function BackButton({
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center text-[#2E3A97] hover:text-[#1E2875] font-medium transition-colors",
+        "inline-flex items-center text-primary hover:text-primary/90 font-medium transition-colors",
         className
       )}
     >
       {icon}
-      <span className="ml-2">{label}</span>
+      <span className={`${typography.variants["body-small"]} ml-2`}>
+        {label}
+      </span>
     </Link>
   );
 }

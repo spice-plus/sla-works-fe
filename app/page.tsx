@@ -3,23 +3,22 @@
 import {
   Award,
   Building2,
-  ChevronDown,
   Clock,
   Eye,
   FileText,
   MessageCircle,
-  Search,
   Settings,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { CategoryExplorer } from "@/components/sections/CategoryExplorer";
+import { HeroImageGrid } from "@/components/sections/HeroImageGrid";
 import { PrefectureExplorer } from "@/components/sections/PrefectureExplorer";
 import { SystemExplorer } from "@/components/sections/SystemExplorer";
-import { ArticleCard } from "@/components/ui/ArticleCard";
-import { ArticleOverlayCard } from "@/components/ui/cards/ArticleOverlayCard";
-import { Logo } from "@/components/ui/Logo";
+import { typography } from "@/design/tokens/typography";
+import { spacingTokens } from "@/design/tokens/spacing";
+import { ArticleCard } from "@/components/cards/ArticleCard";
+import { ArticleOverlayCard } from "@/components/cards/ArticleOverlayCard";
 import { categories } from "../masters/categories";
 import { getSystemNameById } from "../masters/systemNames";
 import { sampleArticles } from "../sample/articles";
@@ -27,8 +26,6 @@ import { sampleCompanies } from "../sample/companies";
 import type { Article } from "../src/models/types";
 
 export default function HomePage() {
-  const [searchKeyword, setSearchKeyword] = useState("");
-
   const articles = sampleArticles;
   const companies = sampleCompanies;
 
@@ -80,116 +77,78 @@ export default function HomePage() {
     return systemName ? categoryMap[systemName.categoryId] : undefined;
   };
 
-  // 検索実行
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchKeyword.trim()) {
-      window.location.href = `/articles?keyword=${encodeURIComponent(searchKeyword.trim())}`;
-    } else {
-      window.location.href = "/articles";
-    }
-  };
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-32 md:py-40 lg:py-48 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* 背景画像とオーバーレイ */}
+      <HeroImageGrid />
+
+      {/* Navigation Buttons Section */}
+      <section className="py-4 md:py-8 lg:py-12 relative overflow-hidden">
+        {/* 背景画像 */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-            alt="テクノロジーとイノベーション"
+            src="/images/image/online-interview.jpg"
+            alt="オンラインインタビュー"
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2E3A97]/90 to-[#475569]/80"></div>
-          <div className="absolute inset-0 bg-black/20"></div>
         </div>
 
-        {/* 装飾的な要素 */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-xl hidden sm:block"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-[#059669]/20 rounded-full blur-2xl hidden sm:block"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white/10 rounded-full blur-lg hidden sm:block"></div>
+        {/* グラデーションオーバーレイ（透明度付き） */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-700/80 via-gray-800/85 to-zinc-900/90 z-10"></div>
 
-        <div className="relative z-10 w-[90%] max-w-7xl mx-auto text-center">
-          <div className="mb-6 sm:mb-8 flex justify-center">
-            <Logo
-              variant="dark"
-              shape="square"
-              size="xl"
-              className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48"
-            />
-          </div>
-          <p className="text-xl sm:text-2xl text-white/90 mb-8 sm:mb-12 max-w-3xl mx-auto px-4 leading-relaxed">
-            開発事例やインタビュー記事を横断的に検索できるプラットフォーム
-          </p>
-
-          {/* 検索バー */}
-          <div className="max-w-3xl mx-auto mb-8 sm:mb-12">
-            <form
-              onSubmit={handleSearch}
-              className="relative group flex flex-col sm:flex-row"
-            >
-              <div className="relative flex-1">
-                <Search className="absolute left-4 sm:left-6 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 sm:w-6 sm:h-6 z-10" />
-                <input
-                  type="text"
-                  placeholder="事例記事を検索..."
-                  value={searchKeyword}
-                  onChange={(e) => setSearchKeyword(e.target.value)}
-                  className="w-full pl-12 sm:pl-16 pr-4 py-4 sm:py-5 text-base sm:text-lg bg-white/95 backdrop-blur-sm border-0 rounded-2xl sm:rounded-l-2xl sm:rounded-r-none shadow-2xl focus:ring-4 focus:ring-white/30 focus:bg-white transition-all duration-300 placeholder-gray-500 outline-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-[#2E3A97] hover:bg-[#1E2875] text-white px-4 sm:px-6 py-4 sm:py-5 rounded-2xl sm:rounded-l-none sm:rounded-r-2xl font-semibold shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300 mt-3 sm:mt-0 flex items-center justify-center"
-                aria-label="検索"
-              >
-                <Search className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-            </form>
+        <div className="relative z-20 max-w-4xl mx-auto px-4">
+          {/* 説明テキスト */}
+          <div className={spacingTokens.variants.large}>
+            <div className="text-center">
+              <p className={`${typography.variants.body} text-white leading-relaxed`}>
+                <Link
+                  href="/about"
+                  className="text-white hover:text-blue-200 underline underline-offset-2 transition-colors"
+                >
+                  /WORKS
+                </Link>
+                は開発事例やインタビュー記事を横断的に検索できるプラットフォームです
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+          {/* ボタン */}
+          <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 sm:gap-6 md:gap-8">
             <Link
               href="/articles"
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white/95 hover:text-[#2E3A97] rounded-lg font-semibold transition-all duration-300"
+              className="px-6 md:px-8 py-3 md:py-4 border-2 border-white text-white hover:bg-white hover:text-gray-800 rounded-lg font-semibold transition-all duration-300 text-center text-base md:text-lg"
             >
-              事例一覧
+              記事を探す
             </Link>
             <Link
               href="/companies"
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white/95 hover:text-[#2E3A97] rounded-lg font-semibold transition-all duration-300"
+              className="px-6 md:px-8 py-3 md:py-4 border-2 border-white text-white hover:bg-white hover:text-gray-800 rounded-lg font-semibold transition-all duration-300 text-center text-base md:text-lg"
             >
-              開発会社一覧
+              開発会社を探す
             </Link>
-          </div>
-        </div>
-
-        {/* スクロール促進アニメーション */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 hidden sm:block">
-          <div className="flex flex-col items-center animate-pulse">
-            <ChevronDown className="w-6 h-6 text-white/80 animate-bounce" />
           </div>
         </div>
       </section>
 
-      <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-responsive">
         {/* 新着セクション */}
-        <section className="mt-16">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center">
-              <Clock className="w-6 h-6 text-[#059669] mr-3" />
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-                新着
-              </h2>
+        <section className={spacingTokens.variants.xl}>
+          <div className={spacingTokens.variants.large}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Clock className="w-6 h-6 text-[#059669] mr-2 md:mr-3" />
+                <h2 className={`${typography.variants.h2} text-gray-900`}>
+                  新着
+                </h2>
+              </div>
+              <Link
+                href="/articles"
+                className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                もっと見る
+              </Link>
             </div>
-            <Link
-              href="/articles"
-              className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-            >
-              もっと見る
-            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -221,20 +180,22 @@ export default function HomePage() {
         </section>
 
         {/* 人気記事セクション */}
-        <section className="mt-20">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center">
-              <Eye className="w-6 h-6 text-[#EF4444] mr-3" />
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-                人気記事
-              </h2>
+        <section className={spacingTokens.variants.xl}>
+          <div className={spacingTokens.variants.large}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Eye className="w-6 h-6 text-[#EF4444] mr-2 md:mr-3" />
+                <h2 className={`${typography.variants.h2} text-gray-900`}>
+                  人気記事
+                </h2>
+              </div>
+              <Link
+                href="/articles"
+                className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                もっと見る
+              </Link>
             </div>
-            <Link
-              href="/articles"
-              className="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-            >
-              もっと見る
-            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -281,17 +242,21 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center">
-              <Building2 className="w-6 h-6 text-white mr-3" />
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">開発会社を探す</h2>
+          <div className={spacingTokens.variants.large}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Building2 className="w-6 h-6 text-white mr-3" />
+                <h2 className={`${typography.variants.h2} text-white`}>
+                  開発会社を探す
+                </h2>
+              </div>
+              <Link
+                href="/companies"
+                className="inline-flex items-center px-6 py-2 border border-white text-white hover:bg-white/90 hover:text-gray-900 backdrop-blur-sm rounded-full text-sm font-medium transition-all duration-300"
+              >
+                すべて見る
+              </Link>
             </div>
-            <Link
-              href="/companies"
-              className="inline-flex items-center px-6 py-2 border border-white text-white hover:bg-white/90 hover:text-gray-900 backdrop-blur-sm rounded-full text-sm font-medium transition-all duration-300"
-            >
-              すべて見る
-            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -305,9 +270,11 @@ export default function HomePage() {
                     height={64}
                     className="w-16 h-16 rounded-full mx-auto mb-3 object-cover"
                   />
-                  <h3 className="text-sm font-semibold text-gray-900 mb-1 line-clamp-2">
+                  <span
+                    className={`${typography.variants["body-small"]} font-semibold text-gray-900 line-clamp-2`}
+                  >
                     {company.name}
-                  </h3>
+                  </span>
                 </div>
               </Link>
             ))}
@@ -315,30 +282,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-responsive">
         {/* 記事タイプで探すセクション */}
-        <section className="mt-20">
-          <div className="text-center mb-12">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-              記事タイプで探す
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600">
-              目的に応じて記事を探すことができます
-            </p>
+        <section className={spacingTokens.variants.xl}>
+          <div className={spacingTokens.variants.large}>
+            <div className="text-center">
+              <h2 className={`${typography.variants.h2} text-gray-900`}>
+                記事タイプで探す
+              </h2>
+              <p className={`${typography.variants["body-large"]} text-gray-600`}>
+                目的に応じて記事を探すことができます
+              </p>
+            </div>
           </div>
 
           {/* インタビューセクション */}
-          <div className="mt-16">
-            <div className="flex items-start justify-between mb-8 gap-4">
+          <div className={spacingTokens.variants.large}>
+            <div className="flex items-start justify-between gap-4">
               <div className="flex items-start">
                 <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#F59E0B] mr-2 sm:mr-3 mt-0.5" />
                 <div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1">
+                  <h3 className={`${typography.variants.h3} text-gray-900`}>
                     インタビュー
                   </h3>
-                  <span className="text-xs sm:text-sm text-gray-500">
+                  <p className={`${typography.variants["body-small"]} text-gray-500`}>
                     開発者や企業担当者への取材記事
-                  </span>
+                  </p>
                 </div>
               </div>
               <Link
@@ -378,17 +347,17 @@ export default function HomePage() {
           </div>
 
           {/* プロセスセクション */}
-          <div className="mt-16">
-            <div className="flex items-start justify-between mb-8 gap-4">
+          <div className={spacingTokens.variants.large}>
+            <div className="flex items-start justify-between gap-4">
               <div className="flex items-start">
                 <Settings className="w-5 h-5 sm:w-6 sm:h-6 text-[#3B82F6] mr-2 sm:mr-3 mt-0.5" />
                 <div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1">
+                  <h3 className={`${typography.variants.h3} text-gray-900`}>
                     プロセス
                   </h3>
-                  <span className="text-xs sm:text-sm text-gray-500">
+                  <p className={`${typography.variants["body-small"]} text-gray-500`}>
                     開発手順や導入プロセスの解説
-                  </span>
+                  </p>
                 </div>
               </div>
               <Link
@@ -428,17 +397,17 @@ export default function HomePage() {
           </div>
 
           {/* 調査セクション */}
-          <div className="mt-16">
-            <div className="flex items-start justify-between mb-8 gap-4">
+          <div className={spacingTokens.variants.large}>
+            <div className="flex items-start justify-between gap-4">
               <div className="flex items-start">
                 <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-[#3B82F6] mr-2 sm:mr-3 mt-0.5" />
                 <div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1">
+                  <h3 className={`${typography.variants.h3} text-gray-900`}>
                     調査
                   </h3>
-                  <span className="text-xs sm:text-sm text-gray-500">
+                  <p className={`${typography.variants["body-small"]} text-gray-500`}>
                     調査結果やユーザーの声
-                  </span>
+                  </p>
                 </div>
               </div>
               <Link
@@ -478,17 +447,17 @@ export default function HomePage() {
           </div>
 
           {/* 成果物セクション */}
-          <div className="mt-16">
-            <div className="flex items-start justify-between mb-8 gap-4">
+          <div className={spacingTokens.variants.large}>
+            <div className="flex items-start justify-between gap-4">
               <div className="flex items-start">
                 <Award className="w-5 h-5 sm:w-6 sm:h-6 text-[#EF4444] mr-2 sm:mr-3 mt-0.5" />
                 <div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1">
+                  <h3 className={`${typography.variants.h3} text-gray-900`}>
                     成果物
                   </h3>
-                  <span className="text-xs sm:text-sm text-gray-500">
+                  <p className={`${typography.variants["body-small"]} text-gray-500`}>
                     完成したシステムやプロダクトの紹介
-                  </span>
+                  </p>
                 </div>
               </div>
               <Link
@@ -531,7 +500,7 @@ export default function HomePage() {
 
       {/* 探索セクション */}
       <section className="mt-20 bg-white py-16">
-        <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container-responsive">
           {/* カテゴリ一覧セクション */}
           <CategoryExplorer limit={8} />
 
